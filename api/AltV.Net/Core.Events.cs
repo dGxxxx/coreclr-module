@@ -63,6 +63,12 @@ namespace AltV.Net
         internal readonly IEventHandler<PlayerDisconnectDelegate> PlayerDisconnectEventHandler =
             new HashSetEventHandler<PlayerDisconnectDelegate>(EventType.PLAYER_DISCONNECT);
 
+        internal readonly IEventHandler<BaseObjectCreateDelegate> BaseObjectCreateEventHandler =
+            new HashSetEventHandler<BaseObjectCreateDelegate>();
+
+        internal readonly IEventHandler<BaseObjectRemoveDelegate> BaseObjectRemoveEventHandler =
+            new HashSetEventHandler<BaseObjectRemoveDelegate>();
+
         internal readonly IEventHandler<PlayerRemoveDelegate> PlayerRemoveEventHandler =
             new HashSetEventHandler<PlayerRemoveDelegate>();
 
@@ -2057,14 +2063,55 @@ namespace AltV.Net
         {
         }
 
-        public void OnCreateBaseObject(IntPtr baseObject, BaseObjectType type, uint id)
+        public void OnCreateBaseObject(IntPtr baseObjectPtr, BaseObjectType type, uint id)
         {
-            PoolManager.GetOrCreate(this, baseObject, type, id);
+            var baseObject = PoolManager.GetOrCreate(this, baseObjectPtr, type, id);
+            OnCreateBaseObjectEvent(baseObject);
         }
 
-        public void OnRemoveBaseObject(IntPtr baseObject, BaseObjectType type)
+        public virtual void OnCreateBaseObjectEvent(IBaseObject baseObject)
         {
-            PoolManager.Remove(baseObject, type);
+            foreach (var @delegate in BaseObjectCreateEventHandler.GetEvents())
+            {
+                try
+                {
+                    @delegate(baseObject);
+                }
+                catch (TargetInvocationException exception)
+                {
+                    Alt.Log("exception at event:" + "OnCreateBaseObjectEvent" + ":" + exception.InnerException);
+                }
+                catch (Exception exception)
+                {
+                    Alt.Log("exception at event:" + "OnCreateBaseObjectEvent" + ":" + exception);
+                }
+            }
+        }
+
+        public void OnRemoveBaseObject(IntPtr baseObjectPtr, BaseObjectType type)
+        {
+            var baseObject = PoolManager.Get(baseObjectPtr, type);
+            OnRemoveBaseObjectEvent(baseObject);
+            PoolManager.Remove(baseObjectPtr, type);
+        }
+
+        public virtual void OnRemoveBaseObjectEvent(IBaseObject baseObject)
+        {
+            foreach (var @delegate in BaseObjectRemoveEventHandler.GetEvents())
+            {
+                try
+                {
+                    @delegate(baseObject);
+                }
+                catch (TargetInvocationException exception)
+                {
+                    Alt.Log("exception at event:" + "OnRemoveBaseObjectEvent" + ":" + exception.InnerException);
+                }
+                catch (Exception exception)
+                {
+                    Alt.Log("exception at event:" + "OnRemoveBaseObjectEvent" + ":" + exception);
+                }
+            }
         }
 
         public void OnPlayerRemove(IntPtr playerPointer)
