@@ -188,7 +188,7 @@ namespace AltV.Net.Elements.Args
                     argsPointers[i] = args[i].nativePointer;
                 }
 
-                result = new MValueConst(core, 
+                result = new MValueConst(core,
                     core.Library.Shared.MValueConst_CallFunction(core.NativePointer, nativePointer, argsPointers,
                         length));
             }
@@ -252,6 +252,7 @@ namespace AltV.Net.Elements.Args
 
         public object ToObject()
         {
+            Console.WriteLine($"To Object: {type}");
             switch (type)
             {
                 case Type.None:
@@ -316,7 +317,7 @@ namespace AltV.Net.Elements.Args
                     if (entityPointer == IntPtr.Zero) return null;
                     // TODO get or create
                     return core.PoolManager.Get(entityPointer, entityType);
-                
+
                 case Type.Function:
                     return null;
                 case Type.Vector3:

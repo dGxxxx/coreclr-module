@@ -1,6 +1,7 @@
 using System;
 using AltV.Net.Elements.Args;
 using AltV.Net.Native;
+using AltV.Net.Shared.Utils;
 
 namespace AltV.Net
 {
@@ -141,7 +142,7 @@ namespace AltV.Net
             value = mValue.ToObject();
             return true;
         }
-        
+
         public static bool Import(string resourceName, string key, out string value)
         {
             if (HostImport(resourceName, key, out value))
@@ -168,7 +169,7 @@ namespace AltV.Net
                 throw new InvalidImportException(
                     $"Resource: '{resourceName}' not found.");
             }
-            
+
             if (!resource.GetExport(key, out mValue))
             {
                 throw new InvalidImportException(
@@ -198,14 +199,14 @@ namespace AltV.Net
                 Alt.Core.CreateMValue(out var mValueElement, args[i]);
                 mValueArgs[i] = mValueElement.nativePointer;
             }
-            
+
             result = new MValueConst(Alt.Core.Library.MValue_CallFunction(mValue.nativePointer, mValueArgs, length));
             for (ulong i = 0;i < length;i++)
             {
                 Alt.Core.Library.MValueConst_Delete(mValueArgs[i]);
             }
         }*/
-        
+
         private static object ImportCall(in MValueConst mValue, object[] args)
         {
             unsafe
@@ -220,6 +221,30 @@ namespace AltV.Net
 
                 var result = new MValueConst(Alt.Core, Alt.Core.Library.Shared.MValueConst_CallFunction(Alt.Core.NativePointer, mValue.nativePointer, mValueArgs, length));
                 var resultObj = result.ToObject();
+                result.Dispose();
+                for (ulong i = 0;i < length;i++)
+                {
+                    Alt.Core.Library.Shared.MValueConst_Delete(mValueArgs[i]);
+                }
+
+                return resultObj;
+            }
+        }
+
+        private static object ImportCall<T>(in MValueConst mValue, object[] args)
+        {
+            unsafe
+            {
+                var length = (ulong) args.Length;
+                var mValueArgs = new IntPtr[length];
+                for (uint i = 0; i < length; i++)
+                {
+                    Alt.Core.CreateMValue(out var mValueElement, args[i]);
+                    mValueArgs[i] = mValueElement.nativePointer;
+                }
+
+                var result = new MValueConst(Alt.Core, Alt.Core.Library.Shared.MValueConst_CallFunction(Alt.Core.NativePointer, mValue.nativePointer, mValueArgs, length));
+                var resultObj = Utils.GetCastedMValue<T>(result);
                 result.Dispose();
                 for (ulong i = 0;i < length;i++)
                 {
@@ -578,7 +603,7 @@ namespace AltV.Net
 
             value = () =>
             {
-                if (ImportCall(mValue, new object[] { }) is TResult result)
+                if (ImportCall<TResult>(mValue, new object[] { }) is TResult result)
                 {
                     return result;
                 }
@@ -603,7 +628,7 @@ namespace AltV.Net
 
             value = (p1) =>
             {
-                if (ImportCall(mValue, new object[] {p1}) is TResult result)
+                if (ImportCall<TResult>(mValue, new object[] {p1}) is TResult result)
                 {
                     return result;
                 }
@@ -628,7 +653,7 @@ namespace AltV.Net
 
             value = (p1, p2) =>
             {
-                if (ImportCall(mValue, new object[] {p1, p2}) is TResult result)
+                if (ImportCall<TResult>(mValue, new object[] {p1, p2}) is TResult result)
                 {
                     return result;
                 }
@@ -654,7 +679,7 @@ namespace AltV.Net
 
             value = (p1, p2, p3) =>
             {
-                if (ImportCall(mValue, new object[] {p1, p2, p3}) is TResult result)
+                if (ImportCall<TResult>(mValue, new object[] {p1, p2, p3}) is TResult result)
                 {
                     return result;
                 }
@@ -680,7 +705,7 @@ namespace AltV.Net
 
             value = (p1, p2, p3, p4) =>
             {
-                if (ImportCall(mValue, new object[] {p1, p2, p3, p4}) is TResult result)
+                if (ImportCall<TResult>(mValue, new object[] {p1, p2, p3, p4}) is TResult result)
                 {
                     return result;
                 }
@@ -706,7 +731,7 @@ namespace AltV.Net
 
             value = (p1, p2, p3, p4, p5) =>
             {
-                if (ImportCall(mValue, new object[] {p1, p2, p3, p4, p5}) is TResult result)
+                if (ImportCall<TResult>(mValue, new object[] {p1, p2, p3, p4, p5}) is TResult result)
                 {
                     return result;
                 }
@@ -732,7 +757,7 @@ namespace AltV.Net
 
             value = (p1, p2, p3, p4, p5, p6) =>
             {
-                if (ImportCall(mValue, new object[] {p1, p2, p3, p4, p5, p6}) is TResult result)
+                if (ImportCall<TResult>(mValue, new object[] {p1, p2, p3, p4, p5, p6}) is TResult result)
                 {
                     return result;
                 }
@@ -758,7 +783,7 @@ namespace AltV.Net
 
             value = (p1, p2, p3, p4, p5, p6, p7) =>
             {
-                if (ImportCall(mValue, new object[] {p1, p2, p3, p4, p5, p6, p7}) is TResult result)
+                if (ImportCall<TResult>(mValue, new object[] {p1, p2, p3, p4, p5, p6, p7}) is TResult result)
                 {
                     return result;
                 }
@@ -784,7 +809,7 @@ namespace AltV.Net
 
             value = (p1, p2, p3, p4, p5, p6, p7, p8) =>
             {
-                if (ImportCall(mValue, new object[] {p1, p2, p3, p4, p5, p6, p7, p8}) is TResult result)
+                if (ImportCall<TResult>(mValue, new object[] {p1, p2, p3, p4, p5, p6, p7, p8}) is TResult result)
                 {
                     return result;
                 }
@@ -810,7 +835,7 @@ namespace AltV.Net
 
             value = (p1, p2, p3, p4, p5, p6, p7, p8, p9) =>
             {
-                if (ImportCall(mValue, new object[] {p1, p2, p3, p4, p5, p6, p7, p8, p9}) is TResult result)
+                if (ImportCall<TResult>(mValue, new object[] {p1, p2, p3, p4, p5, p6, p7, p8, p9}) is TResult result)
                 {
                     return result;
                 }
@@ -836,7 +861,7 @@ namespace AltV.Net
 
             value = (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) =>
             {
-                if (ImportCall(mValue, new object[] {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10}) is TResult result)
+                if (ImportCall<TResult>(mValue, new object[] {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10}) is TResult result)
                 {
                     return result;
                 }
@@ -863,7 +888,7 @@ namespace AltV.Net
 
             value = (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) =>
             {
-                if (ImportCall(mValue, new object[] {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11}) is TResult result)
+                if (ImportCall<TResult>(mValue, new object[] {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11}) is TResult result)
                 {
                     return result;
                 }
@@ -890,7 +915,7 @@ namespace AltV.Net
 
             value = (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) =>
             {
-                if (ImportCall(mValue, new object[] {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12}) is TResult
+                if (ImportCall<TResult>(mValue, new object[] {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12}) is TResult
                     result)
                 {
                     return result;
@@ -918,7 +943,7 @@ namespace AltV.Net
 
             value = (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) =>
             {
-                if (ImportCall(mValue, new object[] {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13}) is TResult
+                if (ImportCall<TResult>(mValue, new object[] {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13}) is TResult
                     result)
                 {
                     return result;
@@ -946,7 +971,7 @@ namespace AltV.Net
 
             value = (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) =>
             {
-                if (ImportCall(mValue, new object[] {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14}) is
+                if (ImportCall<TResult>(mValue, new object[] {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14}) is
                     TResult result)
                 {
                     return result;
@@ -974,7 +999,7 @@ namespace AltV.Net
 
             value = (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) =>
             {
-                if (ImportCall(mValue,
+                if (ImportCall<TResult>(mValue,
                     new object[] {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15}) is TResult result)
                 {
                     return result;
@@ -1002,7 +1027,7 @@ namespace AltV.Net
 
             value = (p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) =>
             {
-                if (ImportCall(mValue,
+                if (ImportCall<TResult>(mValue,
                     new object[]
                         {p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16}) is TResult result)
                 {
