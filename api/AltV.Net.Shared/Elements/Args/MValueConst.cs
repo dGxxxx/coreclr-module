@@ -252,7 +252,6 @@ namespace AltV.Net.Elements.Args
 
         public object ToObject()
         {
-            Console.WriteLine($"To Object: {type}");
             switch (type)
             {
                 case Type.None:
