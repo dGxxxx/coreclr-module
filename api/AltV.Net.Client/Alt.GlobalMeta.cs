@@ -1,4 +1,5 @@
 ﻿using AltV.Net.Elements.Args;
+using AltV.Net.Shared.Utils;
 
 namespace AltV.Net.Client
 {
@@ -71,7 +72,7 @@ namespace AltV.Net.Client
 
                 try
                 {
-                    result = (T)Convert.ChangeType(mValue.ToObject(), typeof(T));
+                    result = Utils.GetCastedMValue<T>(mValue);
                     return true;
                 }
                 catch
@@ -90,7 +91,7 @@ namespace AltV.Net.Client
 
                 try
                 {
-                    result = (T)Convert.ChangeType(mValue.ToObject(), typeof(T));
+                    result = Utils.GetCastedMValue<T>(mValue);
                     return true;
                 }
                 catch
@@ -109,7 +110,7 @@ namespace AltV.Net.Client
 
                 try
                 {
-                    result = (T)Convert.ChangeType(mValue.ToObject(), typeof(T));
+                    result = Utils.GetCastedMValue<T>(mValue);
                     return true;
                 }
                 catch

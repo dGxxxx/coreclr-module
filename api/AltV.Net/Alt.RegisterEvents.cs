@@ -22,6 +22,30 @@ namespace AltV.Net
                             ScriptFunction scriptFunction;
                             switch (scriptEventType)
                             {
+                                case ScriptEventType.BaseObjectCreate:
+                                {
+                                    scriptFunction = ScriptFunction.Create(eventMethodDelegate,
+                                        new[] { typeof(IBaseObject) });
+                                    if (scriptFunction == null) return;
+                                    OnBaseObjectCreate += (baseObject) =>
+                                    {
+                                        scriptFunction.Set(baseObject);
+                                        scriptFunction.Call();
+                                    };
+                                    break;
+                                }
+                                case ScriptEventType.BaseObjectRemove:
+                                {
+                                    scriptFunction = ScriptFunction.Create(eventMethodDelegate,
+                                        new[] { typeof(IBaseObject) });
+                                    if (scriptFunction == null) return;
+                                    OnBaseObjectRemove += (baseObject) =>
+                                    {
+                                        scriptFunction.Set(baseObject);
+                                        scriptFunction.Call();
+                                    };
+                                    break;
+                                }
                                 case ScriptEventType.Checkpoint:
                                 {
                                     scriptFunction = ScriptFunction.Create(eventMethodDelegate,

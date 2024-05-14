@@ -249,9 +249,9 @@ namespace AltV.Net.Client
             DisconnectEventHandler.GetEvents().ForEachCatching(fn => fn(), $"event {nameof(OnPlayerDisconnect)}");
         }
 
-        public void OnPlayerEnterVehicle(IntPtr pointer, byte seat)
+        public void OnPlayerEnterVehicle(IntPtr pointer, BaseObjectType type, byte seat)
         {
-            var vehicle = PoolManager.Vehicle.Get(pointer);
+            var vehicle = (IVehicle)PoolManager.Get(pointer, type);
             if (vehicle is null)
             {
                 Console.WriteLine("Invalid vehicle: " + pointer);
@@ -261,9 +261,9 @@ namespace AltV.Net.Client
             EnterVehicleEventHandler.GetEvents().ForEachCatching(fn => fn(vehicle, seat), $"event {nameof(OnPlayerEnterVehicle)}");
         }
 
-        public void OnGameEntityCreate(IntPtr pointer, byte type)
+        public void OnGameEntityCreate(IntPtr pointer, BaseObjectType type)
         {
-            var baseObject = PoolManager.Get(pointer, (BaseObjectType) type);
+            var baseObject = PoolManager.Get(pointer, type);
             if (baseObject is not IEntity entity)
             {
                 Console.WriteLine("Invalid entity: " + pointer + " " + (baseObject == null));
@@ -273,9 +273,9 @@ namespace AltV.Net.Client
             GameEntityCreateEventHandler.GetEvents().ForEachCatching(fn => fn(entity), $"event {nameof(OnGameEntityCreate)}");
         }
 
-        public void OnGameEntityDestroy(IntPtr pointer, byte type)
+        public void OnGameEntityDestroy(IntPtr pointer, BaseObjectType type)
         {
-            var baseObject = PoolManager.Get(pointer, (BaseObjectType) type);
+            var baseObject = PoolManager.Get(pointer, type);
             if (baseObject is not IEntity entity)
             {
                 Console.WriteLine("Invalid entity: " + pointer);
@@ -339,14 +339,14 @@ namespace AltV.Net.Client
             GlobalSyncedMetaChangeEventHandler.GetEvents().ForEachCatching(fn => fn(key, value.ToObject(), oldValue.ToObject()), $"event {nameof(OnGlobalSyncedMetaChange)}");
         }
 
-        public void OnPlayerChangeVehicleSeat(IntPtr vehiclePtr, byte oldSeat, byte newSeat)
+        public void OnPlayerChangeVehicleSeat(IntPtr vehiclePtr, BaseObjectType type, byte oldSeat, byte newSeat)
         {
-            var vehicle = PoolManager.Vehicle.Get(vehiclePtr);
+            var vehicle = (IVehicle)PoolManager.Get(vehiclePtr, type);
             PlayerChangeVehicleSeatEventHandler.GetEvents().ForEachCatching(fn => fn(vehicle, oldSeat, newSeat), $"event {nameof(OnPlayerChangeVehicleSeat)}");
         }
-        public void OnPlayerChangeAnimation(IntPtr playerPtr, uint oldDict, uint newDict, uint oldName, uint newName)
+        public void OnPlayerChangeAnimation(IntPtr playerPtr, BaseObjectType type, uint oldDict, uint newDict, uint oldName, uint newName)
         {
-            var player = PoolManager.Player.Get(playerPtr);
+            var player = (IPlayer)PoolManager.Get(playerPtr, type);
             if (player == null)
             {
                 Alt.LogWarning("OnPlayerChangeAnimation: Invalid player " + playerPtr);
@@ -356,9 +356,9 @@ namespace AltV.Net.Client
             PlayerChangeAnimationEventHandler.GetEvents().ForEachCatching(fn => fn(player, oldDict, newDict, oldName, newName), $"event {nameof(OnPlayerChangeAnimation)}");
         }
 
-        public void OnPlayerChangeInterior(IntPtr playerPtr, uint oldIntLoc, uint newIntLoc)
+        public void OnPlayerChangeInterior(IntPtr playerPtr, BaseObjectType type, uint oldIntLoc, uint newIntLoc)
         {
-            var player = PoolManager.Player.Get(playerPtr);
+            var player = (IPlayer)PoolManager.Get(playerPtr, type);
             if (player == null)
             {
                 Alt.LogWarning("OnPlayerChangeInterior: Invalid player " + playerPtr);
@@ -475,9 +475,15 @@ namespace AltV.Net.Client
             RemoveEntityEventHandler.GetEvents().ForEachCatching(fn => fn(target), $"event {nameof(OnRemoveEntity)}");
         }
 
-        public void OnPlayerLeaveVehicle(IntPtr vehiclePtr, byte seat)
+        public void OnPlayerLeaveVehicle(IntPtr vehiclePtr, BaseObjectType type, byte seat)
         {
-            var vehicle = PoolManager.Vehicle.Get(vehiclePtr);
+            var vehicle = (IVehicle)PoolManager.Get(vehiclePtr, type);
+            if (vehicle is null)
+            {
+                Console.WriteLine("Invalid vehicle: " + vehiclePtr);
+                return;
+            }
+
             PlayerLeaveVehicleEventHandler.GetEvents().ForEachCatching(fn => fn(vehicle, seat), $"event {nameof(OnPlayerLeaveVehicle)}");
         }
 
@@ -648,18 +654,18 @@ namespace AltV.Net.Client
             MetaChangeEventHandler.GetEvents().ForEachCatching(fn => fn(target, key, value.ToObject(), oldValue.ToObject()), $"event {nameof(OnMetaChange)}");
         }
 
-        public void OnPlayerStartEnterVehicle(IntPtr targetpointer, IntPtr playerPointer, byte seat)
+        public void OnPlayerStartEnterVehicle(IntPtr targetpointer, BaseObjectType type, IntPtr playerPointer, BaseObjectType playerType, byte seat)
         {
-            var vehicle = PoolManager.Vehicle.Get(targetpointer);
-            var player = PoolManager.Player.Get(playerPointer);
+            var vehicle = (IVehicle)PoolManager.Get(targetpointer, type);
+            var player = (IPlayer)PoolManager.Get(playerPointer, playerType);
 
             PlayerStartEnterVehicleEventHandler.GetEvents().ForEachCatching(fn => fn(vehicle, player, seat), $"event {nameof(OnPlayerStartEnterVehicle)}");
         }
 
-        public void OnPlayerStartLeaveVehicle(IntPtr targetpointer, IntPtr playerPointer, byte seat)
+        public void OnPlayerStartLeaveVehicle(IntPtr targetpointer, BaseObjectType type, IntPtr playerPointer, BaseObjectType playerType, byte seat)
         {
-            var vehicle = PoolManager.Vehicle.Get(targetpointer);
-            var player = PoolManager.Player.Get(playerPointer);
+            var vehicle = (IVehicle)PoolManager.Get(targetpointer, type);
+            var player = (IPlayer)PoolManager.Get(playerPointer, playerType);
 
             PlayerStartLeaveVehicleEventHandler.GetEvents().ForEachCatching(fn => fn(vehicle, player, seat), $"event {nameof(OnPlayerStartLeaveVehicle)}");
         }
@@ -718,6 +724,70 @@ namespace AltV.Net.Client
                 clientScriptRPCEvent.AnswerWithError("Answer not handled");
                 UnansweredClientRpcRequest.Remove(answerid);
             }
+        }
+
+        public bool RemoveServerEventListener(string name, Function function)
+        {
+            if (function is null
+            || !ServerEventBus.TryGetValue(name, out var eventHandlers))
+            {
+                return false;
+            }
+            return eventHandlers.Remove(function);
+        }
+
+        public bool RemoveClientEventListener(string name, Function function)
+        {
+            if (function is null
+            || !ClientEventBus.TryGetValue(name, out var eventHandlers))
+            {
+                return false;
+            }
+            return eventHandlers.Remove(function);
+        }
+
+        public bool RemoveWebViewEventListener(IntPtr webViewPtr, string name, Function function)
+        {
+            if (function is null
+            || !WebViewEventBus.TryGetValue(webViewPtr, out var eventHandlerDictionary)
+            || !eventHandlerDictionary.TryGetValue(name, out var eventHandlers))
+            {
+                return false;
+            }
+            return eventHandlers.Remove(function);
+        }
+
+        public bool RemoveAudioEventListener(IntPtr audioPtr, string name, Function function)
+        {
+            if (function is null
+            || !AudioEventBus.TryGetValue(audioPtr, out var eventHandlerDictionary)
+            || !eventHandlerDictionary.TryGetValue(name, out var eventHandlers))
+            {
+                return false;
+            }
+            return eventHandlers.Remove(function);
+        }
+
+        public bool RemoveRmlElementEventListener(IntPtr rmlElementPtr, string name, Function function)
+        {
+            if (function is null
+            || !RmlElementEventBus.TryGetValue(rmlElementPtr, out var eventHandlerDictionary)
+            || !eventHandlerDictionary.TryGetValue(name, out var eventHandlers))
+            {
+                return false;
+            }
+            return eventHandlers.Remove(function);
+        }
+
+        public bool RemoveWebSocketEventListener(IntPtr webSocketPtr, string name, Function function)
+        {
+            if (function is null
+            || !WebSocketEventBus.TryGetValue(webSocketPtr, out var eventHandlerDictionary)
+            || !eventHandlerDictionary.TryGetValue(name, out var eventHandlers))
+            {
+                return false;
+            }
+            return eventHandlers.Remove(function);
         }
     }
 }

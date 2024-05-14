@@ -81,6 +81,12 @@ namespace AltV.Net.Async
         internal readonly AsyncEventHandler<PlayerDisconnectAsyncDelegate> PlayerDisconnectAsyncEventHandler =
             new(EventType.PLAYER_DISCONNECT);
 
+        internal readonly AsyncEventHandler<BaseObjectCreateAsyncDelegate> BaseObjectCreateAsyncEventHandler =
+            new();
+
+        internal readonly AsyncEventHandler<BaseObjectRemoveAsyncDelegate> BaseObjectRemoveAsyncEventHandler =
+            new();
+
         internal readonly AsyncEventHandler<PlayerRemoveAsyncDelegate> PlayerRemoveAsyncEventHandler =
             new();
 
@@ -355,6 +361,27 @@ namespace AltV.Net.Async
                         @delegate(player, reason));
                 }
             );
+        }
+
+        public override void OnCreateBaseObjectEvent(IBaseObject baseObject)
+        {
+            base.OnCreateBaseObjectEvent(baseObject);
+            if (!BaseObjectCreateAsyncEventHandler.HasEvents()) return;
+            Task.Run(async () =>
+            {
+                await BaseObjectCreateAsyncEventHandler.CallAsync(@delegate =>
+                    @delegate(baseObject));
+            });
+        }
+        public override void OnRemoveBaseObjectEvent(IBaseObject baseObject)
+        {
+            base.OnRemoveBaseObjectEvent(baseObject);
+            if (!BaseObjectRemoveAsyncEventHandler.HasEvents()) return;
+            Task.Run(async () =>
+            {
+                await BaseObjectRemoveAsyncEventHandler.CallAsync(@delegate =>
+                    @delegate(baseObject));
+            });
         }
 
         public override void OnPlayerRemoveEvent(IPlayer player)
@@ -968,13 +995,13 @@ namespace AltV.Net.Async
             });
         }
 
-        public override void OnScriptRPCEvent(IntPtr eventpointer, IPlayer target, string name, IntPtr[] args, ushort answerId, bool async)
+        public override void OnScriptRPCEvent(IntPtr eventpointer, IPlayer target, string name, object[] objects, ushort answerId, bool async)
         {
             if (!UnansweredServerRpcRequest.Contains(answerId))
             {
                 UnansweredServerRpcRequest.Add(answerId);
             }
-            base.OnScriptRPCEvent(eventpointer, target, name, args, answerId, true);
+            base.OnScriptRPCEvent(eventpointer, target, name, objects, answerId, true);
 
             if (UnansweredServerRpcRequest.Contains(answerId))
             {
@@ -985,12 +1012,14 @@ namespace AltV.Net.Async
             }
 
             if (!ScriptRpcAsyncEventHandler.HasEvents()) return;
-            Task.Run(async () =>
+
+            var task = Task.Run(async () =>
             {
-                var mValues = MValueConst.CreateFrom(this, args);
                 var clientScriptRPCEvent = new AsyncScriptRpcEvent(target, answerId);
-                await ScriptRpcAsyncEventHandler.CallAsync(@delegate => @delegate(clientScriptRPCEvent, target, name, mValues.Select(x => x.ToObject()).ToArray(), answerId));
+                await ScriptRpcAsyncEventHandler.CallAsync(@delegate => @delegate(clientScriptRPCEvent, target, name, objects, answerId));
             });
+
+            Task.WaitAll(task);
 
             if (UnansweredServerRpcRequest.Contains(answerId))
             {

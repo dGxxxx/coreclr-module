@@ -27,6 +27,9 @@ namespace AltV.Net.Events
 
     public delegate void PlayerDisconnectDelegate(IPlayer player, string reason);
 
+    public delegate void BaseObjectCreateDelegate(IBaseObject baseObject);
+    public delegate void BaseObjectRemoveDelegate(IBaseObject baseObject);
+
     public delegate void PlayerRemoveDelegate(IPlayer player);
 
     public delegate void VehicleRemoveDelegate(IVehicle vehicle);

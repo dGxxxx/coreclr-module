@@ -223,7 +223,7 @@ namespace AltV.Net.Shared.Elements.Entities
 
                 try
                 {
-                    result = (T)Convert.ChangeType(mValue.ToObject(), typeof(T));
+                    result = Utils.Utils.GetCastedMValue<T>(mValue);
                     return true;
                 }
                 catch
@@ -302,7 +302,7 @@ namespace AltV.Net.Shared.Elements.Entities
 
                 try
                 {
-                    result = (T)Convert.ChangeType(mValue.ToObject(), typeof(T));
+                    result = Utils.Utils.GetCastedMValue<T>(mValue);
                     return true;
                 }
                 catch

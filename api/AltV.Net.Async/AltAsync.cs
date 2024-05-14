@@ -23,6 +23,18 @@ namespace AltV.Net.Async
             remove => Core.CheckpointAsyncEventHandler.Remove(value);
         }
 
+        public static event BaseObjectCreateAsyncDelegate OnBaseObjectCreate
+        {
+            add => Core.BaseObjectCreateAsyncEventHandler.Add(value);
+            remove => Core.BaseObjectCreateAsyncEventHandler.Remove(value);
+        }
+
+        public static event BaseObjectRemoveAsyncDelegate OnBaseObjectRemove
+        {
+            add => Core.BaseObjectRemoveAsyncEventHandler.Add(value);
+            remove => Core.BaseObjectRemoveAsyncEventHandler.Remove(value);
+        }
+
         public static event PlayerConnectAsyncDelegate OnPlayerConnect
         {
             add => Core.PlayerConnectAsyncEventHandler.Add(value);

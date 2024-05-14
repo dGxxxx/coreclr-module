@@ -209,17 +209,17 @@ namespace AltV.Net.Client
             _core.OnPlayerDisconnect();
         }
 
-        public static void OnPlayerEnterVehicle(IntPtr pointer, byte seat)
+        public static void OnPlayerEnterVehicle(IntPtr pointer, BaseObjectType type, byte seat)
         {
-            _core.OnPlayerEnterVehicle(pointer, seat);
+            _core.OnPlayerEnterVehicle(pointer, type, seat);
         }
 
-        public static void OnGameEntityCreate(IntPtr pointer, byte type)
+        public static void OnGameEntityCreate(IntPtr pointer, BaseObjectType type)
         {
             _core.OnGameEntityCreate(pointer, type);
         }
 
-        public static void OnGameEntityDestroy(IntPtr pointer, byte type)
+        public static void OnGameEntityDestroy(IntPtr pointer, BaseObjectType type)
         {
             _core.OnGameEntityDestroy(pointer, type);
         }
@@ -323,19 +323,19 @@ namespace AltV.Net.Client
             _core.OnConnectionComplete();
         }
 
-        public static void OnPlayerChangeVehicleSeat(IntPtr vehicle, byte oldSeat, byte newSeat)
+        public static void OnPlayerChangeVehicleSeat(IntPtr vehicle, BaseObjectType type, byte oldSeat, byte newSeat)
         {
-            _core.OnPlayerChangeVehicleSeat(vehicle, oldSeat, newSeat);
+            _core.OnPlayerChangeVehicleSeat(vehicle, type, oldSeat, newSeat);
         }
 
-        public static void OnPlayerChangeAnimation(IntPtr player, uint oldDict, uint newDict, uint oldName, uint newName)
+        public static void OnPlayerChangeAnimation(IntPtr player, BaseObjectType type, uint oldDict, uint newDict, uint oldName, uint newName)
         {
-            _core.OnPlayerChangeAnimation(player, oldDict, newDict, oldName, newName);
+            _core.OnPlayerChangeAnimation(player, type, oldDict, newDict, oldName, newName);
         }
 
-        public static void OnPlayerChangeInterior(IntPtr player, uint oldIntLoc, uint newIntLoc)
+        public static void OnPlayerChangeInterior(IntPtr player, BaseObjectType type, uint oldIntLoc, uint newIntLoc)
         {
-            _core.OnPlayerChangeInterior(player, oldIntLoc, newIntLoc);
+            _core.OnPlayerChangeInterior(player, type, oldIntLoc, newIntLoc);
         }
 
         public static void OnPlayerWeaponShoot(uint weapon, ushort totalAmmo, ushort ammoInClip)
@@ -396,9 +396,9 @@ namespace AltV.Net.Client
             _core.OnWorldObjectPositionChange(target, type, position);
         }
 
-        public static void OnPlayerLeaveVehicle(IntPtr vehicle, byte seat)
+        public static void OnPlayerLeaveVehicle(IntPtr vehicle, BaseObjectType type, byte seat)
         {
-            _core.OnPlayerLeaveVehicle(vehicle, seat);
+            _core.OnPlayerLeaveVehicle(vehicle, type, seat);
         }
 
         public static void OnWorldObjectStreamIn(IntPtr target, BaseObjectType type)
@@ -426,14 +426,14 @@ namespace AltV.Net.Client
             _core.OnMetaChange(target, type, key, value, oldvalue);
         }
 
-        public static void OnPlayerStartEnterVehicle(IntPtr targetpointer, IntPtr player, byte seat)
+        public static void OnPlayerStartEnterVehicle(IntPtr targetpointer, BaseObjectType type, IntPtr player, BaseObjectType playerType, byte seat)
         {
-            _core.OnPlayerStartEnterVehicle(targetpointer, player, seat);
+            _core.OnPlayerStartEnterVehicle(targetpointer, type, player, playerType, seat);
         }
 
-        public static void OnPlayerStartLeaveVehicle(IntPtr targetpointer, IntPtr player, byte seat)
+        public static void OnPlayerStartLeaveVehicle(IntPtr targetpointer, BaseObjectType type, IntPtr player, BaseObjectType playerType, byte seat)
         {
-            _core.OnPlayerStartLeaveVehicle(targetpointer, player, seat);
+            _core.OnPlayerStartLeaveVehicle(targetpointer, type, player, playerType, seat);
         }
 
         public static void OnEntityHitEntity(IntPtr targetpointer, BaseObjectType targettype, IntPtr damagerpointer, BaseObjectType damagertype, uint weaponhash)
