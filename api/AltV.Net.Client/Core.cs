@@ -743,6 +743,14 @@ namespace AltV.Net.Client
             }
         }
 
+        public bool ReloadVehiclePhysics(uint modelHash)
+        {
+            unsafe
+            {
+                return Library.Client.Core_ReloadVehiclePhysics(NativePointer, modelHash) == 1;
+            }
+        }
+
         #endregion
 
         #region TriggerServerEvent
