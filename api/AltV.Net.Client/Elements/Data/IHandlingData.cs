@@ -15,12 +15,16 @@ public interface IHandlingData
     float PercentSubmerged { get; set; }
     float PercentSubmergedRatio { get; set; }
     float DriveBiasFront { get; set; }
+    float DriveBiasRear { get; set; }
+    [Obsolete("Use DriveBiasRear instead")]
     float Acceleration { get; set; }
     uint InitialDriveGears { get; set; }
     float DriveInertia { get; set; }
     float ClutchChangeRateScaleUpShift { get; set; }
     float ClutchChangeRateScaleDownShift { get; set; }
     float InitialDriveForce { get; set; }
+    float InitialDriveMaxVel { get; set; }
+    [Obsolete("Use InitialDriveMaxVel instead")]
     float DriveMaxFlatVel { get; set; }
     float InitialDriveMaxFlatVel { get; set; }
     float BrakeForce { get; set; }

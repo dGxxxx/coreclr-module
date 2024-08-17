@@ -921,9 +921,7 @@ namespace AltV.Net.Mock
         {
             throw new NotImplementedException();
         }
-
-        public IBaseObject[] GetClosestEntities(Position position, int range, int dimension, int limit,
-            EntityType allowedTypes)
+        public IBaseObject[] GetClosestEntities(Position position, int range, int dimension, int limit, EntityType allowedTypes, Order order = Order.Default)
         {
             throw new NotImplementedException();
         }
