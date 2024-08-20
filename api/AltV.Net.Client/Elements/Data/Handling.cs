@@ -228,22 +228,29 @@ namespace AltV.Net.Client.Elements.Data
             }
         }
 
-        public float Acceleration
+        public float DriveBiasRear
         {
             get
             {
                 unsafe
                 {
-                    return core.Library.Client.Vehicle_Handling_GetAcceleration(vehiclePointer);
+                    return core.Library.Client.Vehicle_Handling_GetDriveBiasRear(vehiclePointer);
                 }
             }
             set
             {
                 unsafe
                 {
-                    core.Library.Client.Vehicle_Handling_SetAcceleration(vehiclePointer, value);
+                    core.Library.Client.Vehicle_Handling_SetDriveBiasRear(vehiclePointer, value);
                 }
             }
+        }
+
+        [Obsolete("Use DriveBiasRear instead")]
+        public float Acceleration
+        {
+            get => this.DriveBiasRear;
+            set => this.DriveBiasRear = value;
         }
 
         public uint InitialDriveGears
@@ -336,22 +343,29 @@ namespace AltV.Net.Client.Elements.Data
             }
         }
 
-        public float DriveMaxFlatVel
+        public float InitialDriveMaxVel
         {
             get
             {
                 unsafe
                 {
-                    return core.Library.Client.Vehicle_Handling_GetDriveMaxFlatVel(vehiclePointer);
+                    return core.Library.Client.Vehicle_Handling_GetInitialDriveMaxVel(vehiclePointer);
                 }
             }
             set
             {
                 unsafe
                 {
-                    core.Library.Client.Vehicle_Handling_SetDriveMaxFlatVel(vehiclePointer, value);
+                    core.Library.Client.Vehicle_Handling_SetInitialDriveMaxVel(vehiclePointer, value);
                 }
             }
+        }
+
+        [Obsolete("Use InitialDriveMaxVel instead")]
+        public float DriveMaxFlatVel
+        {
+            get => this.InitialDriveMaxVel;
+            set => this.InitialDriveMaxVel = value;
         }
 
         public float InitialDriveMaxFlatVel

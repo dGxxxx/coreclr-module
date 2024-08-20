@@ -145,6 +145,15 @@ namespace AltV.Net
         public static IReadOnlyCollection<IMetric> GetAllMetrics() => Core.GetAllMetrics();
         public static VoiceConnectionState GetVoiceConnectionState() => Core.GetVoiceConnectionState();
 
+        public static void SetWorldProfiler(bool state) => Core.SetWorldProfiler(state);
+
+        public static IBaseObject[] GetClosestEntities(Position position, int range, int dimension, int limit, EntityType allowedTypes, Order order = Order.Default) =>
+            Core.GetClosestEntities(position, range, dimension, limit, allowedTypes, order);
+
+        public static IBaseObject[] GetEntitiesInDimension(int dimension, EntityType allowedTypes) =>  Core.GetEntitiesInDimension(dimension, allowedTypes);
+
+        public static IBaseObject[] GetEntitiesInRange(Position position, int range, int dimension, EntityType allowedTypes) => Core.GetEntitiesInRange(position, range, dimension, allowedTypes);
+
         public static int NetTime => Core.NetTime;
 
         public static void AddClientConfigKey(string key) => Core.AddClientConfigKey(key);

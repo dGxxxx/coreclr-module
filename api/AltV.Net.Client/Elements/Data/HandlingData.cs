@@ -208,22 +208,29 @@ namespace AltV.Net.Client.Elements.Data
             }
         }
 
-        public float Acceleration
+        public float DriveBiasRear
         {
             get
             {
                 unsafe
                 {
-                    return core.Library.Client.Handling_GetAcceleration(modelHash);
+                    return core.Library.Client.Handling_GetDriveBiasRear(modelHash);
                 }
             }
             set
             {
                 unsafe
                 {
-                    core.Library.Client.Handling_SetAcceleration(modelHash, value);
+                    core.Library.Client.Handling_SetDriveBiasRear(modelHash, value);
                 }
             }
+        }
+
+        [Obsolete("Use DriveBiasRear instead")]
+        public float Acceleration
+        {
+            get => this.DriveBiasRear;
+            set => this.DriveBiasRear = value;
         }
 
         public uint InitialDriveGears
@@ -316,22 +323,29 @@ namespace AltV.Net.Client.Elements.Data
             }
         }
 
-        public float DriveMaxFlatVel
+        public float InitialDriveMaxVel
         {
             get
             {
                 unsafe
                 {
-                    return core.Library.Client.Handling_GetDriveMaxFlatVel(modelHash);
+                    return core.Library.Client.Handling_GetInitialDriveMaxVel(modelHash);
                 }
             }
             set
             {
                 unsafe
                 {
-                    core.Library.Client.Handling_SetDriveMaxFlatVel(modelHash, value);
+                    core.Library.Client.Handling_SetInitialDriveMaxVel(modelHash, value);
                 }
             }
+        }
+
+        [Obsolete("Use InitialDriveMaxVel instead")]
+        public float DriveMaxFlatVel
+        {
+            get => this.InitialDriveMaxVel;
+            set => this.InitialDriveMaxVel = value;
         }
 
         public float InitialDriveMaxFlatVel
