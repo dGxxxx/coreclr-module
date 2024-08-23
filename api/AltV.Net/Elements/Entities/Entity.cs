@@ -33,7 +33,7 @@ namespace AltV.Net.Elements.Entities
                 {
                     var entityPointer = Core.Library.Shared.Entity_GetNetOwner(EntityNativePointer);
                     if (entityPointer == IntPtr.Zero) return null;
-                    return Alt.Core.PoolManager.Player.Get(entityPointer);
+                    return Core.PoolManager.Player.Get(entityPointer);
                 }
             }
         }
@@ -192,7 +192,7 @@ namespace AltV.Net.Elements.Entities
         public void SetStreamSyncedMetaData(string key, object value)
         {
             CheckIfEntityExists();
-            Alt.Core.CreateMValue(out var mValue, value);
+            Core.CreateMValue(out var mValue, value);
             SetStreamSyncedMetaData(key, in mValue);
             mValue.Dispose();
         }

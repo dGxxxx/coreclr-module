@@ -516,7 +516,7 @@ namespace AltV.Net
             {
                 unsafe
                 {
-                    Alt.Core.Library.Shared.Event_Cancel(eventPointer);
+                    Alt.CoreImpl.Library.Shared.Event_Cancel(eventPointer);
                 }
             }
         }
@@ -574,7 +574,7 @@ namespace AltV.Net
             {
                 unsafe
                 {
-                    Alt.Core.Library.Server.Event_WeaponDamageEvent_SetDamageValue(eventPointer, weaponDamage.Value);
+                    Alt.CoreImpl.Library.Server.Event_WeaponDamageEvent_SetDamageValue(eventPointer, weaponDamage.Value);
                 }
             }
 
@@ -582,7 +582,7 @@ namespace AltV.Net
             {
                 unsafe
                 {
-                    Alt.Core.Library.Shared.Event_Cancel(eventPointer);
+                    Alt.CoreImpl.Library.Shared.Event_Cancel(eventPointer);
                 }
             }
         }
@@ -1059,7 +1059,7 @@ namespace AltV.Net
             {
                 unsafe
                 {
-                    Alt.Core.Library.Shared.Event_Cancel(eventPointer);
+                    Alt.CoreImpl.Library.Shared.Event_Cancel(eventPointer);
                 }
             }
         }
@@ -1105,7 +1105,7 @@ namespace AltV.Net
             {
                 unsafe
                 {
-                    Alt.Core.Library.Shared.Event_Cancel(eventPointer);
+                    Alt.CoreImpl.Library.Shared.Event_Cancel(eventPointer);
                 }
             }
         }
@@ -1348,7 +1348,7 @@ namespace AltV.Net
             {
                 unsafe
                 {
-                    Alt.Core.Library.Shared.Event_Cancel(eventPointer);
+                    Alt.CoreImpl.Library.Shared.Event_Cancel(eventPointer);
                 }
             }
         }
@@ -1484,7 +1484,7 @@ namespace AltV.Net
             {
                 unsafe
                 {
-                    Alt.Core.Library.Shared.Event_Cancel(eventPtr);
+                    Alt.CoreImpl.Library.Shared.Event_Cancel(eventPtr);
                 }
             }
         }
@@ -2262,7 +2262,7 @@ namespace AltV.Net
             {
                 unsafe
                 {
-                    Alt.Core.Library.Shared.Event_Cancel(eventPointer);
+                    Alt.CoreImpl.Library.Shared.Event_Cancel(eventPointer);
                 }
             }
         }
@@ -2413,7 +2413,7 @@ namespace AltV.Net
             {
                 unsafe
                 {
-                    Alt.Core.Library.Shared.Event_Cancel(eventPointer);
+                    Alt.CoreImpl.Library.Shared.Event_Cancel(eventPointer);
                 }
             }
         }
@@ -2457,7 +2457,7 @@ namespace AltV.Net
             {
                 unsafe
                 {
-                    Alt.Core.Library.Shared.Event_Cancel(eventPointer);
+                    Alt.CoreImpl.Library.Shared.Event_Cancel(eventPointer);
                 }
             }
         }
@@ -2509,7 +2509,7 @@ namespace AltV.Net
             {
                 unsafe
                 {
-                    Alt.Core.Library.Shared.Event_Cancel(eventPointer);
+                    Alt.CoreImpl.Library.Shared.Event_Cancel(eventPointer);
                 }
             }
         }

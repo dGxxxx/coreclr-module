@@ -9,7 +9,7 @@ namespace AltV.Net
     public partial class Alt
     {
         public static IEnumerable<Assembly> Assemblies => CoreImpl.Assemblies;
-        
+
         public static WeakReference<AssemblyLoadContext> AssemblyLoadContext => CoreImpl.GetAssemblyLoadContext();
 
         public static Assembly LoadAssemblyFromName(AssemblyName assemblyName) =>

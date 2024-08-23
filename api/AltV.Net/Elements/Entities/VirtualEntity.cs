@@ -27,7 +27,7 @@ public class VirtualEntity : WorldObject, IVirtualEntity
     {
         unsafe
         {
-            return Alt.Core.Library.Shared.VirtualEntity_GetID(pedPointer);
+            return Alt.CoreImpl.Library.Shared.VirtualEntity_GetID(pedPointer);
         }
     }
 
@@ -128,7 +128,7 @@ public class VirtualEntity : WorldObject, IVirtualEntity
     public void SetStreamSyncedMetaData(string key, object value)
     {
         CheckIfEntityExists();
-        Alt.Core.CreateMValue(out var mValue, value);
+        Core.CreateMValue(out var mValue, value);
         SetStreamSyncedMetaData(key, in mValue);
         mValue.Dispose();
     }

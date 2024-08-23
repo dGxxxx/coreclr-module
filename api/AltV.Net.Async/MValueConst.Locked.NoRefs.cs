@@ -20,7 +20,7 @@ namespace AltV.Net.Async;
                     return;
                 }
 
-                Alt.Core.CreateMValueBaseObject(out mValue, player);
+                Alt.CoreImpl.CreateMValueBaseObject(out mValue, player);
             }
         }
 
@@ -34,7 +34,7 @@ namespace AltV.Net.Async;
                     return;
                 }
 
-                Alt.Core.CreateMValueBaseObject(out mValue, vehicle);
+                Alt.CoreImpl.CreateMValueBaseObject(out mValue, vehicle);
             }
         }
 
@@ -48,7 +48,7 @@ namespace AltV.Net.Async;
                     return;
                 }
 
-                Alt.Core.CreateMValueBaseObject(out mValue, blip);
+                Alt.CoreImpl.CreateMValueBaseObject(out mValue, blip);
             }
         }
 
@@ -62,7 +62,7 @@ namespace AltV.Net.Async;
                     return;
                 }
 
-                Alt.Core.CreateMValueBaseObject(out mValue, ped);
+                Alt.CoreImpl.CreateMValueBaseObject(out mValue, ped);
             }
         }
 
@@ -76,7 +76,7 @@ namespace AltV.Net.Async;
                     return;
                 }
 
-                Alt.Core.CreateMValueBaseObject(out mValue, checkpoint);
+                Alt.CoreImpl.CreateMValueBaseObject(out mValue, checkpoint);
             }
         }
 
@@ -112,47 +112,47 @@ namespace AltV.Net.Async;
                     CreateLocked(checkpoint, out mValue);
                     return;
                 case bool value:
-                    Alt.Core.CreateMValueBool(out mValue, value);
+                    Alt.CoreImpl.CreateMValueBool(out mValue, value);
                     return;
                 case int value:
-                    Alt.Core.CreateMValueInt(out mValue, value);
+                    Alt.CoreImpl.CreateMValueInt(out mValue, value);
                     return;
                 case uint value:
-                    Alt.Core.CreateMValueUInt(out mValue, value);
+                    Alt.CoreImpl.CreateMValueUInt(out mValue, value);
                     return;
                 case long value:
-                    Alt.Core.CreateMValueInt(out mValue, value);
+                    Alt.CoreImpl.CreateMValueInt(out mValue, value);
                     return;
                 case ulong value:
-                    Alt.Core.CreateMValueUInt(out mValue, value);
+                    Alt.CoreImpl.CreateMValueUInt(out mValue, value);
                     return;
                 case double value:
-                    Alt.Core.CreateMValueDouble(out mValue, value);
+                    Alt.CoreImpl.CreateMValueDouble(out mValue, value);
                     return;
                 case float value:
-                    Alt.Core.CreateMValueDouble(out mValue, value);
+                    Alt.CoreImpl.CreateMValueDouble(out mValue, value);
                     return;
                 case string value:
-                    Alt.Core.CreateMValueString(out mValue, value);
+                    Alt.CoreImpl.CreateMValueString(out mValue, value);
                     return;
                 case MValueConst value:
                     mValue = value;
                     return;
                 case MValueConst[] value:
-                    Alt.Core.CreateMValueList(out mValue, value, (ulong) value.Length);
+                    Alt.CoreImpl.CreateMValueList(out mValue, value, (ulong) value.Length);
                     return;
                 case Invoker value:
-                    Alt.Core.CreateMValueFunction(out mValue, value.NativePointer);
+                    Alt.CoreImpl.CreateMValueFunction(out mValue, value.NativePointer);
                     return;
                 case MValueFunctionCallback value:
-                    Alt.Core.CreateMValueFunction(out mValue, Alt.Core.Resource.CSharpResourceImpl.CreateInvoker(value));
+                    Alt.CoreImpl.CreateMValueFunction(out mValue, Alt.CoreImpl.Resource.CSharpResourceImpl.CreateInvoker(value));
                     return;
                 case Function function:
-                    Alt.Core.CreateMValueFunction(out mValue,
-                        Alt.Core.Resource.CSharpResourceImpl.CreateInvoker(function.Call));
+                    Alt.CoreImpl.CreateMValueFunction(out mValue,
+                        Alt.CoreImpl.Resource.CSharpResourceImpl.CreateInvoker(function.Call));
                     return;
                 case byte[] byteArray:
-                    Alt.Core.CreateMValueByteArray(out mValue, byteArray);
+                    Alt.CoreImpl.CreateMValueByteArray(out mValue, byteArray);
                     break;
                 case IDictionary dictionary:
                     dictKeys = new string[dictionary.Count];
@@ -178,7 +178,7 @@ namespace AltV.Net.Async;
                         dictValues[i++] = elementMValue;
                     }
 
-                    Alt.Core.CreateMValueDict(out mValue, dictKeys, dictValues, (ulong) dictionary.Count);
+                    Alt.CoreImpl.CreateMValueDict(out mValue, dictKeys, dictValues, (ulong) dictionary.Count);
                     for (int j = 0, dictLength = dictionary.Count; j < dictLength; j++)
                     {
                         dictValues[j].Dispose();
@@ -194,7 +194,7 @@ namespace AltV.Net.Async;
                         listValues[i++] = elementMValue;
                     }
 
-                    Alt.Core.CreateMValueList(out mValue, listValues, length);
+                    Alt.CoreImpl.CreateMValueList(out mValue, listValues, length);
                     for (ulong j = 0; j < length; j++)
                     {
                         listValues[j].Dispose();
@@ -216,7 +216,7 @@ namespace AltV.Net.Async;
                         dictValues[i++] = elementMValue;
                     }
 
-                    Alt.Core.CreateMValueDict(out mValue, dictKeys, dictValues, (ulong) dictionary.Count);
+                    Alt.CoreImpl.CreateMValueDict(out mValue, dictKeys, dictValues, (ulong) dictionary.Count);
                     for (int j = 0, dictLength = dictValues.Length; j < dictLength; j++)
                     {
                         dictValues[j].Dispose();
@@ -233,22 +233,22 @@ namespace AltV.Net.Async;
                     writer.ToMValue(out mValue);
                     return;
                 case Position position:
-                    Alt.Core.CreateMValueVector3(out mValue, position);
+                    Alt.CoreImpl.CreateMValueVector3(out mValue, position);
                     return;
                 case Rotation rotation:
-                    Alt.Core.CreateMValueVector3(out mValue, rotation);
+                    Alt.CoreImpl.CreateMValueVector3(out mValue, rotation);
                     return;
                 case Rgba rgba:
-                    Alt.Core.CreateMValueRgba(out mValue, rgba);
+                    Alt.CoreImpl.CreateMValueRgba(out mValue, rgba);
                     return;
                 case short value:
-                    Alt.Core.CreateMValueInt(out mValue, value);
+                    Alt.CoreImpl.CreateMValueInt(out mValue, value);
                     return;
                 case ushort value:
-                    Alt.Core.CreateMValueUInt(out mValue, value);
+                    Alt.CoreImpl.CreateMValueUInt(out mValue, value);
                     return;
                 case Vector3 position:
-                    Alt.Core.CreateMValueVector3(out mValue, position);
+                    Alt.CoreImpl.CreateMValueVector3(out mValue, position);
                     return;
                 default:
                     var type = obj?.GetType();

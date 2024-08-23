@@ -188,7 +188,7 @@ namespace AltV.Net
 
             _core.PoolManager.Dispose();
 
-            Alt.Core.Resource.CSharpResourceImpl.Dispose();
+            Alt.CoreImpl.Resource.CSharpResourceImpl.Dispose();
 
             AppDomain.CurrentDomain.UnhandledException -= OnUnhandledException;
 

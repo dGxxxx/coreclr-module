@@ -21,7 +21,7 @@ namespace AltV.Net.Elements.Entities
         {
             unsafe
             {
-                return Alt.Core.Library.Shared.ColShape_GetID(pedPointer);
+                return Alt.CoreImpl.Library.Shared.ColShape_GetID(pedPointer);
             }
         }
 

@@ -368,7 +368,7 @@ namespace AltV.Net.Async
         public static async void Log(string message)
         {
             var messagePtr = MemoryUtils.StringToHGlobalUtf8(message);
-            await Do(() => Alt.Core.LogInfo(messagePtr));
+            await Do(() => Alt.CoreImpl.LogInfo(messagePtr));
             Marshal.FreeHGlobal(messagePtr);
         }
 
@@ -376,9 +376,9 @@ namespace AltV.Net.Async
         {
             var size = args.Length;
             var mValues = new MValueConst[size];
-            Alt.Core.CreateMValues(mValues, args);
+            Alt.CoreImpl.CreateMValues(mValues, args);
             var eventNamePtr = MemoryUtils.StringToHGlobalUtf8(eventName);
-            await Do(() => Alt.Core.TriggerLocalEvent(eventNamePtr, mValues));
+            await Do(() => Alt.CoreImpl.TriggerLocalEvent(eventNamePtr, mValues));
             Marshal.FreeHGlobal(eventNamePtr);
             for (var i = 0; i < size; i++)
             {
@@ -390,9 +390,9 @@ namespace AltV.Net.Async
         {
             var size = args.Length;
             var mValues = new MValueConst[size];
-            Alt.Core.CreateMValues(mValues, args);
+            Alt.CoreImpl.CreateMValues(mValues, args);
             var eventNamePtr = MemoryUtils.StringToHGlobalUtf8(eventName);
-            await Do(() => Alt.Core.TriggerClientEventForAll(eventNamePtr, mValues));
+            await Do(() => Alt.CoreImpl.TriggerClientEventForAll(eventNamePtr, mValues));
             Marshal.FreeHGlobal(eventNamePtr);
             for (var i = 0; i < size; i++)
             {
@@ -404,9 +404,9 @@ namespace AltV.Net.Async
         {
             var size = args.Length;
             var mValues = new MValueConst[size];
-            Alt.Core.CreateMValues(mValues, args);
+            Alt.CoreImpl.CreateMValues(mValues, args);
             var eventNamePtr = MemoryUtils.StringToHGlobalUtf8(eventName);
-            await Do(() => Alt.Core.TriggerClientEventUnreliableForAll(eventNamePtr, mValues));
+            await Do(() => Alt.CoreImpl.TriggerClientEventUnreliableForAll(eventNamePtr, mValues));
             Marshal.FreeHGlobal(eventNamePtr);
             for (var i = 0; i < size; i++)
             {

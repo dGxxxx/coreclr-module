@@ -8,7 +8,7 @@ namespace AltV.Net.Async
     public static partial class AltAsync
     {
         public static Task<IPed> CreatePed(uint model, Position pos, Rotation rot, uint streamingDistance = 0) => AltVAsync.Schedule(() =>
-            Alt.Core.CreatePed(model, pos, rot, streamingDistance));
+            Alt.CoreImpl.CreatePed(model, pos, rot, streamingDistance));
 
         public static Task<IPed> CreatePed(PedModel model, Position pos, Rotation rot, uint streamingDistance = 0) =>
             CreatePed((uint)model, pos, rot, streamingDistance);
