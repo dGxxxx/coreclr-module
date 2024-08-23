@@ -73,7 +73,7 @@ public class VirtualEntity : WorldObject, IVirtualEntity
 
             try
             {
-                result = (T)Convert.ChangeType(mValue.ToObject(), typeof(T));
+                result = Utils.GetCastedMValue<T>(mValue);
                 return true;
             }
             catch

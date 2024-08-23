@@ -218,6 +218,7 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<nint, nint, void> Core_OverrideFocusEntity { get; }
         public delegate* unmanaged[Cdecl]<nint, Vector3, Vector3, void> Core_OverrideFocusPosition { get; }
         public delegate* unmanaged[Cdecl]<nint, nint, nint, uint*, nint> Core_RegisterFont { get; }
+        public delegate* unmanaged[Cdecl]<nint, uint, byte> Core_ReloadVehiclePhysics { get; }
         public delegate* unmanaged[Cdecl]<nint, nint, uint, void> Core_RemoveGXTText { get; }
         public delegate* unmanaged[Cdecl]<nint, nint, void> Core_RemoveIpl { get; }
         public delegate* unmanaged[Cdecl]<nint, uint, void> Core_RemoveVoiceFilter { get; }
@@ -331,7 +332,6 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<nint, void> FreeLocalVehicleArray { get; }
         public delegate* unmanaged[Cdecl]<nint, void> FreeRmlElementArray { get; }
         public delegate* unmanaged[Cdecl]<nint> GetNativeFuncTable { get; }
-        public delegate* unmanaged[Cdecl]<uint, float> Handling_GetAcceleration { get; }
         public delegate* unmanaged[Cdecl]<uint, float> Handling_GetAntiRollBarBiasFront { get; }
         public delegate* unmanaged[Cdecl]<uint, float> Handling_GetAntiRollBarBiasRear { get; }
         public delegate* unmanaged[Cdecl]<uint, float> Handling_GetAntiRollBarForce { get; }
@@ -347,8 +347,8 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<uint, float> Handling_GetDeformationDamageMult { get; }
         public delegate* unmanaged[Cdecl]<uint, float> Handling_GetDownforceModifier { get; }
         public delegate* unmanaged[Cdecl]<uint, float> Handling_GetDriveBiasFront { get; }
+        public delegate* unmanaged[Cdecl]<uint, float> Handling_GetDriveBiasRear { get; }
         public delegate* unmanaged[Cdecl]<uint, float> Handling_GetDriveInertia { get; }
-        public delegate* unmanaged[Cdecl]<uint, float> Handling_GetDriveMaxFlatVel { get; }
         public delegate* unmanaged[Cdecl]<uint, float> Handling_GetEngineDamageMult { get; }
         public delegate* unmanaged[Cdecl]<uint, float> Handling_GetHandBrakeForce { get; }
         public delegate* unmanaged[Cdecl]<uint, uint> Handling_GetHandlingFlags { get; }
@@ -358,6 +358,7 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<uint, float> Handling_GetInitialDriveForce { get; }
         public delegate* unmanaged[Cdecl]<uint, uint> Handling_GetInitialDriveGears { get; }
         public delegate* unmanaged[Cdecl]<uint, float> Handling_GetInitialDriveMaxFlatVel { get; }
+        public delegate* unmanaged[Cdecl]<uint, float> Handling_GetInitialDriveMaxVel { get; }
         public delegate* unmanaged[Cdecl]<uint, float> Handling_GetLowSpeedTractionLossMult { get; }
         public delegate* unmanaged[Cdecl]<uint, float> Handling_GetMass { get; }
         public delegate* unmanaged[Cdecl]<uint, uint> Handling_GetModelFlags { get; }
@@ -397,7 +398,6 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<uint, float> Handling_GetunkFloat4 { get; }
         public delegate* unmanaged[Cdecl]<uint, float> Handling_GetunkFloat5 { get; }
         public delegate* unmanaged[Cdecl]<uint, float> Handling_GetWeaponDamageMult { get; }
-        public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetAcceleration { get; }
         public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetAntiRollBarBiasFront { get; }
         public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetAntiRollBarBiasRear { get; }
         public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetAntiRollBarForce { get; }
@@ -413,8 +413,8 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetDeformationDamageMult { get; }
         public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetDownforceModifier { get; }
         public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetDriveBiasFront { get; }
+        public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetDriveBiasRear { get; }
         public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetDriveInertia { get; }
-        public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetDriveMaxFlatVel { get; }
         public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetEngineDamageMult { get; }
         public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetHandBrakeForce { get; }
         public delegate* unmanaged[Cdecl]<uint, uint, void> Handling_SetHandlingFlags { get; }
@@ -423,6 +423,7 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetInitialDriveForce { get; }
         public delegate* unmanaged[Cdecl]<uint, uint, void> Handling_SetInitialDriveGears { get; }
         public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetInitialDriveMaxFlatVel { get; }
+        public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetInitialDriveMaxVel { get; }
         public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetLowSpeedTractionLossMult { get; }
         public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetMass { get; }
         public delegate* unmanaged[Cdecl]<uint, uint, void> Handling_SetModelFlags { get; }
@@ -670,6 +671,8 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<nint, Vector3*, void> Vehicle_GetSpeedVector { get; }
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_GetSuspensionHeight { get; }
         public delegate* unmanaged[Cdecl]<nint, byte, float> Vehicle_GetWheelCamber { get; }
+        public delegate* unmanaged[Cdecl]<nint, byte, uint, byte> Vehicle_GetWheelConfigFlag { get; }
+        public delegate* unmanaged[Cdecl]<nint, byte, uint, byte> Vehicle_GetWheelDynamicFlag { get; }
         public delegate* unmanaged[Cdecl]<nint, byte, float> Vehicle_GetWheelHeight { get; }
         public delegate* unmanaged[Cdecl]<nint, byte, float> Vehicle_GetWheelRimRadius { get; }
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_GetWheelSpeed { get; }
@@ -677,7 +680,6 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<nint, byte, float> Vehicle_GetWheelTrackWidth { get; }
         public delegate* unmanaged[Cdecl]<nint, byte, float> Vehicle_GetWheelTyreRadius { get; }
         public delegate* unmanaged[Cdecl]<nint, byte, float> Vehicle_GetWheelTyreWidth { get; }
-        public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetAcceleration { get; }
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetAntiRollBarBiasFront { get; }
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetAntiRollBarBiasRear { get; }
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetAntiRollBarForce { get; }
@@ -693,8 +695,8 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetDeformationDamageMult { get; }
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetDownforceModifier { get; }
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetDriveBiasFront { get; }
+        public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetDriveBiasRear { get; }
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetDriveInertia { get; }
-        public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetDriveMaxFlatVel { get; }
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetEngineDamageMult { get; }
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetHandBrakeForce { get; }
         public delegate* unmanaged[Cdecl]<nint, uint> Vehicle_Handling_GetHandlingFlags { get; }
@@ -704,6 +706,7 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetInitialDriveForce { get; }
         public delegate* unmanaged[Cdecl]<nint, uint> Vehicle_Handling_GetInitialDriveGears { get; }
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetInitialDriveMaxFlatVel { get; }
+        public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetInitialDriveMaxVel { get; }
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetLowSpeedTractionLossMult { get; }
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetMass { get; }
         public delegate* unmanaged[Cdecl]<nint, uint> Vehicle_Handling_GetModelFlags { get; }
@@ -743,7 +746,6 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetunkFloat4 { get; }
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetunkFloat5 { get; }
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetWeaponDamageMult { get; }
-        public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetAcceleration { get; }
         public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetAntiRollBarBiasFront { get; }
         public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetAntiRollBarBiasRear { get; }
         public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetAntiRollBarForce { get; }
@@ -759,8 +761,8 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetDeformationDamageMult { get; }
         public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetDownforceModifier { get; }
         public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetDriveBiasFront { get; }
+        public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetDriveBiasRear { get; }
         public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetDriveInertia { get; }
-        public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetDriveMaxFlatVel { get; }
         public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetEngineDamageMult { get; }
         public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetHandBrakeForce { get; }
         public delegate* unmanaged[Cdecl]<nint, uint, void> Vehicle_Handling_SetHandlingFlags { get; }
@@ -769,6 +771,7 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetInitialDriveForce { get; }
         public delegate* unmanaged[Cdecl]<nint, uint, void> Vehicle_Handling_SetInitialDriveGears { get; }
         public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetInitialDriveMaxFlatVel { get; }
+        public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetInitialDriveMaxVel { get; }
         public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetLowSpeedTractionLossMult { get; }
         public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetMass { get; }
         public delegate* unmanaged[Cdecl]<nint, uint, void> Vehicle_Handling_SetModelFlags { get; }
@@ -826,7 +829,10 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<nint, byte, void> Vehicle_SetPetrolLightState { get; }
         public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_SetSteeringAngle { get; }
         public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_SetSuspensionHeight { get; }
+        public delegate* unmanaged[Cdecl]<nint, void> Vehicle_SetupTransmission { get; }
         public delegate* unmanaged[Cdecl]<nint, byte, float, void> Vehicle_SetWheelCamber { get; }
+        public delegate* unmanaged[Cdecl]<nint, byte, uint, byte, void> Vehicle_SetWheelConfigFlag { get; }
+        public delegate* unmanaged[Cdecl]<nint, byte, uint, byte, void> Vehicle_SetWheelDynamicFlag { get; }
         public delegate* unmanaged[Cdecl]<nint, byte, float, void> Vehicle_SetWheelHeight { get; }
         public delegate* unmanaged[Cdecl]<nint, byte, float, void> Vehicle_SetWheelRimRadius { get; }
         public delegate* unmanaged[Cdecl]<nint, byte, float, void> Vehicle_SetWheelTrackWidth { get; }
@@ -902,7 +908,7 @@ namespace AltV.Net.CApi.Libraries
 
     public unsafe class ClientLibrary : IClientLibrary
     {
-        public readonly uint Methods = 1773;
+        public readonly uint Methods = 1779;
         public delegate* unmanaged[Cdecl]<nint, nint, void> Audio_AddOutput { get; }
         public delegate* unmanaged[Cdecl]<nint, nint> Audio_GetBaseObject { get; }
         public delegate* unmanaged[Cdecl]<nint, double> Audio_GetCurrentTime { get; }
@@ -1110,6 +1116,7 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<nint, nint, void> Core_OverrideFocusEntity { get; }
         public delegate* unmanaged[Cdecl]<nint, Vector3, Vector3, void> Core_OverrideFocusPosition { get; }
         public delegate* unmanaged[Cdecl]<nint, nint, nint, uint*, nint> Core_RegisterFont { get; }
+        public delegate* unmanaged[Cdecl]<nint, uint, byte> Core_ReloadVehiclePhysics { get; }
         public delegate* unmanaged[Cdecl]<nint, nint, uint, void> Core_RemoveGXTText { get; }
         public delegate* unmanaged[Cdecl]<nint, nint, void> Core_RemoveIpl { get; }
         public delegate* unmanaged[Cdecl]<nint, uint, void> Core_RemoveVoiceFilter { get; }
@@ -1223,7 +1230,6 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<nint, void> FreeLocalVehicleArray { get; }
         public delegate* unmanaged[Cdecl]<nint, void> FreeRmlElementArray { get; }
         public delegate* unmanaged[Cdecl]<nint> GetNativeFuncTable { get; }
-        public delegate* unmanaged[Cdecl]<uint, float> Handling_GetAcceleration { get; }
         public delegate* unmanaged[Cdecl]<uint, float> Handling_GetAntiRollBarBiasFront { get; }
         public delegate* unmanaged[Cdecl]<uint, float> Handling_GetAntiRollBarBiasRear { get; }
         public delegate* unmanaged[Cdecl]<uint, float> Handling_GetAntiRollBarForce { get; }
@@ -1239,8 +1245,8 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<uint, float> Handling_GetDeformationDamageMult { get; }
         public delegate* unmanaged[Cdecl]<uint, float> Handling_GetDownforceModifier { get; }
         public delegate* unmanaged[Cdecl]<uint, float> Handling_GetDriveBiasFront { get; }
+        public delegate* unmanaged[Cdecl]<uint, float> Handling_GetDriveBiasRear { get; }
         public delegate* unmanaged[Cdecl]<uint, float> Handling_GetDriveInertia { get; }
-        public delegate* unmanaged[Cdecl]<uint, float> Handling_GetDriveMaxFlatVel { get; }
         public delegate* unmanaged[Cdecl]<uint, float> Handling_GetEngineDamageMult { get; }
         public delegate* unmanaged[Cdecl]<uint, float> Handling_GetHandBrakeForce { get; }
         public delegate* unmanaged[Cdecl]<uint, uint> Handling_GetHandlingFlags { get; }
@@ -1250,6 +1256,7 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<uint, float> Handling_GetInitialDriveForce { get; }
         public delegate* unmanaged[Cdecl]<uint, uint> Handling_GetInitialDriveGears { get; }
         public delegate* unmanaged[Cdecl]<uint, float> Handling_GetInitialDriveMaxFlatVel { get; }
+        public delegate* unmanaged[Cdecl]<uint, float> Handling_GetInitialDriveMaxVel { get; }
         public delegate* unmanaged[Cdecl]<uint, float> Handling_GetLowSpeedTractionLossMult { get; }
         public delegate* unmanaged[Cdecl]<uint, float> Handling_GetMass { get; }
         public delegate* unmanaged[Cdecl]<uint, uint> Handling_GetModelFlags { get; }
@@ -1289,7 +1296,6 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<uint, float> Handling_GetunkFloat4 { get; }
         public delegate* unmanaged[Cdecl]<uint, float> Handling_GetunkFloat5 { get; }
         public delegate* unmanaged[Cdecl]<uint, float> Handling_GetWeaponDamageMult { get; }
-        public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetAcceleration { get; }
         public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetAntiRollBarBiasFront { get; }
         public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetAntiRollBarBiasRear { get; }
         public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetAntiRollBarForce { get; }
@@ -1305,8 +1311,8 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetDeformationDamageMult { get; }
         public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetDownforceModifier { get; }
         public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetDriveBiasFront { get; }
+        public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetDriveBiasRear { get; }
         public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetDriveInertia { get; }
-        public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetDriveMaxFlatVel { get; }
         public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetEngineDamageMult { get; }
         public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetHandBrakeForce { get; }
         public delegate* unmanaged[Cdecl]<uint, uint, void> Handling_SetHandlingFlags { get; }
@@ -1315,6 +1321,7 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetInitialDriveForce { get; }
         public delegate* unmanaged[Cdecl]<uint, uint, void> Handling_SetInitialDriveGears { get; }
         public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetInitialDriveMaxFlatVel { get; }
+        public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetInitialDriveMaxVel { get; }
         public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetLowSpeedTractionLossMult { get; }
         public delegate* unmanaged[Cdecl]<uint, float, void> Handling_SetMass { get; }
         public delegate* unmanaged[Cdecl]<uint, uint, void> Handling_SetModelFlags { get; }
@@ -1562,6 +1569,8 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<nint, Vector3*, void> Vehicle_GetSpeedVector { get; }
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_GetSuspensionHeight { get; }
         public delegate* unmanaged[Cdecl]<nint, byte, float> Vehicle_GetWheelCamber { get; }
+        public delegate* unmanaged[Cdecl]<nint, byte, uint, byte> Vehicle_GetWheelConfigFlag { get; }
+        public delegate* unmanaged[Cdecl]<nint, byte, uint, byte> Vehicle_GetWheelDynamicFlag { get; }
         public delegate* unmanaged[Cdecl]<nint, byte, float> Vehicle_GetWheelHeight { get; }
         public delegate* unmanaged[Cdecl]<nint, byte, float> Vehicle_GetWheelRimRadius { get; }
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_GetWheelSpeed { get; }
@@ -1569,7 +1578,6 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<nint, byte, float> Vehicle_GetWheelTrackWidth { get; }
         public delegate* unmanaged[Cdecl]<nint, byte, float> Vehicle_GetWheelTyreRadius { get; }
         public delegate* unmanaged[Cdecl]<nint, byte, float> Vehicle_GetWheelTyreWidth { get; }
-        public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetAcceleration { get; }
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetAntiRollBarBiasFront { get; }
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetAntiRollBarBiasRear { get; }
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetAntiRollBarForce { get; }
@@ -1585,8 +1593,8 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetDeformationDamageMult { get; }
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetDownforceModifier { get; }
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetDriveBiasFront { get; }
+        public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetDriveBiasRear { get; }
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetDriveInertia { get; }
-        public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetDriveMaxFlatVel { get; }
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetEngineDamageMult { get; }
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetHandBrakeForce { get; }
         public delegate* unmanaged[Cdecl]<nint, uint> Vehicle_Handling_GetHandlingFlags { get; }
@@ -1596,6 +1604,7 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetInitialDriveForce { get; }
         public delegate* unmanaged[Cdecl]<nint, uint> Vehicle_Handling_GetInitialDriveGears { get; }
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetInitialDriveMaxFlatVel { get; }
+        public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetInitialDriveMaxVel { get; }
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetLowSpeedTractionLossMult { get; }
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetMass { get; }
         public delegate* unmanaged[Cdecl]<nint, uint> Vehicle_Handling_GetModelFlags { get; }
@@ -1635,7 +1644,6 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetunkFloat4 { get; }
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetunkFloat5 { get; }
         public delegate* unmanaged[Cdecl]<nint, float> Vehicle_Handling_GetWeaponDamageMult { get; }
-        public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetAcceleration { get; }
         public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetAntiRollBarBiasFront { get; }
         public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetAntiRollBarBiasRear { get; }
         public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetAntiRollBarForce { get; }
@@ -1651,8 +1659,8 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetDeformationDamageMult { get; }
         public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetDownforceModifier { get; }
         public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetDriveBiasFront { get; }
+        public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetDriveBiasRear { get; }
         public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetDriveInertia { get; }
-        public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetDriveMaxFlatVel { get; }
         public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetEngineDamageMult { get; }
         public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetHandBrakeForce { get; }
         public delegate* unmanaged[Cdecl]<nint, uint, void> Vehicle_Handling_SetHandlingFlags { get; }
@@ -1661,6 +1669,7 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetInitialDriveForce { get; }
         public delegate* unmanaged[Cdecl]<nint, uint, void> Vehicle_Handling_SetInitialDriveGears { get; }
         public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetInitialDriveMaxFlatVel { get; }
+        public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetInitialDriveMaxVel { get; }
         public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetLowSpeedTractionLossMult { get; }
         public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_Handling_SetMass { get; }
         public delegate* unmanaged[Cdecl]<nint, uint, void> Vehicle_Handling_SetModelFlags { get; }
@@ -1718,7 +1727,10 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<nint, byte, void> Vehicle_SetPetrolLightState { get; }
         public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_SetSteeringAngle { get; }
         public delegate* unmanaged[Cdecl]<nint, float, void> Vehicle_SetSuspensionHeight { get; }
+        public delegate* unmanaged[Cdecl]<nint, void> Vehicle_SetupTransmission { get; }
         public delegate* unmanaged[Cdecl]<nint, byte, float, void> Vehicle_SetWheelCamber { get; }
+        public delegate* unmanaged[Cdecl]<nint, byte, uint, byte, void> Vehicle_SetWheelConfigFlag { get; }
+        public delegate* unmanaged[Cdecl]<nint, byte, uint, byte, void> Vehicle_SetWheelDynamicFlag { get; }
         public delegate* unmanaged[Cdecl]<nint, byte, float, void> Vehicle_SetWheelHeight { get; }
         public delegate* unmanaged[Cdecl]<nint, byte, float, void> Vehicle_SetWheelRimRadius { get; }
         public delegate* unmanaged[Cdecl]<nint, byte, float, void> Vehicle_SetWheelTrackWidth { get; }
@@ -2204,6 +2216,8 @@ namespace AltV.Net.CApi.Libraries
         private static void Core_OverrideFocusPositionFallback(nint _core, Vector3 _pos, Vector3 _offset) => throw new Exceptions.OutdatedSdkException("Core_OverrideFocusPosition", "Core_OverrideFocusPosition SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate nint Core_RegisterFontDelegate(nint _core, nint _resource, nint _path, uint* _id);
         private static nint Core_RegisterFontFallback(nint _core, nint _resource, nint _path, uint* _id) => throw new Exceptions.OutdatedSdkException("Core_RegisterFont", "Core_RegisterFont SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate byte Core_ReloadVehiclePhysicsDelegate(nint _core, uint _modelHash);
+        private static byte Core_ReloadVehiclePhysicsFallback(nint _core, uint _modelHash) => throw new Exceptions.OutdatedSdkException("Core_ReloadVehiclePhysics", "Core_ReloadVehiclePhysics SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Core_RemoveGXTTextDelegate(nint _core, nint _resource, uint _key);
         private static void Core_RemoveGXTTextFallback(nint _core, nint _resource, uint _key) => throw new Exceptions.OutdatedSdkException("Core_RemoveGXTText", "Core_RemoveGXTText SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Core_RemoveIplDelegate(nint _core, nint _path);
@@ -2430,8 +2444,6 @@ namespace AltV.Net.CApi.Libraries
         private static void FreeRmlElementArrayFallback(nint _rmlElementArray) => throw new Exceptions.OutdatedSdkException("FreeRmlElementArray", "FreeRmlElementArray SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate nint GetNativeFuncTableDelegate();
         private static nint GetNativeFuncTableFallback() => throw new Exceptions.OutdatedSdkException("GetNativeFuncTable", "GetNativeFuncTable SDK method is outdated. Please update your module nuget");
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate float Handling_GetAccelerationDelegate(uint _modelHash);
-        private static float Handling_GetAccelerationFallback(uint _modelHash) => throw new Exceptions.OutdatedSdkException("Handling_GetAcceleration", "Handling_GetAcceleration SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate float Handling_GetAntiRollBarBiasFrontDelegate(uint _modelHash);
         private static float Handling_GetAntiRollBarBiasFrontFallback(uint _modelHash) => throw new Exceptions.OutdatedSdkException("Handling_GetAntiRollBarBiasFront", "Handling_GetAntiRollBarBiasFront SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate float Handling_GetAntiRollBarBiasRearDelegate(uint _modelHash);
@@ -2462,10 +2474,10 @@ namespace AltV.Net.CApi.Libraries
         private static float Handling_GetDownforceModifierFallback(uint _modelHash) => throw new Exceptions.OutdatedSdkException("Handling_GetDownforceModifier", "Handling_GetDownforceModifier SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate float Handling_GetDriveBiasFrontDelegate(uint _modelHash);
         private static float Handling_GetDriveBiasFrontFallback(uint _modelHash) => throw new Exceptions.OutdatedSdkException("Handling_GetDriveBiasFront", "Handling_GetDriveBiasFront SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate float Handling_GetDriveBiasRearDelegate(uint _modelHash);
+        private static float Handling_GetDriveBiasRearFallback(uint _modelHash) => throw new Exceptions.OutdatedSdkException("Handling_GetDriveBiasRear", "Handling_GetDriveBiasRear SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate float Handling_GetDriveInertiaDelegate(uint _modelHash);
         private static float Handling_GetDriveInertiaFallback(uint _modelHash) => throw new Exceptions.OutdatedSdkException("Handling_GetDriveInertia", "Handling_GetDriveInertia SDK method is outdated. Please update your module nuget");
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate float Handling_GetDriveMaxFlatVelDelegate(uint _modelHash);
-        private static float Handling_GetDriveMaxFlatVelFallback(uint _modelHash) => throw new Exceptions.OutdatedSdkException("Handling_GetDriveMaxFlatVel", "Handling_GetDriveMaxFlatVel SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate float Handling_GetEngineDamageMultDelegate(uint _modelHash);
         private static float Handling_GetEngineDamageMultFallback(uint _modelHash) => throw new Exceptions.OutdatedSdkException("Handling_GetEngineDamageMult", "Handling_GetEngineDamageMult SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate float Handling_GetHandBrakeForceDelegate(uint _modelHash);
@@ -2484,6 +2496,8 @@ namespace AltV.Net.CApi.Libraries
         private static uint Handling_GetInitialDriveGearsFallback(uint _modelHash) => throw new Exceptions.OutdatedSdkException("Handling_GetInitialDriveGears", "Handling_GetInitialDriveGears SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate float Handling_GetInitialDriveMaxFlatVelDelegate(uint _modelHash);
         private static float Handling_GetInitialDriveMaxFlatVelFallback(uint _modelHash) => throw new Exceptions.OutdatedSdkException("Handling_GetInitialDriveMaxFlatVel", "Handling_GetInitialDriveMaxFlatVel SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate float Handling_GetInitialDriveMaxVelDelegate(uint _modelHash);
+        private static float Handling_GetInitialDriveMaxVelFallback(uint _modelHash) => throw new Exceptions.OutdatedSdkException("Handling_GetInitialDriveMaxVel", "Handling_GetInitialDriveMaxVel SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate float Handling_GetLowSpeedTractionLossMultDelegate(uint _modelHash);
         private static float Handling_GetLowSpeedTractionLossMultFallback(uint _modelHash) => throw new Exceptions.OutdatedSdkException("Handling_GetLowSpeedTractionLossMult", "Handling_GetLowSpeedTractionLossMult SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate float Handling_GetMassDelegate(uint _modelHash);
@@ -2562,8 +2576,6 @@ namespace AltV.Net.CApi.Libraries
         private static float Handling_GetunkFloat5Fallback(uint _modelHash) => throw new Exceptions.OutdatedSdkException("Handling_GetunkFloat5", "Handling_GetunkFloat5 SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate float Handling_GetWeaponDamageMultDelegate(uint _modelHash);
         private static float Handling_GetWeaponDamageMultFallback(uint _modelHash) => throw new Exceptions.OutdatedSdkException("Handling_GetWeaponDamageMult", "Handling_GetWeaponDamageMult SDK method is outdated. Please update your module nuget");
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Handling_SetAccelerationDelegate(uint _modelHash, float _value);
-        private static void Handling_SetAccelerationFallback(uint _modelHash, float _value) => throw new Exceptions.OutdatedSdkException("Handling_SetAcceleration", "Handling_SetAcceleration SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Handling_SetAntiRollBarBiasFrontDelegate(uint _modelHash, float _value);
         private static void Handling_SetAntiRollBarBiasFrontFallback(uint _modelHash, float _value) => throw new Exceptions.OutdatedSdkException("Handling_SetAntiRollBarBiasFront", "Handling_SetAntiRollBarBiasFront SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Handling_SetAntiRollBarBiasRearDelegate(uint _modelHash, float _value);
@@ -2594,10 +2606,10 @@ namespace AltV.Net.CApi.Libraries
         private static void Handling_SetDownforceModifierFallback(uint _modelHash, float _value) => throw new Exceptions.OutdatedSdkException("Handling_SetDownforceModifier", "Handling_SetDownforceModifier SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Handling_SetDriveBiasFrontDelegate(uint _modelHash, float _value);
         private static void Handling_SetDriveBiasFrontFallback(uint _modelHash, float _value) => throw new Exceptions.OutdatedSdkException("Handling_SetDriveBiasFront", "Handling_SetDriveBiasFront SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Handling_SetDriveBiasRearDelegate(uint _modelHash, float _value);
+        private static void Handling_SetDriveBiasRearFallback(uint _modelHash, float _value) => throw new Exceptions.OutdatedSdkException("Handling_SetDriveBiasRear", "Handling_SetDriveBiasRear SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Handling_SetDriveInertiaDelegate(uint _modelHash, float _value);
         private static void Handling_SetDriveInertiaFallback(uint _modelHash, float _value) => throw new Exceptions.OutdatedSdkException("Handling_SetDriveInertia", "Handling_SetDriveInertia SDK method is outdated. Please update your module nuget");
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Handling_SetDriveMaxFlatVelDelegate(uint _modelHash, float _value);
-        private static void Handling_SetDriveMaxFlatVelFallback(uint _modelHash, float _value) => throw new Exceptions.OutdatedSdkException("Handling_SetDriveMaxFlatVel", "Handling_SetDriveMaxFlatVel SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Handling_SetEngineDamageMultDelegate(uint _modelHash, float _value);
         private static void Handling_SetEngineDamageMultFallback(uint _modelHash, float _value) => throw new Exceptions.OutdatedSdkException("Handling_SetEngineDamageMult", "Handling_SetEngineDamageMult SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Handling_SetHandBrakeForceDelegate(uint _modelHash, float _value);
@@ -2614,6 +2626,8 @@ namespace AltV.Net.CApi.Libraries
         private static void Handling_SetInitialDriveGearsFallback(uint _modelHash, uint _value) => throw new Exceptions.OutdatedSdkException("Handling_SetInitialDriveGears", "Handling_SetInitialDriveGears SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Handling_SetInitialDriveMaxFlatVelDelegate(uint _modelHash, float _value);
         private static void Handling_SetInitialDriveMaxFlatVelFallback(uint _modelHash, float _value) => throw new Exceptions.OutdatedSdkException("Handling_SetInitialDriveMaxFlatVel", "Handling_SetInitialDriveMaxFlatVel SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Handling_SetInitialDriveMaxVelDelegate(uint _modelHash, float _value);
+        private static void Handling_SetInitialDriveMaxVelFallback(uint _modelHash, float _value) => throw new Exceptions.OutdatedSdkException("Handling_SetInitialDriveMaxVel", "Handling_SetInitialDriveMaxVel SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Handling_SetLowSpeedTractionLossMultDelegate(uint _modelHash, float _value);
         private static void Handling_SetLowSpeedTractionLossMultFallback(uint _modelHash, float _value) => throw new Exceptions.OutdatedSdkException("Handling_SetLowSpeedTractionLossMult", "Handling_SetLowSpeedTractionLossMult SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Handling_SetMassDelegate(uint _modelHash, float _value);
@@ -3108,6 +3122,10 @@ namespace AltV.Net.CApi.Libraries
         private static float Vehicle_GetSuspensionHeightFallback(nint _vehicle) => throw new Exceptions.OutdatedSdkException("Vehicle_GetSuspensionHeight", "Vehicle_GetSuspensionHeight SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate float Vehicle_GetWheelCamberDelegate(nint _vehicle, byte _wheel);
         private static float Vehicle_GetWheelCamberFallback(nint _vehicle, byte _wheel) => throw new Exceptions.OutdatedSdkException("Vehicle_GetWheelCamber", "Vehicle_GetWheelCamber SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate byte Vehicle_GetWheelConfigFlagDelegate(nint _vehicle, byte _wheelId, uint _flag);
+        private static byte Vehicle_GetWheelConfigFlagFallback(nint _vehicle, byte _wheelId, uint _flag) => throw new Exceptions.OutdatedSdkException("Vehicle_GetWheelConfigFlag", "Vehicle_GetWheelConfigFlag SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate byte Vehicle_GetWheelDynamicFlagDelegate(nint _vehicle, byte _wheelId, uint _flag);
+        private static byte Vehicle_GetWheelDynamicFlagFallback(nint _vehicle, byte _wheelId, uint _flag) => throw new Exceptions.OutdatedSdkException("Vehicle_GetWheelDynamicFlag", "Vehicle_GetWheelDynamicFlag SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate float Vehicle_GetWheelHeightDelegate(nint _vehicle, byte _wheel);
         private static float Vehicle_GetWheelHeightFallback(nint _vehicle, byte _wheel) => throw new Exceptions.OutdatedSdkException("Vehicle_GetWheelHeight", "Vehicle_GetWheelHeight SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate float Vehicle_GetWheelRimRadiusDelegate(nint _vehicle, byte _wheel);
@@ -3122,8 +3140,6 @@ namespace AltV.Net.CApi.Libraries
         private static float Vehicle_GetWheelTyreRadiusFallback(nint _vehicle, byte _wheel) => throw new Exceptions.OutdatedSdkException("Vehicle_GetWheelTyreRadius", "Vehicle_GetWheelTyreRadius SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate float Vehicle_GetWheelTyreWidthDelegate(nint _vehicle, byte _wheel);
         private static float Vehicle_GetWheelTyreWidthFallback(nint _vehicle, byte _wheel) => throw new Exceptions.OutdatedSdkException("Vehicle_GetWheelTyreWidth", "Vehicle_GetWheelTyreWidth SDK method is outdated. Please update your module nuget");
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate float Vehicle_Handling_GetAccelerationDelegate(nint _vehicle);
-        private static float Vehicle_Handling_GetAccelerationFallback(nint _vehicle) => throw new Exceptions.OutdatedSdkException("Vehicle_Handling_GetAcceleration", "Vehicle_Handling_GetAcceleration SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate float Vehicle_Handling_GetAntiRollBarBiasFrontDelegate(nint _vehicle);
         private static float Vehicle_Handling_GetAntiRollBarBiasFrontFallback(nint _vehicle) => throw new Exceptions.OutdatedSdkException("Vehicle_Handling_GetAntiRollBarBiasFront", "Vehicle_Handling_GetAntiRollBarBiasFront SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate float Vehicle_Handling_GetAntiRollBarBiasRearDelegate(nint _vehicle);
@@ -3154,10 +3170,10 @@ namespace AltV.Net.CApi.Libraries
         private static float Vehicle_Handling_GetDownforceModifierFallback(nint _vehicle) => throw new Exceptions.OutdatedSdkException("Vehicle_Handling_GetDownforceModifier", "Vehicle_Handling_GetDownforceModifier SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate float Vehicle_Handling_GetDriveBiasFrontDelegate(nint _vehicle);
         private static float Vehicle_Handling_GetDriveBiasFrontFallback(nint _vehicle) => throw new Exceptions.OutdatedSdkException("Vehicle_Handling_GetDriveBiasFront", "Vehicle_Handling_GetDriveBiasFront SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate float Vehicle_Handling_GetDriveBiasRearDelegate(nint _vehicle);
+        private static float Vehicle_Handling_GetDriveBiasRearFallback(nint _vehicle) => throw new Exceptions.OutdatedSdkException("Vehicle_Handling_GetDriveBiasRear", "Vehicle_Handling_GetDriveBiasRear SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate float Vehicle_Handling_GetDriveInertiaDelegate(nint _vehicle);
         private static float Vehicle_Handling_GetDriveInertiaFallback(nint _vehicle) => throw new Exceptions.OutdatedSdkException("Vehicle_Handling_GetDriveInertia", "Vehicle_Handling_GetDriveInertia SDK method is outdated. Please update your module nuget");
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate float Vehicle_Handling_GetDriveMaxFlatVelDelegate(nint _vehicle);
-        private static float Vehicle_Handling_GetDriveMaxFlatVelFallback(nint _vehicle) => throw new Exceptions.OutdatedSdkException("Vehicle_Handling_GetDriveMaxFlatVel", "Vehicle_Handling_GetDriveMaxFlatVel SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate float Vehicle_Handling_GetEngineDamageMultDelegate(nint _vehicle);
         private static float Vehicle_Handling_GetEngineDamageMultFallback(nint _vehicle) => throw new Exceptions.OutdatedSdkException("Vehicle_Handling_GetEngineDamageMult", "Vehicle_Handling_GetEngineDamageMult SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate float Vehicle_Handling_GetHandBrakeForceDelegate(nint _vehicle);
@@ -3176,6 +3192,8 @@ namespace AltV.Net.CApi.Libraries
         private static uint Vehicle_Handling_GetInitialDriveGearsFallback(nint _vehicle) => throw new Exceptions.OutdatedSdkException("Vehicle_Handling_GetInitialDriveGears", "Vehicle_Handling_GetInitialDriveGears SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate float Vehicle_Handling_GetInitialDriveMaxFlatVelDelegate(nint _vehicle);
         private static float Vehicle_Handling_GetInitialDriveMaxFlatVelFallback(nint _vehicle) => throw new Exceptions.OutdatedSdkException("Vehicle_Handling_GetInitialDriveMaxFlatVel", "Vehicle_Handling_GetInitialDriveMaxFlatVel SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate float Vehicle_Handling_GetInitialDriveMaxVelDelegate(nint _vehicle);
+        private static float Vehicle_Handling_GetInitialDriveMaxVelFallback(nint _vehicle) => throw new Exceptions.OutdatedSdkException("Vehicle_Handling_GetInitialDriveMaxVel", "Vehicle_Handling_GetInitialDriveMaxVel SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate float Vehicle_Handling_GetLowSpeedTractionLossMultDelegate(nint _vehicle);
         private static float Vehicle_Handling_GetLowSpeedTractionLossMultFallback(nint _vehicle) => throw new Exceptions.OutdatedSdkException("Vehicle_Handling_GetLowSpeedTractionLossMult", "Vehicle_Handling_GetLowSpeedTractionLossMult SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate float Vehicle_Handling_GetMassDelegate(nint _vehicle);
@@ -3254,8 +3272,6 @@ namespace AltV.Net.CApi.Libraries
         private static float Vehicle_Handling_GetunkFloat5Fallback(nint _vehicle) => throw new Exceptions.OutdatedSdkException("Vehicle_Handling_GetunkFloat5", "Vehicle_Handling_GetunkFloat5 SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate float Vehicle_Handling_GetWeaponDamageMultDelegate(nint _vehicle);
         private static float Vehicle_Handling_GetWeaponDamageMultFallback(nint _vehicle) => throw new Exceptions.OutdatedSdkException("Vehicle_Handling_GetWeaponDamageMult", "Vehicle_Handling_GetWeaponDamageMult SDK method is outdated. Please update your module nuget");
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Vehicle_Handling_SetAccelerationDelegate(nint _vehicle, float _value);
-        private static void Vehicle_Handling_SetAccelerationFallback(nint _vehicle, float _value) => throw new Exceptions.OutdatedSdkException("Vehicle_Handling_SetAcceleration", "Vehicle_Handling_SetAcceleration SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Vehicle_Handling_SetAntiRollBarBiasFrontDelegate(nint _vehicle, float _value);
         private static void Vehicle_Handling_SetAntiRollBarBiasFrontFallback(nint _vehicle, float _value) => throw new Exceptions.OutdatedSdkException("Vehicle_Handling_SetAntiRollBarBiasFront", "Vehicle_Handling_SetAntiRollBarBiasFront SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Vehicle_Handling_SetAntiRollBarBiasRearDelegate(nint _vehicle, float _value);
@@ -3286,10 +3302,10 @@ namespace AltV.Net.CApi.Libraries
         private static void Vehicle_Handling_SetDownforceModifierFallback(nint _vehicle, float _value) => throw new Exceptions.OutdatedSdkException("Vehicle_Handling_SetDownforceModifier", "Vehicle_Handling_SetDownforceModifier SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Vehicle_Handling_SetDriveBiasFrontDelegate(nint _vehicle, float _value);
         private static void Vehicle_Handling_SetDriveBiasFrontFallback(nint _vehicle, float _value) => throw new Exceptions.OutdatedSdkException("Vehicle_Handling_SetDriveBiasFront", "Vehicle_Handling_SetDriveBiasFront SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Vehicle_Handling_SetDriveBiasRearDelegate(nint _vehicle, float _value);
+        private static void Vehicle_Handling_SetDriveBiasRearFallback(nint _vehicle, float _value) => throw new Exceptions.OutdatedSdkException("Vehicle_Handling_SetDriveBiasRear", "Vehicle_Handling_SetDriveBiasRear SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Vehicle_Handling_SetDriveInertiaDelegate(nint _vehicle, float _value);
         private static void Vehicle_Handling_SetDriveInertiaFallback(nint _vehicle, float _value) => throw new Exceptions.OutdatedSdkException("Vehicle_Handling_SetDriveInertia", "Vehicle_Handling_SetDriveInertia SDK method is outdated. Please update your module nuget");
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Vehicle_Handling_SetDriveMaxFlatVelDelegate(nint _vehicle, float _value);
-        private static void Vehicle_Handling_SetDriveMaxFlatVelFallback(nint _vehicle, float _value) => throw new Exceptions.OutdatedSdkException("Vehicle_Handling_SetDriveMaxFlatVel", "Vehicle_Handling_SetDriveMaxFlatVel SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Vehicle_Handling_SetEngineDamageMultDelegate(nint _vehicle, float _value);
         private static void Vehicle_Handling_SetEngineDamageMultFallback(nint _vehicle, float _value) => throw new Exceptions.OutdatedSdkException("Vehicle_Handling_SetEngineDamageMult", "Vehicle_Handling_SetEngineDamageMult SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Vehicle_Handling_SetHandBrakeForceDelegate(nint _vehicle, float _value);
@@ -3306,6 +3322,8 @@ namespace AltV.Net.CApi.Libraries
         private static void Vehicle_Handling_SetInitialDriveGearsFallback(nint _vehicle, uint _value) => throw new Exceptions.OutdatedSdkException("Vehicle_Handling_SetInitialDriveGears", "Vehicle_Handling_SetInitialDriveGears SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Vehicle_Handling_SetInitialDriveMaxFlatVelDelegate(nint _vehicle, float _value);
         private static void Vehicle_Handling_SetInitialDriveMaxFlatVelFallback(nint _vehicle, float _value) => throw new Exceptions.OutdatedSdkException("Vehicle_Handling_SetInitialDriveMaxFlatVel", "Vehicle_Handling_SetInitialDriveMaxFlatVel SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Vehicle_Handling_SetInitialDriveMaxVelDelegate(nint _vehicle, float _value);
+        private static void Vehicle_Handling_SetInitialDriveMaxVelFallback(nint _vehicle, float _value) => throw new Exceptions.OutdatedSdkException("Vehicle_Handling_SetInitialDriveMaxVel", "Vehicle_Handling_SetInitialDriveMaxVel SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Vehicle_Handling_SetLowSpeedTractionLossMultDelegate(nint _vehicle, float _value);
         private static void Vehicle_Handling_SetLowSpeedTractionLossMultFallback(nint _vehicle, float _value) => throw new Exceptions.OutdatedSdkException("Vehicle_Handling_SetLowSpeedTractionLossMult", "Vehicle_Handling_SetLowSpeedTractionLossMult SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Vehicle_Handling_SetMassDelegate(nint _vehicle, float _value);
@@ -3420,8 +3438,14 @@ namespace AltV.Net.CApi.Libraries
         private static void Vehicle_SetSteeringAngleFallback(nint _vehicle, float _value) => throw new Exceptions.OutdatedSdkException("Vehicle_SetSteeringAngle", "Vehicle_SetSteeringAngle SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Vehicle_SetSuspensionHeightDelegate(nint _vehicle, float _value);
         private static void Vehicle_SetSuspensionHeightFallback(nint _vehicle, float _value) => throw new Exceptions.OutdatedSdkException("Vehicle_SetSuspensionHeight", "Vehicle_SetSuspensionHeight SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Vehicle_SetupTransmissionDelegate(nint _vehicle);
+        private static void Vehicle_SetupTransmissionFallback(nint _vehicle) => throw new Exceptions.OutdatedSdkException("Vehicle_SetupTransmission", "Vehicle_SetupTransmission SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Vehicle_SetWheelCamberDelegate(nint _vehicle, byte _wheel, float _value);
         private static void Vehicle_SetWheelCamberFallback(nint _vehicle, byte _wheel, float _value) => throw new Exceptions.OutdatedSdkException("Vehicle_SetWheelCamber", "Vehicle_SetWheelCamber SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Vehicle_SetWheelConfigFlagDelegate(nint _vehicle, byte _wheelId, uint _flag, byte _state);
+        private static void Vehicle_SetWheelConfigFlagFallback(nint _vehicle, byte _wheelId, uint _flag, byte _state) => throw new Exceptions.OutdatedSdkException("Vehicle_SetWheelConfigFlag", "Vehicle_SetWheelConfigFlag SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Vehicle_SetWheelDynamicFlagDelegate(nint _vehicle, byte _wheelId, uint _flag, byte _state);
+        private static void Vehicle_SetWheelDynamicFlagFallback(nint _vehicle, byte _wheelId, uint _flag, byte _state) => throw new Exceptions.OutdatedSdkException("Vehicle_SetWheelDynamicFlag", "Vehicle_SetWheelDynamicFlag SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Vehicle_SetWheelHeightDelegate(nint _vehicle, byte _wheel, float _value);
         private static void Vehicle_SetWheelHeightFallback(nint _vehicle, byte _wheel, float _value) => throw new Exceptions.OutdatedSdkException("Vehicle_SetWheelHeight", "Vehicle_SetWheelHeight SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Vehicle_SetWheelRimRadiusDelegate(nint _vehicle, byte _wheel, float _value);
@@ -3573,7 +3597,7 @@ namespace AltV.Net.CApi.Libraries
         public ClientLibrary(Dictionary<ulong, IntPtr> funcTable)
         {
             if (!funcTable.TryGetValue(0, out var capiHash)) Outdated = true;
-            else if (capiHash == IntPtr.Zero || *(ulong*)capiHash != 78812385462098472UL) Outdated = true;
+            else if (capiHash == IntPtr.Zero || *(ulong*)capiHash != 11629663074568386340UL) Outdated = true;
             Audio_AddOutput = (delegate* unmanaged[Cdecl]<nint, nint, void>) GetUnmanagedPtr<Audio_AddOutputDelegate>(funcTable, 9914412815391408844UL, Audio_AddOutputFallback);
             Audio_GetBaseObject = (delegate* unmanaged[Cdecl]<nint, nint>) GetUnmanagedPtr<Audio_GetBaseObjectDelegate>(funcTable, 6330360502401226894UL, Audio_GetBaseObjectFallback);
             Audio_GetCurrentTime = (delegate* unmanaged[Cdecl]<nint, double>) GetUnmanagedPtr<Audio_GetCurrentTimeDelegate>(funcTable, 2944324482134975819UL, Audio_GetCurrentTimeFallback);
@@ -3781,6 +3805,7 @@ namespace AltV.Net.CApi.Libraries
             Core_OverrideFocusEntity = (delegate* unmanaged[Cdecl]<nint, nint, void>) GetUnmanagedPtr<Core_OverrideFocusEntityDelegate>(funcTable, 11543552066785919265UL, Core_OverrideFocusEntityFallback);
             Core_OverrideFocusPosition = (delegate* unmanaged[Cdecl]<nint, Vector3, Vector3, void>) GetUnmanagedPtr<Core_OverrideFocusPositionDelegate>(funcTable, 15255809094076439747UL, Core_OverrideFocusPositionFallback);
             Core_RegisterFont = (delegate* unmanaged[Cdecl]<nint, nint, nint, uint*, nint>) GetUnmanagedPtr<Core_RegisterFontDelegate>(funcTable, 84574382701044016UL, Core_RegisterFontFallback);
+            Core_ReloadVehiclePhysics = (delegate* unmanaged[Cdecl]<nint, uint, byte>) GetUnmanagedPtr<Core_ReloadVehiclePhysicsDelegate>(funcTable, 6341556497973967320UL, Core_ReloadVehiclePhysicsFallback);
             Core_RemoveGXTText = (delegate* unmanaged[Cdecl]<nint, nint, uint, void>) GetUnmanagedPtr<Core_RemoveGXTTextDelegate>(funcTable, 2950682702415179672UL, Core_RemoveGXTTextFallback);
             Core_RemoveIpl = (delegate* unmanaged[Cdecl]<nint, nint, void>) GetUnmanagedPtr<Core_RemoveIplDelegate>(funcTable, 3186817815537256556UL, Core_RemoveIplFallback);
             Core_RemoveVoiceFilter = (delegate* unmanaged[Cdecl]<nint, uint, void>) GetUnmanagedPtr<Core_RemoveVoiceFilterDelegate>(funcTable, 4203146524234440953UL, Core_RemoveVoiceFilterFallback);
@@ -3894,7 +3919,6 @@ namespace AltV.Net.CApi.Libraries
             FreeLocalVehicleArray = (delegate* unmanaged[Cdecl]<nint, void>) GetUnmanagedPtr<FreeLocalVehicleArrayDelegate>(funcTable, 11332368469424147882UL, FreeLocalVehicleArrayFallback);
             FreeRmlElementArray = (delegate* unmanaged[Cdecl]<nint, void>) GetUnmanagedPtr<FreeRmlElementArrayDelegate>(funcTable, 14086618333811829142UL, FreeRmlElementArrayFallback);
             GetNativeFuncTable = (delegate* unmanaged[Cdecl]<nint>) GetUnmanagedPtr<GetNativeFuncTableDelegate>(funcTable, 15955613981878964089UL, GetNativeFuncTableFallback);
-            Handling_GetAcceleration = (delegate* unmanaged[Cdecl]<uint, float>) GetUnmanagedPtr<Handling_GetAccelerationDelegate>(funcTable, 13640121750592766571UL, Handling_GetAccelerationFallback);
             Handling_GetAntiRollBarBiasFront = (delegate* unmanaged[Cdecl]<uint, float>) GetUnmanagedPtr<Handling_GetAntiRollBarBiasFrontDelegate>(funcTable, 6509087878150057559UL, Handling_GetAntiRollBarBiasFrontFallback);
             Handling_GetAntiRollBarBiasRear = (delegate* unmanaged[Cdecl]<uint, float>) GetUnmanagedPtr<Handling_GetAntiRollBarBiasRearDelegate>(funcTable, 10256732486804859248UL, Handling_GetAntiRollBarBiasRearFallback);
             Handling_GetAntiRollBarForce = (delegate* unmanaged[Cdecl]<uint, float>) GetUnmanagedPtr<Handling_GetAntiRollBarForceDelegate>(funcTable, 15070448398404561078UL, Handling_GetAntiRollBarForceFallback);
@@ -3910,8 +3934,8 @@ namespace AltV.Net.CApi.Libraries
             Handling_GetDeformationDamageMult = (delegate* unmanaged[Cdecl]<uint, float>) GetUnmanagedPtr<Handling_GetDeformationDamageMultDelegate>(funcTable, 5381538823265150070UL, Handling_GetDeformationDamageMultFallback);
             Handling_GetDownforceModifier = (delegate* unmanaged[Cdecl]<uint, float>) GetUnmanagedPtr<Handling_GetDownforceModifierDelegate>(funcTable, 7829933718567089587UL, Handling_GetDownforceModifierFallback);
             Handling_GetDriveBiasFront = (delegate* unmanaged[Cdecl]<uint, float>) GetUnmanagedPtr<Handling_GetDriveBiasFrontDelegate>(funcTable, 5342300288616537851UL, Handling_GetDriveBiasFrontFallback);
+            Handling_GetDriveBiasRear = (delegate* unmanaged[Cdecl]<uint, float>) GetUnmanagedPtr<Handling_GetDriveBiasRearDelegate>(funcTable, 18121403421176376004UL, Handling_GetDriveBiasRearFallback);
             Handling_GetDriveInertia = (delegate* unmanaged[Cdecl]<uint, float>) GetUnmanagedPtr<Handling_GetDriveInertiaDelegate>(funcTable, 14153061510559409341UL, Handling_GetDriveInertiaFallback);
-            Handling_GetDriveMaxFlatVel = (delegate* unmanaged[Cdecl]<uint, float>) GetUnmanagedPtr<Handling_GetDriveMaxFlatVelDelegate>(funcTable, 7459423795923006317UL, Handling_GetDriveMaxFlatVelFallback);
             Handling_GetEngineDamageMult = (delegate* unmanaged[Cdecl]<uint, float>) GetUnmanagedPtr<Handling_GetEngineDamageMultDelegate>(funcTable, 496589732490112468UL, Handling_GetEngineDamageMultFallback);
             Handling_GetHandBrakeForce = (delegate* unmanaged[Cdecl]<uint, float>) GetUnmanagedPtr<Handling_GetHandBrakeForceDelegate>(funcTable, 6070053561112702062UL, Handling_GetHandBrakeForceFallback);
             Handling_GetHandlingFlags = (delegate* unmanaged[Cdecl]<uint, uint>) GetUnmanagedPtr<Handling_GetHandlingFlagsDelegate>(funcTable, 6962542370431861347UL, Handling_GetHandlingFlagsFallback);
@@ -3921,6 +3945,7 @@ namespace AltV.Net.CApi.Libraries
             Handling_GetInitialDriveForce = (delegate* unmanaged[Cdecl]<uint, float>) GetUnmanagedPtr<Handling_GetInitialDriveForceDelegate>(funcTable, 2032569468200694716UL, Handling_GetInitialDriveForceFallback);
             Handling_GetInitialDriveGears = (delegate* unmanaged[Cdecl]<uint, uint>) GetUnmanagedPtr<Handling_GetInitialDriveGearsDelegate>(funcTable, 3477491608161757695UL, Handling_GetInitialDriveGearsFallback);
             Handling_GetInitialDriveMaxFlatVel = (delegate* unmanaged[Cdecl]<uint, float>) GetUnmanagedPtr<Handling_GetInitialDriveMaxFlatVelDelegate>(funcTable, 14911638129270116483UL, Handling_GetInitialDriveMaxFlatVelFallback);
+            Handling_GetInitialDriveMaxVel = (delegate* unmanaged[Cdecl]<uint, float>) GetUnmanagedPtr<Handling_GetInitialDriveMaxVelDelegate>(funcTable, 14463284166403326540UL, Handling_GetInitialDriveMaxVelFallback);
             Handling_GetLowSpeedTractionLossMult = (delegate* unmanaged[Cdecl]<uint, float>) GetUnmanagedPtr<Handling_GetLowSpeedTractionLossMultDelegate>(funcTable, 3910172163486028031UL, Handling_GetLowSpeedTractionLossMultFallback);
             Handling_GetMass = (delegate* unmanaged[Cdecl]<uint, float>) GetUnmanagedPtr<Handling_GetMassDelegate>(funcTable, 16503753649195520827UL, Handling_GetMassFallback);
             Handling_GetModelFlags = (delegate* unmanaged[Cdecl]<uint, uint>) GetUnmanagedPtr<Handling_GetModelFlagsDelegate>(funcTable, 16471152888163436925UL, Handling_GetModelFlagsFallback);
@@ -3960,7 +3985,6 @@ namespace AltV.Net.CApi.Libraries
             Handling_GetunkFloat4 = (delegate* unmanaged[Cdecl]<uint, float>) GetUnmanagedPtr<Handling_GetunkFloat4Delegate>(funcTable, 16356297962238647527UL, Handling_GetunkFloat4Fallback);
             Handling_GetunkFloat5 = (delegate* unmanaged[Cdecl]<uint, float>) GetUnmanagedPtr<Handling_GetunkFloat5Delegate>(funcTable, 4661719046437834322UL, Handling_GetunkFloat5Fallback);
             Handling_GetWeaponDamageMult = (delegate* unmanaged[Cdecl]<uint, float>) GetUnmanagedPtr<Handling_GetWeaponDamageMultDelegate>(funcTable, 277249662807444034UL, Handling_GetWeaponDamageMultFallback);
-            Handling_SetAcceleration = (delegate* unmanaged[Cdecl]<uint, float, void>) GetUnmanagedPtr<Handling_SetAccelerationDelegate>(funcTable, 16866255586563037390UL, Handling_SetAccelerationFallback);
             Handling_SetAntiRollBarBiasFront = (delegate* unmanaged[Cdecl]<uint, float, void>) GetUnmanagedPtr<Handling_SetAntiRollBarBiasFrontDelegate>(funcTable, 9421920479908058850UL, Handling_SetAntiRollBarBiasFrontFallback);
             Handling_SetAntiRollBarBiasRear = (delegate* unmanaged[Cdecl]<uint, float, void>) GetUnmanagedPtr<Handling_SetAntiRollBarBiasRearDelegate>(funcTable, 16105117954749420927UL, Handling_SetAntiRollBarBiasRearFallback);
             Handling_SetAntiRollBarForce = (delegate* unmanaged[Cdecl]<uint, float, void>) GetUnmanagedPtr<Handling_SetAntiRollBarForceDelegate>(funcTable, 10250999986359269437UL, Handling_SetAntiRollBarForceFallback);
@@ -3976,8 +4000,8 @@ namespace AltV.Net.CApi.Libraries
             Handling_SetDeformationDamageMult = (delegate* unmanaged[Cdecl]<uint, float, void>) GetUnmanagedPtr<Handling_SetDeformationDamageMultDelegate>(funcTable, 10141919336511995253UL, Handling_SetDeformationDamageMultFallback);
             Handling_SetDownforceModifier = (delegate* unmanaged[Cdecl]<uint, float, void>) GetUnmanagedPtr<Handling_SetDownforceModifierDelegate>(funcTable, 10480890064636847038UL, Handling_SetDownforceModifierFallback);
             Handling_SetDriveBiasFront = (delegate* unmanaged[Cdecl]<uint, float, void>) GetUnmanagedPtr<Handling_SetDriveBiasFrontDelegate>(funcTable, 13201673460408288262UL, Handling_SetDriveBiasFrontFallback);
+            Handling_SetDriveBiasRear = (delegate* unmanaged[Cdecl]<uint, float, void>) GetUnmanagedPtr<Handling_SetDriveBiasRearDelegate>(funcTable, 925439942119483315UL, Handling_SetDriveBiasRearFallback);
             Handling_SetDriveInertia = (delegate* unmanaged[Cdecl]<uint, float, void>) GetUnmanagedPtr<Handling_SetDriveInertiaDelegate>(funcTable, 15611200483174743552UL, Handling_SetDriveInertiaFallback);
-            Handling_SetDriveMaxFlatVel = (delegate* unmanaged[Cdecl]<uint, float, void>) GetUnmanagedPtr<Handling_SetDriveMaxFlatVelDelegate>(funcTable, 3861610181173130504UL, Handling_SetDriveMaxFlatVelFallback);
             Handling_SetEngineDamageMult = (delegate* unmanaged[Cdecl]<uint, float, void>) GetUnmanagedPtr<Handling_SetEngineDamageMultDelegate>(funcTable, 8781324928923140083UL, Handling_SetEngineDamageMultFallback);
             Handling_SetHandBrakeForce = (delegate* unmanaged[Cdecl]<uint, float, void>) GetUnmanagedPtr<Handling_SetHandBrakeForceDelegate>(funcTable, 7762839872036477605UL, Handling_SetHandBrakeForceFallback);
             Handling_SetHandlingFlags = (delegate* unmanaged[Cdecl]<uint, uint, void>) GetUnmanagedPtr<Handling_SetHandlingFlagsDelegate>(funcTable, 3536265886880805678UL, Handling_SetHandlingFlagsFallback);
@@ -3986,6 +4010,7 @@ namespace AltV.Net.CApi.Libraries
             Handling_SetInitialDriveForce = (delegate* unmanaged[Cdecl]<uint, float, void>) GetUnmanagedPtr<Handling_SetInitialDriveForceDelegate>(funcTable, 12390677840693118275UL, Handling_SetInitialDriveForceFallback);
             Handling_SetInitialDriveGears = (delegate* unmanaged[Cdecl]<uint, uint, void>) GetUnmanagedPtr<Handling_SetInitialDriveGearsDelegate>(funcTable, 10521816927365923002UL, Handling_SetInitialDriveGearsFallback);
             Handling_SetInitialDriveMaxFlatVel = (delegate* unmanaged[Cdecl]<uint, float, void>) GetUnmanagedPtr<Handling_SetInitialDriveMaxFlatVelDelegate>(funcTable, 5271240803351310462UL, Handling_SetInitialDriveMaxFlatVelFallback);
+            Handling_SetInitialDriveMaxVel = (delegate* unmanaged[Cdecl]<uint, float, void>) GetUnmanagedPtr<Handling_SetInitialDriveMaxVelDelegate>(funcTable, 14165419900408701011UL, Handling_SetInitialDriveMaxVelFallback);
             Handling_SetLowSpeedTractionLossMult = (delegate* unmanaged[Cdecl]<uint, float, void>) GetUnmanagedPtr<Handling_SetLowSpeedTractionLossMultDelegate>(funcTable, 14304205891478132450UL, Handling_SetLowSpeedTractionLossMultFallback);
             Handling_SetMass = (delegate* unmanaged[Cdecl]<uint, float, void>) GetUnmanagedPtr<Handling_SetMassDelegate>(funcTable, 16520694489329105190UL, Handling_SetMassFallback);
             Handling_SetModelFlags = (delegate* unmanaged[Cdecl]<uint, uint, void>) GetUnmanagedPtr<Handling_SetModelFlagsDelegate>(funcTable, 14495929787086383136UL, Handling_SetModelFlagsFallback);
@@ -4233,6 +4258,8 @@ namespace AltV.Net.CApi.Libraries
             Vehicle_GetSpeedVector = (delegate* unmanaged[Cdecl]<nint, Vector3*, void>) GetUnmanagedPtr<Vehicle_GetSpeedVectorDelegate>(funcTable, 9716002269308828916UL, Vehicle_GetSpeedVectorFallback);
             Vehicle_GetSuspensionHeight = (delegate* unmanaged[Cdecl]<nint, float>) GetUnmanagedPtr<Vehicle_GetSuspensionHeightDelegate>(funcTable, 11483934154441286346UL, Vehicle_GetSuspensionHeightFallback);
             Vehicle_GetWheelCamber = (delegate* unmanaged[Cdecl]<nint, byte, float>) GetUnmanagedPtr<Vehicle_GetWheelCamberDelegate>(funcTable, 13303370691287708161UL, Vehicle_GetWheelCamberFallback);
+            Vehicle_GetWheelConfigFlag = (delegate* unmanaged[Cdecl]<nint, byte, uint, byte>) GetUnmanagedPtr<Vehicle_GetWheelConfigFlagDelegate>(funcTable, 5271385185182015743UL, Vehicle_GetWheelConfigFlagFallback);
+            Vehicle_GetWheelDynamicFlag = (delegate* unmanaged[Cdecl]<nint, byte, uint, byte>) GetUnmanagedPtr<Vehicle_GetWheelDynamicFlagDelegate>(funcTable, 883185529540149226UL, Vehicle_GetWheelDynamicFlagFallback);
             Vehicle_GetWheelHeight = (delegate* unmanaged[Cdecl]<nint, byte, float>) GetUnmanagedPtr<Vehicle_GetWheelHeightDelegate>(funcTable, 1338791052731372072UL, Vehicle_GetWheelHeightFallback);
             Vehicle_GetWheelRimRadius = (delegate* unmanaged[Cdecl]<nint, byte, float>) GetUnmanagedPtr<Vehicle_GetWheelRimRadiusDelegate>(funcTable, 13382865868223894905UL, Vehicle_GetWheelRimRadiusFallback);
             Vehicle_GetWheelSpeed = (delegate* unmanaged[Cdecl]<nint, float>) GetUnmanagedPtr<Vehicle_GetWheelSpeedDelegate>(funcTable, 13422594452494959622UL, Vehicle_GetWheelSpeedFallback);
@@ -4240,7 +4267,6 @@ namespace AltV.Net.CApi.Libraries
             Vehicle_GetWheelTrackWidth = (delegate* unmanaged[Cdecl]<nint, byte, float>) GetUnmanagedPtr<Vehicle_GetWheelTrackWidthDelegate>(funcTable, 491499874893114118UL, Vehicle_GetWheelTrackWidthFallback);
             Vehicle_GetWheelTyreRadius = (delegate* unmanaged[Cdecl]<nint, byte, float>) GetUnmanagedPtr<Vehicle_GetWheelTyreRadiusDelegate>(funcTable, 4686947598406478597UL, Vehicle_GetWheelTyreRadiusFallback);
             Vehicle_GetWheelTyreWidth = (delegate* unmanaged[Cdecl]<nint, byte, float>) GetUnmanagedPtr<Vehicle_GetWheelTyreWidthDelegate>(funcTable, 10175809585401109345UL, Vehicle_GetWheelTyreWidthFallback);
-            Vehicle_Handling_GetAcceleration = (delegate* unmanaged[Cdecl]<nint, float>) GetUnmanagedPtr<Vehicle_Handling_GetAccelerationDelegate>(funcTable, 10078299693896381022UL, Vehicle_Handling_GetAccelerationFallback);
             Vehicle_Handling_GetAntiRollBarBiasFront = (delegate* unmanaged[Cdecl]<nint, float>) GetUnmanagedPtr<Vehicle_Handling_GetAntiRollBarBiasFrontDelegate>(funcTable, 2075764309745505478UL, Vehicle_Handling_GetAntiRollBarBiasFrontFallback);
             Vehicle_Handling_GetAntiRollBarBiasRear = (delegate* unmanaged[Cdecl]<nint, float>) GetUnmanagedPtr<Vehicle_Handling_GetAntiRollBarBiasRearDelegate>(funcTable, 5876755422566029523UL, Vehicle_Handling_GetAntiRollBarBiasRearFallback);
             Vehicle_Handling_GetAntiRollBarForce = (delegate* unmanaged[Cdecl]<nint, float>) GetUnmanagedPtr<Vehicle_Handling_GetAntiRollBarForceDelegate>(funcTable, 16400280465546780439UL, Vehicle_Handling_GetAntiRollBarForceFallback);
@@ -4256,8 +4282,8 @@ namespace AltV.Net.CApi.Libraries
             Vehicle_Handling_GetDeformationDamageMult = (delegate* unmanaged[Cdecl]<nint, float>) GetUnmanagedPtr<Vehicle_Handling_GetDeformationDamageMultDelegate>(funcTable, 4224890290177597729UL, Vehicle_Handling_GetDeformationDamageMultFallback);
             Vehicle_Handling_GetDownforceModifier = (delegate* unmanaged[Cdecl]<nint, float>) GetUnmanagedPtr<Vehicle_Handling_GetDownforceModifierDelegate>(funcTable, 8794621706814880064UL, Vehicle_Handling_GetDownforceModifierFallback);
             Vehicle_Handling_GetDriveBiasFront = (delegate* unmanaged[Cdecl]<nint, float>) GetUnmanagedPtr<Vehicle_Handling_GetDriveBiasFrontDelegate>(funcTable, 10514767894163983614UL, Vehicle_Handling_GetDriveBiasFrontFallback);
+            Vehicle_Handling_GetDriveBiasRear = (delegate* unmanaged[Cdecl]<nint, float>) GetUnmanagedPtr<Vehicle_Handling_GetDriveBiasRearDelegate>(funcTable, 83103673221524187UL, Vehicle_Handling_GetDriveBiasRearFallback);
             Vehicle_Handling_GetDriveInertia = (delegate* unmanaged[Cdecl]<nint, float>) GetUnmanagedPtr<Vehicle_Handling_GetDriveInertiaDelegate>(funcTable, 13091197092896554364UL, Vehicle_Handling_GetDriveInertiaFallback);
-            Vehicle_Handling_GetDriveMaxFlatVel = (delegate* unmanaged[Cdecl]<nint, float>) GetUnmanagedPtr<Vehicle_Handling_GetDriveMaxFlatVelDelegate>(funcTable, 17653040055654987534UL, Vehicle_Handling_GetDriveMaxFlatVelFallback);
             Vehicle_Handling_GetEngineDamageMult = (delegate* unmanaged[Cdecl]<nint, float>) GetUnmanagedPtr<Vehicle_Handling_GetEngineDamageMultDelegate>(funcTable, 13123198670756185941UL, Vehicle_Handling_GetEngineDamageMultFallback);
             Vehicle_Handling_GetHandBrakeForce = (delegate* unmanaged[Cdecl]<nint, float>) GetUnmanagedPtr<Vehicle_Handling_GetHandBrakeForceDelegate>(funcTable, 15071042556745097419UL, Vehicle_Handling_GetHandBrakeForceFallback);
             Vehicle_Handling_GetHandlingFlags = (delegate* unmanaged[Cdecl]<nint, uint>) GetUnmanagedPtr<Vehicle_Handling_GetHandlingFlagsDelegate>(funcTable, 15712800079613684274UL, Vehicle_Handling_GetHandlingFlagsFallback);
@@ -4267,6 +4293,7 @@ namespace AltV.Net.CApi.Libraries
             Vehicle_Handling_GetInitialDriveForce = (delegate* unmanaged[Cdecl]<nint, float>) GetUnmanagedPtr<Vehicle_Handling_GetInitialDriveForceDelegate>(funcTable, 14207124342130964195UL, Vehicle_Handling_GetInitialDriveForceFallback);
             Vehicle_Handling_GetInitialDriveGears = (delegate* unmanaged[Cdecl]<nint, uint>) GetUnmanagedPtr<Vehicle_Handling_GetInitialDriveGearsDelegate>(funcTable, 7988604432980063790UL, Vehicle_Handling_GetInitialDriveGearsFallback);
             Vehicle_Handling_GetInitialDriveMaxFlatVel = (delegate* unmanaged[Cdecl]<nint, float>) GetUnmanagedPtr<Vehicle_Handling_GetInitialDriveMaxFlatVelDelegate>(funcTable, 1869896813051298938UL, Vehicle_Handling_GetInitialDriveMaxFlatVelFallback);
+            Vehicle_Handling_GetInitialDriveMaxVel = (delegate* unmanaged[Cdecl]<nint, float>) GetUnmanagedPtr<Vehicle_Handling_GetInitialDriveMaxVelDelegate>(funcTable, 6354378963990998257UL, Vehicle_Handling_GetInitialDriveMaxVelFallback);
             Vehicle_Handling_GetLowSpeedTractionLossMult = (delegate* unmanaged[Cdecl]<nint, float>) GetUnmanagedPtr<Vehicle_Handling_GetLowSpeedTractionLossMultDelegate>(funcTable, 12245703430179167058UL, Vehicle_Handling_GetLowSpeedTractionLossMultFallback);
             Vehicle_Handling_GetMass = (delegate* unmanaged[Cdecl]<nint, float>) GetUnmanagedPtr<Vehicle_Handling_GetMassDelegate>(funcTable, 6108107448568242326UL, Vehicle_Handling_GetMassFallback);
             Vehicle_Handling_GetModelFlags = (delegate* unmanaged[Cdecl]<nint, uint>) GetUnmanagedPtr<Vehicle_Handling_GetModelFlagsDelegate>(funcTable, 4933176887065087610UL, Vehicle_Handling_GetModelFlagsFallback);
@@ -4306,7 +4333,6 @@ namespace AltV.Net.CApi.Libraries
             Vehicle_Handling_GetunkFloat4 = (delegate* unmanaged[Cdecl]<nint, float>) GetUnmanagedPtr<Vehicle_Handling_GetunkFloat4Delegate>(funcTable, 11893830950833771180UL, Vehicle_Handling_GetunkFloat4Fallback);
             Vehicle_Handling_GetunkFloat5 = (delegate* unmanaged[Cdecl]<nint, float>) GetUnmanagedPtr<Vehicle_Handling_GetunkFloat5Delegate>(funcTable, 7652662052385596845UL, Vehicle_Handling_GetunkFloat5Fallback);
             Vehicle_Handling_GetWeaponDamageMult = (delegate* unmanaged[Cdecl]<nint, float>) GetUnmanagedPtr<Vehicle_Handling_GetWeaponDamageMultDelegate>(funcTable, 11922787843029535275UL, Vehicle_Handling_GetWeaponDamageMultFallback);
-            Vehicle_Handling_SetAcceleration = (delegate* unmanaged[Cdecl]<nint, float, void>) GetUnmanagedPtr<Vehicle_Handling_SetAccelerationDelegate>(funcTable, 18029758670461994365UL, Vehicle_Handling_SetAccelerationFallback);
             Vehicle_Handling_SetAntiRollBarBiasFront = (delegate* unmanaged[Cdecl]<nint, float, void>) GetUnmanagedPtr<Vehicle_Handling_SetAntiRollBarBiasFrontDelegate>(funcTable, 17130103214803834989UL, Vehicle_Handling_SetAntiRollBarBiasFrontFallback);
             Vehicle_Handling_SetAntiRollBarBiasRear = (delegate* unmanaged[Cdecl]<nint, float, void>) GetUnmanagedPtr<Vehicle_Handling_SetAntiRollBarBiasRearDelegate>(funcTable, 2692497708077112726UL, Vehicle_Handling_SetAntiRollBarBiasRearFallback);
             Vehicle_Handling_SetAntiRollBarForce = (delegate* unmanaged[Cdecl]<nint, float, void>) GetUnmanagedPtr<Vehicle_Handling_SetAntiRollBarForceDelegate>(funcTable, 18369044924651600610UL, Vehicle_Handling_SetAntiRollBarForceFallback);
@@ -4322,8 +4348,8 @@ namespace AltV.Net.CApi.Libraries
             Vehicle_Handling_SetDeformationDamageMult = (delegate* unmanaged[Cdecl]<nint, float, void>) GetUnmanagedPtr<Vehicle_Handling_SetDeformationDamageMultDelegate>(funcTable, 3715895871076668228UL, Vehicle_Handling_SetDeformationDamageMultFallback);
             Vehicle_Handling_SetDownforceModifier = (delegate* unmanaged[Cdecl]<nint, float, void>) GetUnmanagedPtr<Vehicle_Handling_SetDownforceModifierDelegate>(funcTable, 14978721618745882503UL, Vehicle_Handling_SetDownforceModifierFallback);
             Vehicle_Handling_SetDriveBiasFront = (delegate* unmanaged[Cdecl]<nint, float, void>) GetUnmanagedPtr<Vehicle_Handling_SetDriveBiasFrontDelegate>(funcTable, 15668539880874518677UL, Vehicle_Handling_SetDriveBiasFrontFallback);
+            Vehicle_Handling_SetDriveBiasRear = (delegate* unmanaged[Cdecl]<nint, float, void>) GetUnmanagedPtr<Vehicle_Handling_SetDriveBiasRearDelegate>(funcTable, 7338164812375801966UL, Vehicle_Handling_SetDriveBiasRearFallback);
             Vehicle_Handling_SetDriveInertia = (delegate* unmanaged[Cdecl]<nint, float, void>) GetUnmanagedPtr<Vehicle_Handling_SetDriveInertiaDelegate>(funcTable, 10019280768018311739UL, Vehicle_Handling_SetDriveInertiaFallback);
-            Vehicle_Handling_SetDriveMaxFlatVel = (delegate* unmanaged[Cdecl]<nint, float, void>) GetUnmanagedPtr<Vehicle_Handling_SetDriveMaxFlatVelDelegate>(funcTable, 1702635411438007893UL, Vehicle_Handling_SetDriveMaxFlatVelFallback);
             Vehicle_Handling_SetEngineDamageMult = (delegate* unmanaged[Cdecl]<nint, float, void>) GetUnmanagedPtr<Vehicle_Handling_SetEngineDamageMultDelegate>(funcTable, 17302007799028099256UL, Vehicle_Handling_SetEngineDamageMultFallback);
             Vehicle_Handling_SetHandBrakeForce = (delegate* unmanaged[Cdecl]<nint, float, void>) GetUnmanagedPtr<Vehicle_Handling_SetHandBrakeForceDelegate>(funcTable, 12276253478525626262UL, Vehicle_Handling_SetHandBrakeForceFallback);
             Vehicle_Handling_SetHandlingFlags = (delegate* unmanaged[Cdecl]<nint, uint, void>) GetUnmanagedPtr<Vehicle_Handling_SetHandlingFlagsDelegate>(funcTable, 4597845088196659657UL, Vehicle_Handling_SetHandlingFlagsFallback);
@@ -4332,6 +4358,7 @@ namespace AltV.Net.CApi.Libraries
             Vehicle_Handling_SetInitialDriveForce = (delegate* unmanaged[Cdecl]<nint, float, void>) GetUnmanagedPtr<Vehicle_Handling_SetInitialDriveForceDelegate>(funcTable, 18270808580206557790UL, Vehicle_Handling_SetInitialDriveForceFallback);
             Vehicle_Handling_SetInitialDriveGears = (delegate* unmanaged[Cdecl]<nint, uint, void>) GetUnmanagedPtr<Vehicle_Handling_SetInitialDriveGearsDelegate>(funcTable, 2325663906168656981UL, Vehicle_Handling_SetInitialDriveGearsFallback);
             Vehicle_Handling_SetInitialDriveMaxFlatVel = (delegate* unmanaged[Cdecl]<nint, float, void>) GetUnmanagedPtr<Vehicle_Handling_SetInitialDriveMaxFlatVelDelegate>(funcTable, 4721735489012961441UL, Vehicle_Handling_SetInitialDriveMaxFlatVelFallback);
+            Vehicle_Handling_SetInitialDriveMaxVel = (delegate* unmanaged[Cdecl]<nint, float, void>) GetUnmanagedPtr<Vehicle_Handling_SetInitialDriveMaxVelDelegate>(funcTable, 10827938811434492364UL, Vehicle_Handling_SetInitialDriveMaxVelFallback);
             Vehicle_Handling_SetLowSpeedTractionLossMult = (delegate* unmanaged[Cdecl]<nint, float, void>) GetUnmanagedPtr<Vehicle_Handling_SetLowSpeedTractionLossMultDelegate>(funcTable, 1596211192320289009UL, Vehicle_Handling_SetLowSpeedTractionLossMultFallback);
             Vehicle_Handling_SetMass = (delegate* unmanaged[Cdecl]<nint, float, void>) GetUnmanagedPtr<Vehicle_Handling_SetMassDelegate>(funcTable, 15366979755955923021UL, Vehicle_Handling_SetMassFallback);
             Vehicle_Handling_SetModelFlags = (delegate* unmanaged[Cdecl]<nint, uint, void>) GetUnmanagedPtr<Vehicle_Handling_SetModelFlagsDelegate>(funcTable, 8268986722826371337UL, Vehicle_Handling_SetModelFlagsFallback);
@@ -4389,7 +4416,10 @@ namespace AltV.Net.CApi.Libraries
             Vehicle_SetPetrolLightState = (delegate* unmanaged[Cdecl]<nint, byte, void>) GetUnmanagedPtr<Vehicle_SetPetrolLightStateDelegate>(funcTable, 2675407408828596847UL, Vehicle_SetPetrolLightStateFallback);
             Vehicle_SetSteeringAngle = (delegate* unmanaged[Cdecl]<nint, float, void>) GetUnmanagedPtr<Vehicle_SetSteeringAngleDelegate>(funcTable, 10816077278672307073UL, Vehicle_SetSteeringAngleFallback);
             Vehicle_SetSuspensionHeight = (delegate* unmanaged[Cdecl]<nint, float, void>) GetUnmanagedPtr<Vehicle_SetSuspensionHeightDelegate>(funcTable, 18123777833957296121UL, Vehicle_SetSuspensionHeightFallback);
+            Vehicle_SetupTransmission = (delegate* unmanaged[Cdecl]<nint, void>) GetUnmanagedPtr<Vehicle_SetupTransmissionDelegate>(funcTable, 15515593616288926025UL, Vehicle_SetupTransmissionFallback);
             Vehicle_SetWheelCamber = (delegate* unmanaged[Cdecl]<nint, byte, float, void>) GetUnmanagedPtr<Vehicle_SetWheelCamberDelegate>(funcTable, 10533830814607560700UL, Vehicle_SetWheelCamberFallback);
+            Vehicle_SetWheelConfigFlag = (delegate* unmanaged[Cdecl]<nint, byte, uint, byte, void>) GetUnmanagedPtr<Vehicle_SetWheelConfigFlagDelegate>(funcTable, 17284682775935975738UL, Vehicle_SetWheelConfigFlagFallback);
+            Vehicle_SetWheelDynamicFlag = (delegate* unmanaged[Cdecl]<nint, byte, uint, byte, void>) GetUnmanagedPtr<Vehicle_SetWheelDynamicFlagDelegate>(funcTable, 8015620088058696041UL, Vehicle_SetWheelDynamicFlagFallback);
             Vehicle_SetWheelHeight = (delegate* unmanaged[Cdecl]<nint, byte, float, void>) GetUnmanagedPtr<Vehicle_SetWheelHeightDelegate>(funcTable, 14037400183140364255UL, Vehicle_SetWheelHeightFallback);
             Vehicle_SetWheelRimRadius = (delegate* unmanaged[Cdecl]<nint, byte, float, void>) GetUnmanagedPtr<Vehicle_SetWheelRimRadiusDelegate>(funcTable, 3095801372631152772UL, Vehicle_SetWheelRimRadiusFallback);
             Vehicle_SetWheelTrackWidth = (delegate* unmanaged[Cdecl]<nint, byte, float, void>) GetUnmanagedPtr<Vehicle_SetWheelTrackWidthDelegate>(funcTable, 2293924763385881861UL, Vehicle_SetWheelTrackWidthFallback);

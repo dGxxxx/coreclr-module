@@ -26,6 +26,18 @@ namespace AltV.Net
             remove => CoreImpl.PlayerConnectEventHandler.Remove(value);
         }
 
+        public static event BaseObjectCreateDelegate OnBaseObjectCreate
+        {
+            add => CoreImpl.BaseObjectCreateEventHandler.Add(value);
+            remove => CoreImpl.BaseObjectCreateEventHandler.Remove(value);
+        }
+
+        public static event BaseObjectRemoveDelegate OnBaseObjectRemove
+        {
+            add => CoreImpl.BaseObjectRemoveEventHandler.Add(value);
+            remove => CoreImpl.BaseObjectRemoveEventHandler.Remove(value);
+        }
+
         public static event PlayerConnectDeniedDelegate OnPlayerConnectDenied
         {
             add => CoreImpl.PlayerConnectDeniedEventHandler.Add(value);

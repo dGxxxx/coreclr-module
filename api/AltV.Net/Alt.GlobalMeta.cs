@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using AltV.Net.Elements.Args;
+using AltV.Net.Shared.Utils;
 
 namespace AltV.Net
 {
@@ -14,12 +16,12 @@ namespace AltV.Net
         public static bool GetMetaData<T>(string key, out T result)
         {
             Core.GetMetaData(key, out var mValue);
+
             using (mValue)
             {
-
                 try
                 {
-                    result = (T)Convert.ChangeType(mValue.ToObject(), typeof(T));
+                    result = Utils.GetCastedMValue<T>(mValue);
                     return true;
                 }
                 catch
@@ -44,7 +46,7 @@ namespace AltV.Net
 
                 try
                 {
-                    result = (T)Convert.ChangeType(mValue.ToObject(), typeof(T));
+                    result = Utils.GetCastedMValue<T>(mValue);
                     return true;
                 }
                 catch

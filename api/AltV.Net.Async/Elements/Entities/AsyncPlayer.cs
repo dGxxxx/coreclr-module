@@ -580,6 +580,24 @@ namespace AltV.Net.Async.Elements.Entities
                 Player.Spawn(position, delayMs);
             }
         }
+        
+        public void Spawn(uint model, Position position, uint delayMs = 0)
+        {
+            lock (Player)
+            {
+                if (!AsyncContext.CheckIfExistsNullable(Player)) return;
+                Player.Spawn(model, position, delayMs);
+            }
+        }
+        
+        public void Spawn(PedModel model, Position position, uint delayMs = 0)
+        {
+            lock (Player)
+            {
+                if (!AsyncContext.CheckIfExistsNullable(Player)) return;
+                Player.Spawn(model, position, delayMs);
+            }
+        }
 
         public void Despawn()
         {

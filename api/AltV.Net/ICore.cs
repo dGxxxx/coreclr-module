@@ -182,7 +182,7 @@ namespace AltV.Net
         IEnumerable<string> GetRegisteredServerEvents();
 
         IBaseObject[] GetClosestEntities(Position position, int range, int dimension, int limit,
-            EntityType allowedTypes);
+                                         EntityType allowedTypes, Order order = Order.Default);
         IBaseObject[] GetEntitiesInDimension(int dimension, EntityType allowedTypes);
         IBaseObject[] GetEntitiesInRange(Position position, int range, int dimension, EntityType allowedTypes);
         IBaseObject GetBaseObject(BaseObjectType type, uint id);

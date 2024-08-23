@@ -120,5 +120,7 @@ namespace AltV.Net.Client
         public static int MsPerGameMinute { get => Core.MsPerGameMinute; set => Core.MsPerGameMinute = value; }
 
         public static ulong ServerTime => Core.ServerTime;
+
+        public static bool ReloadVehiclePhysics(uint modelHash) => Core.ReloadVehiclePhysics(modelHash);
     }
 }

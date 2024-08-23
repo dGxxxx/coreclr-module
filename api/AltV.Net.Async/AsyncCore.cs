@@ -81,6 +81,12 @@ namespace AltV.Net.Async
         internal readonly AsyncEventHandler<PlayerDisconnectAsyncDelegate> PlayerDisconnectAsyncEventHandler =
             new(EventType.PLAYER_DISCONNECT);
 
+        internal readonly AsyncEventHandler<BaseObjectCreateAsyncDelegate> BaseObjectCreateAsyncEventHandler =
+            new();
+
+        internal readonly AsyncEventHandler<BaseObjectRemoveAsyncDelegate> BaseObjectRemoveAsyncEventHandler =
+            new();
+
         internal readonly AsyncEventHandler<PlayerRemoveAsyncDelegate> PlayerRemoveAsyncEventHandler =
             new();
 
@@ -355,6 +361,27 @@ namespace AltV.Net.Async
                         @delegate(player, reason));
                 }
             );
+        }
+
+        public override void OnCreateBaseObjectEvent(IBaseObject baseObject)
+        {
+            base.OnCreateBaseObjectEvent(baseObject);
+            if (!BaseObjectCreateAsyncEventHandler.HasEvents()) return;
+            Task.Run(async () =>
+            {
+                await BaseObjectCreateAsyncEventHandler.CallAsync(@delegate =>
+                    @delegate(baseObject));
+            });
+        }
+        public override void OnRemoveBaseObjectEvent(IBaseObject baseObject)
+        {
+            base.OnRemoveBaseObjectEvent(baseObject);
+            if (!BaseObjectRemoveAsyncEventHandler.HasEvents()) return;
+            Task.Run(async () =>
+            {
+                await BaseObjectRemoveAsyncEventHandler.CallAsync(@delegate =>
+                    @delegate(baseObject));
+            });
         }
 
         public override void OnPlayerRemoveEvent(IPlayer player)

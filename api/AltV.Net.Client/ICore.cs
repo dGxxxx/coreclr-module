@@ -231,5 +231,7 @@ namespace AltV.Net.Client
         void UpdateClipContext(Dictionary<string, string> context);
 
         ulong ServerTime { get; }
+
+        bool ReloadVehiclePhysics(uint modelHash);
     }
 }

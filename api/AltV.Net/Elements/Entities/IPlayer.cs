@@ -101,6 +101,24 @@ namespace AltV.Net.Elements.Entities
         void Spawn(Position position, uint delayMs = 0);
 
         /// <summary>
+        /// Spawns a player with given model at the designated position with a optional delay in milliseconds
+        /// </summary>
+        /// <param name="model">the players model / skin</param>
+        /// <param name="position">position</param>
+        /// <param name="delayMs">delay in milliseconds until player is spawned</param>
+        /// <exception cref="EntityRemovedException">This entity was removed</exception>
+        void Spawn(uint model, Position position, uint delayMs = 0);
+        
+        /// <summary>
+        /// Spawns a player with given model at the designated position with a optional delay in milliseconds
+        /// </summary>
+        /// <param name="model">the players model / skin</param>
+        /// <param name="position">position</param>
+        /// <param name="delayMs">delay in milliseconds until player is spawned</param>
+        /// <exception cref="EntityRemovedException">This entity was removed</exception>
+        void Spawn(PedModel model, Position position, uint delayMs = 0);
+
+        /// <summary>
         /// Despawns a player
         /// </summary>
         void Despawn();

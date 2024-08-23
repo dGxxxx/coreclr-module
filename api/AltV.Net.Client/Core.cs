@@ -232,7 +232,7 @@ namespace AltV.Net.Client
             {
                 CheckIfCallIsValid();
                 ulong size = 0;
-                var ptr = Library.Shared.Core_GetMarkers(NativePointer, &size);
+                var ptr = Library.Shared.Core_GetTextLabels(NativePointer, &size);
                 var data = new IntPtr[size];
                 Marshal.Copy(ptr, data, 0, (int)size);
                 var arr = data.Select(e => PoolManager.TextLabel.GetOrCreate(this, e)).ToArray();
@@ -740,6 +740,14 @@ namespace AltV.Net.Client
                 {
                     return this.Library.Client.Core_GetServerTime(NativePointer);
                 }
+            }
+        }
+
+        public bool ReloadVehiclePhysics(uint modelHash)
+        {
+            unsafe
+            {
+                return Library.Client.Core_ReloadVehiclePhysics(NativePointer, modelHash) == 1;
             }
         }
 

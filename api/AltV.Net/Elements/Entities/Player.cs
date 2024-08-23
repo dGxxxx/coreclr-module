@@ -85,7 +85,7 @@ namespace AltV.Net.Elements.Entities
 
                 try
                 {
-                    result = (T)Convert.ChangeType(mValue.ToObject(), typeof(T));
+                    result = Utils.GetCastedMValue<T>(mValue);
                     return true;
                 }
                 catch
@@ -1000,6 +1000,26 @@ namespace AltV.Net.Elements.Entities
             unsafe
             {
                 CheckIfEntityExists();
+                Core.Library.Server.Player_Spawn(PlayerNativePointer, position, delayMs);
+            }
+        }
+        
+        public void Spawn(uint model, Position position, uint delayMs = 0)
+        {
+            unsafe
+            {
+                CheckIfEntityExists();
+                Core.Library.Server.Player_SetModel(PlayerNativePointer, model);
+                Core.Library.Server.Player_Spawn(PlayerNativePointer, position, delayMs);
+            }
+        }
+        
+        public void Spawn(PedModel model, Position position, uint delayMs = 0)
+        {
+            unsafe
+            {
+                CheckIfEntityExists();
+                Core.Library.Server.Player_SetModel(PlayerNativePointer, (uint) model);
                 Core.Library.Server.Player_Spawn(PlayerNativePointer, position, delayMs);
             }
         }

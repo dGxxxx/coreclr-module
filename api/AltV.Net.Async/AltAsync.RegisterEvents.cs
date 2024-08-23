@@ -25,6 +25,32 @@ namespace AltV.Net.Async
                             ScriptFunction scriptFunction;
                             switch (scriptEventType)
                             {
+                                case ScriptEventType.BaseObjectCreate:
+                                {
+                                    scriptFunction = ScriptFunction.Create(eventMethodDelegate,
+                                        new[] { typeof(IBaseObject) }, isAsync: true);
+                                    if (scriptFunction == null) return;
+                                    OnBaseObjectCreate += (baseObject) =>
+                                    {
+                                        var currScriptFunction = scriptFunction.Clone();
+                                        currScriptFunction.Set(baseObject);
+                                        return currScriptFunction.CallAsync();
+                                    };
+                                    break;
+                                }
+                                case ScriptEventType.BaseObjectRemove:
+                                {
+                                    scriptFunction = ScriptFunction.Create(eventMethodDelegate,
+                                        new[] { typeof(IBaseObject) }, isAsync: true);
+                                    if (scriptFunction == null) return;
+                                    OnBaseObjectRemove += (baseObject) =>
+                                    {
+                                        var currScriptFunction = scriptFunction.Clone();
+                                        currScriptFunction.Set(baseObject);
+                                        return currScriptFunction.CallAsync();
+                                    };
+                                    break;
+                                }
                                 case ScriptEventType.Checkpoint:
                                 {
                                     scriptFunction = ScriptFunction.Create(eventMethodDelegate,
