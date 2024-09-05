@@ -220,5 +220,8 @@ namespace AltV.Net
         }
 
         public static bool HasBenefit(Benefit benefit) => CoreImpl.HasBenefit(benefit);
+
+        public static void StopServer() => CoreImpl.StopServer();
+        public static WeaponModelInfo? GetWeaponModelInfo(uint hash) => CoreImpl.GetWeaponModelInfo(hash);
     }
 }
