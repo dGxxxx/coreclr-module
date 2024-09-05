@@ -223,5 +223,9 @@ namespace AltV.Net
 
         public static void StopServer() => CoreImpl.StopServer();
         public static WeaponModelInfo? GetWeaponModelInfo(uint hash) => CoreImpl.GetWeaponModelInfo(hash);
+
+        public static void SetPassword(string password) => CoreImpl.SetPassword(password);
+        public static void SetVoiceExternal(string host, ushort port) => CoreImpl.SetVoiceExternal(host, port);
+        public static void SetVoiceExternalPublic(string host, ushort port) => CoreImpl.SetVoiceExternalPublic(host, port);
     }
 }
