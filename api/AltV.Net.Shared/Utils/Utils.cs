@@ -76,7 +76,13 @@ namespace AltV.Net.Shared.Utils
                                 }
                                 else
                                 {
-                                    resultList.GetType().GetMethod("Add").Invoke(resultList, [Convert.ChangeType(item, type)]);
+                                    var val = item;
+                                    if (type != typeof(object))
+                                    {
+                                        val = Convert.ChangeType(val, type);
+                                    }
+
+                                    resultList.GetType().GetMethod("Add").Invoke(resultList, [val]);
                                 }
                             }
                         }
@@ -125,8 +131,12 @@ namespace AltV.Net.Shared.Utils
 
                         foreach (var kvp in sourceDictionary)
                         {
-                            object value = Convert.ChangeType(kvp.Value, valueType);
-                            resultDictionary.GetType().GetMethod("Add").Invoke(resultDictionary, new object[] { kvp.Key, value });
+                            var val = kvp.Value;
+                            if (valueType != typeof(object))
+                            {
+                                val = Convert.ChangeType(val, valueType);
+                            }
+                            resultDictionary.GetType().GetMethod("Add").Invoke(resultDictionary, new object[] { kvp.Key, val });
                         }
 
                         return resultDictionary;
