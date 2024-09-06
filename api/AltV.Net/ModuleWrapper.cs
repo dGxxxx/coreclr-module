@@ -128,7 +128,7 @@ namespace AltV.Net
             var core = _resource.GetCore(serverPointer, resourcePointer, assemblyLoadContext, library, baseObjectPool, nativeResourcePool);
             _core = core;
             Alt.CoreImpl = core;
-            AltShared.Core = core;
+            AltShared.CoreImpl = core;
 
             if (library.Outdated)
             {

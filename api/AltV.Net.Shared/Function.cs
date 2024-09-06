@@ -29,8 +29,8 @@ namespace AltV.Net
         [Obsolete("Use Alt.CreateFunction or overload with ISharedCore argument instead")]
         public static Function Create<T>(T func) where T : Delegate
         {
-            AltShared.Core.LogWarning("Function.Create<T>(T func) is deprecated, use Alt.CreateFunction or overload with ISharedCore argument instead");
-            return Create(AltShared.Core, func);
+            AltShared.CoreImpl.LogWarning("Function.Create<T>(T func) is deprecated, use Alt.CreateFunction or overload with ISharedCore argument instead");
+            return Create(AltShared.CoreImpl, func);
         }
         
         //TODO: for high optimization add ParseBoolUnsafe ect. that doesn't contains the mValue type check for scenarios where we already had to check the mValue type
@@ -67,7 +67,7 @@ namespace AltV.Net
                 stringParsers[i] = typeInfo.StringParser;
                 if (constParsers[i] == null || objectParsers[i] == null || stringParsers[i] == null)
                 {
-                    AltShared.Core.LogWarning("Failed to construct a function because of unsupported argument type " + arg + " at index " + i);
+                    AltShared.CoreImpl.LogWarning("Failed to construct a function because of unsupported argument type " + arg + " at index " + i);
                     return null;
                 }
             }

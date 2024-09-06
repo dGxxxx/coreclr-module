@@ -727,11 +727,11 @@ namespace AltV.Net.Async
                             break;
                         case AsyncServerEventAttribute @event:
                             var serverEventName = @event.Name ?? eventMethod.Name;
-                            Core.OnServer(serverEventName, Function.Create(Core, eventMethodDelegate));
+                            CoreImpl.OnServer(serverEventName, Function.Create(CoreImpl, eventMethodDelegate));
                             break;
                         case AsyncClientEventAttribute @event:
                             var clientEventName = @event.Name ?? eventMethod.Name;
-                            Core.OnClient(clientEventName, Function.Create(Core, eventMethodDelegate));
+                            CoreImpl.OnClient(clientEventName, Function.Create(CoreImpl, eventMethodDelegate));
                             break;
                     }
                 });
