@@ -13,7 +13,7 @@ public class ObjectPool : EntityPool<IObject>
     {
         unsafe
         {
-            return Alt.Core.Library.Shared.Object_GetID(objectPointer);
+            return Alt.CoreImpl.Library.Shared.Object_GetID(objectPointer);
         }
     }
 }

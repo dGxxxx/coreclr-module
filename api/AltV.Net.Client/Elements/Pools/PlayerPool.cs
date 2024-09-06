@@ -20,7 +20,7 @@ namespace AltV.Net.Client.Elements.Pools
                 var localPlayerPointer = core.Library.Client.Player_GetLocal();
                 var id = core.Library.Client.LocalPlayer_GetID(localPlayerPointer);
 
-                var localPlayer = ((IPlayerFactory) _entityFactory).GetLocalPlayer(Alt.Core, localPlayerPointer, id);
+                var localPlayer = ((IPlayerFactory) _entityFactory).GetLocalPlayer(Alt.CoreImpl, localPlayerPointer, id);
                 this.Add(localPlayer);
                 this.LocalPlayer = localPlayer;
             }
@@ -30,7 +30,7 @@ namespace AltV.Net.Client.Elements.Pools
         {
             unsafe
             {
-                return Alt.Core.Library.Shared.Player_GetID(playerPointer);
+                return Alt.CoreImpl.Library.Shared.Player_GetID(playerPointer);
             }
         }
     }
