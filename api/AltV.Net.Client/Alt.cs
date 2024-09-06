@@ -7,6 +7,7 @@ using AltV.Net.Client.Elements.Interfaces;
 using AltV.Net.Elements.Entities;
 using AltV.Net.Shared;
 
+[assembly: InternalsVisibleTo("AltV.Net.Client.Async")]
 namespace AltV.Net.Client
 {
     public static partial class Alt

@@ -7,7 +7,6 @@ namespace AltV.Net.Client.Async
         // internal static AsyncCore Core;
 
         internal static AltVAsync AltVAsync;
-        internal static ICore CoreImpl;
 
         // public static async void Log(string message)
         // {
@@ -59,10 +58,10 @@ namespace AltV.Net.Client.Async
             AltVAsync = altVAsync;
         }
 
-        internal static void Setup(Core core)
-        {
-            CoreImpl = core;
-        }
+        //internal static void Setup(Core core)
+        //{
+        //    CoreImpl = core;
+        //}
 
         public static Task Do(Action action)
         {
@@ -126,7 +125,7 @@ namespace AltV.Net.Client.Async
         {
             public async ValueTask DisposeAsync()
             {
-                if (!CoreImpl.IsMainThread()) throw new Exception("ReturnToMainThread using block was exited on a non-main thread");
+                if (!Alt.CoreImpl.IsMainThread()) throw new Exception("ReturnToMainThread using block was exited on a non-main thread");
                 await Task.Run(() => {}); // jump to bg thread
             }
 
@@ -139,7 +138,7 @@ namespace AltV.Net.Client.Async
 
         public static async Task<MainThreadContext> ReturnToMainThread()
         {
-            if (CoreImpl.IsMainThread()) return MainThreadContext.Instance;
+            if (Alt.CoreImpl.IsMainThread()) return MainThreadContext.Instance;
             var source = new TaskCompletionSource();
             RunOnMainThread(() => source.SetResult());
             await source.Task;
