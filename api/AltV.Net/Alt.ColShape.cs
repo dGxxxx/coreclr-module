@@ -15,7 +15,7 @@ namespace AltV.Net
         /// <returns>The created colshape.</returns>
         public static IColShape CreateColShapeCylinder(Position pos, float radius, float height)
         {
-            return Core.CreateColShapeCylinder(pos, radius, height);
+            return CoreImpl.CreateColShapeCylinder(pos, radius, height);
         }
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace AltV.Net
         /// <returns>The created colshape.</returns>
         public static IColShape CreateColShapeSphere(Position pos, float radius)
         {
-            return Core.CreateColShapeSphere(pos, radius);
+            return CoreImpl.CreateColShapeSphere(pos, radius);
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace AltV.Net
         /// <returns>The created colshape.</returns>
         public static IColShape CreateColShapeCircle(Position pos, float radius)
         {
-            return Core.CreateColShapeCircle(pos, radius);
+            return CoreImpl.CreateColShapeCircle(pos, radius);
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace AltV.Net
         /// <returns>The created colshape.</returns>
         public static IColShape CreateColShapeCube(Position pos, Position pos2)
         {
-            return Core.CreateColShapeCube(pos, pos2);
+            return CoreImpl.CreateColShapeCube(pos, pos2);
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace AltV.Net
         /// <returns>The created colshape.</returns>
         public static IColShape CreateColShapeRectangle(float x1, float y1, float x2, float y2, float z)
         {
-            return Core.CreateColShapeRectangle(x1, y1, x2, y2, z);
+            return CoreImpl.CreateColShapeRectangle(x1, y1, x2, y2, z);
         }
         
         /// <summary>
@@ -74,7 +74,7 @@ namespace AltV.Net
         /// <returns>The created colshape.</returns>
         public static IColShape CreateColShapePolygon(float minZ, float maxZ, Vector2[] points)
         {
-            return Core.CreateColShapePolygon(minZ, maxZ, points);
+            return CoreImpl.CreateColShapePolygon(minZ, maxZ, points);
         }
     }
 }

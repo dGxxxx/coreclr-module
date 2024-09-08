@@ -13,7 +13,7 @@ namespace AltV.Net.Elements.Pools
         {
             unsafe
             {
-                return Alt.Core.Library.Shared.Blip_GetID(entityPointer);
+                return Alt.CoreImpl.Library.Shared.Blip_GetID(entityPointer);
             }
         }
     }

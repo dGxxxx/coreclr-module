@@ -13,7 +13,7 @@ namespace AltV.Net.Elements.Pools
         {
             unsafe
             {
-                return Alt.Core.Library.Shared.VoiceChannel_GetID(entityPointer);
+                return Alt.CoreImpl.Library.Shared.VoiceChannel_GetID(entityPointer);
             }
         }
     }

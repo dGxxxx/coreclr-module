@@ -411,7 +411,7 @@ namespace AltV.Net.Client
             {
                 unsafe
                 {
-                    Alt.Core.Library.Shared.Event_Cancel(eventPointer);
+                    Alt.CoreImpl.Library.Shared.Event_Cancel(eventPointer);
                 }
             }
         }

@@ -17,209 +17,215 @@ namespace AltV.Net
 {
     public static partial class Alt
     {
-        public static ICore Core => CoreImpl;
-        internal static Core CoreImpl;
+        internal static ICore CoreImpl;
 
         public static bool CacheEntities { get => AltShared.CacheEntities; set => AltShared.CacheEntities = value; }
         public static bool ThrowIfEntityDoesNotExist = false;
 
-        public static bool IsDebug => Core.IsDebug;
+        public static bool IsDebug => CoreImpl.IsDebug;
 
-        public static void Emit(string eventName, params object[] args) => Core.TriggerLocalEvent(eventName, args);
+        public static void Emit(string eventName, params object[] args) => CoreImpl.TriggerLocalEvent(eventName, args);
 
         public static void EmitAllClients(string eventName, params object[] args) =>
-            Core.TriggerClientEventForAll(eventName, args);
+            CoreImpl.TriggerClientEventForAll(eventName, args);
 
         public static void EmitClients(IPlayer[] clients, string eventName, params object[] args) =>
-            Core.TriggerClientEventForSome(clients, eventName, args);
+            CoreImpl.TriggerClientEventForSome(clients, eventName, args);
 
         public static void EmitEventUnreliableAllClients(string eventName, params object[] args) =>
-            Core.TriggerClientEventUnreliableForAll(eventName, args);
+            CoreImpl.TriggerClientEventUnreliableForAll(eventName, args);
 
         public static void EmitUnreliableClients(IPlayer[] clients, string eventName, params object[] args) =>
-            Core.TriggerClientEventUnreliableForSome(clients, eventName, args);
+            CoreImpl.TriggerClientEventUnreliableForSome(clients, eventName, args);
 
-        public static IEnumerable<string> GetRegisteredClientEvents() => Core.GetRegisteredClientEvents();
-        public static IEnumerable<string> GetRegisteredServerEvents() => Core.GetRegisteredServerEvents();
+        public static IEnumerable<string> GetRegisteredClientEvents() => CoreImpl.GetRegisteredClientEvents();
+        public static IEnumerable<string> GetRegisteredServerEvents() => CoreImpl.GetRegisteredServerEvents();
 
-        public static void Log(string message) => Core.LogInfo(message);
+        public static void Log(string message) => CoreImpl.LogInfo(message);
 
-        public static IReadOnlyCollection<IPlayer> GetAllPlayers() => Core.PoolManager.Player.GetAllEntities();
+        public static IReadOnlyCollection<IPlayer> GetAllPlayers() => CoreImpl.PoolManager.Player.GetAllEntities();
 
-        public static IReadOnlyCollection<IVehicle> GetAllVehicles() =>Core.PoolManager.Vehicle.GetAllEntities();
+        public static IReadOnlyCollection<IVehicle> GetAllVehicles() =>CoreImpl.PoolManager.Vehicle.GetAllEntities();
 
-        public static IReadOnlyCollection<IPed> GetAllPeds() =>Core.PoolManager.Ped.GetAllEntities();
+        public static IReadOnlyCollection<IPed> GetAllPeds() =>CoreImpl.PoolManager.Ped.GetAllEntities();
 
-        public static IReadOnlyCollection<IBlip> GetAllBlips() =>Core.PoolManager.Blip.GetAllObjects();
+        public static IReadOnlyCollection<IBlip> GetAllBlips() =>CoreImpl.PoolManager.Blip.GetAllObjects();
 
-        public static IReadOnlyCollection<IObject> GetAllNetworkObjects() =>Core.PoolManager.Object.GetAllEntities();
+        public static IReadOnlyCollection<IObject> GetAllNetworkObjects() =>CoreImpl.PoolManager.Object.GetAllEntities();
 
-        public static IReadOnlyCollection<ICheckpoint> GetAllCheckpoints() =>Core.PoolManager.Checkpoint.GetAllObjects();
+        public static IReadOnlyCollection<ICheckpoint> GetAllCheckpoints() =>CoreImpl.PoolManager.Checkpoint.GetAllObjects();
 
-        public static IReadOnlyCollection<IVoiceChannel> GetAllVoiceChannels() =>Core.PoolManager.VoiceChannel.GetAllObjects();
+        public static IReadOnlyCollection<IVoiceChannel> GetAllVoiceChannels() =>CoreImpl.PoolManager.VoiceChannel.GetAllObjects();
 
-        public static IReadOnlyCollection<IColShape> GetAllColShapes() =>Core.PoolManager.ColShape.GetAllObjects();
+        public static IReadOnlyCollection<IColShape> GetAllColShapes() =>CoreImpl.PoolManager.ColShape.GetAllObjects();
 
-        public static IReadOnlyCollection<IMarker> GetAllMarkers() =>Core.PoolManager.Marker.GetAllObjects();
+        public static IReadOnlyCollection<IMarker> GetAllMarkers() =>CoreImpl.PoolManager.Marker.GetAllObjects();
 
-        public static IReadOnlyCollection<IConnectionInfo> GetAllConnectionInfos() => Core.PoolManager.ConnectionInfo.GetAllObjects();
+        public static IReadOnlyCollection<IConnectionInfo> GetAllConnectionInfos() => CoreImpl.PoolManager.ConnectionInfo.GetAllObjects();
 
-        public static IReadOnlyCollection<IVirtualEntity> GetAllVirtualEntities() => Core.PoolManager.VirtualEntity.GetAllObjects();
+        public static IReadOnlyCollection<IVirtualEntity> GetAllVirtualEntities() => CoreImpl.PoolManager.VirtualEntity.GetAllObjects();
 
-        public static IReadOnlyCollection<IVirtualEntityGroup> GetAllVirtualEntityGroups() => Core.PoolManager.VirtualEntityGroup.GetAllObjects();
+        public static IReadOnlyCollection<IVirtualEntityGroup> GetAllVirtualEntityGroups() => CoreImpl.PoolManager.VirtualEntityGroup.GetAllObjects();
 
-        public static KeyValuePair<IntPtr, IPlayer>[] GetPlayersArray() => Core.PoolManager.Player.GetEntitiesArray();
+        public static KeyValuePair<IntPtr, IPlayer>[] GetPlayersArray() => CoreImpl.PoolManager.Player.GetEntitiesArray();
 
-        public static KeyValuePair<IntPtr, IVehicle>[] GetVehiclesArray() => Core.PoolManager.Vehicle.GetEntitiesArray();
+        public static KeyValuePair<IntPtr, IVehicle>[] GetVehiclesArray() => CoreImpl.PoolManager.Vehicle.GetEntitiesArray();
 
-        public static KeyValuePair<IntPtr, IPed>[] GetPedsArray() => Core.PoolManager.Ped.GetEntitiesArray();
+        public static KeyValuePair<IntPtr, IPed>[] GetPedsArray() => CoreImpl.PoolManager.Ped.GetEntitiesArray();
 
-        public static KeyValuePair<IntPtr, IBlip>[] GetBlipsArray() => Core.PoolManager.Blip.GetObjectsArray();
+        public static KeyValuePair<IntPtr, IBlip>[] GetBlipsArray() => CoreImpl.PoolManager.Blip.GetObjectsArray();
 
-        public static KeyValuePair<IntPtr, ICheckpoint>[] GetCheckpointsArray() => Core.PoolManager.Checkpoint.GetObjectsArray();
+        public static KeyValuePair<IntPtr, ICheckpoint>[] GetCheckpointsArray() => CoreImpl.PoolManager.Checkpoint.GetObjectsArray();
 
-        public static KeyValuePair<IntPtr, IVoiceChannel>[] GetVoiceChannelsArray() => Core.PoolManager.VoiceChannel.GetObjectsArray();
+        public static KeyValuePair<IntPtr, IVoiceChannel>[] GetVoiceChannelsArray() => CoreImpl.PoolManager.VoiceChannel.GetObjectsArray();
 
-        public static KeyValuePair<IntPtr, IColShape>[] GetColShapesArray() => Core.PoolManager.ColShape.GetObjectsArray();
-        public static KeyValuePair<IntPtr, IConnectionInfo>[] GetConnectionInfoArray() => Core.PoolManager.ConnectionInfo.GetObjectsArray();
+        public static KeyValuePair<IntPtr, IColShape>[] GetColShapesArray() => CoreImpl.PoolManager.ColShape.GetObjectsArray();
+        public static KeyValuePair<IntPtr, IConnectionInfo>[] GetConnectionInfoArray() => CoreImpl.PoolManager.ConnectionInfo.GetObjectsArray();
 
         public static void ForEachPlayers(IBaseObjectCallback<IPlayer> baseObjectCallback) =>
-            Core.PoolManager.Player.ForEach(baseObjectCallback);
+            CoreImpl.PoolManager.Player.ForEach(baseObjectCallback);
 
         public static Task ForEachPlayers(IAsyncBaseObjectCallback<IPlayer> baseObjectCallback) =>
-            Core.PoolManager.Player.ForEach(baseObjectCallback);
+            CoreImpl.PoolManager.Player.ForEach(baseObjectCallback);
 
         public static void ForEachVehicles(IBaseObjectCallback<IVehicle> baseObjectCallback) =>
-            Core.PoolManager.Vehicle.ForEach(baseObjectCallback);
+            CoreImpl.PoolManager.Vehicle.ForEach(baseObjectCallback);
 
         public static Task ForEachVehicles(IAsyncBaseObjectCallback<IVehicle> baseObjectCallback) =>
-            Core.PoolManager.Vehicle.ForEach(baseObjectCallback);
+            CoreImpl.PoolManager.Vehicle.ForEach(baseObjectCallback);
 
         public static void ForEachPeds(IBaseObjectCallback<IPed> baseObjectCallback) =>
-            Core.PoolManager.Ped.ForEach(baseObjectCallback);
+            CoreImpl.PoolManager.Ped.ForEach(baseObjectCallback);
 
         public static Task ForEachPeds(IAsyncBaseObjectCallback<IPed> baseObjectCallback) =>
-            Core.PoolManager.Ped.ForEach(baseObjectCallback);
+            CoreImpl.PoolManager.Ped.ForEach(baseObjectCallback);
 
         public static void ForEachBlips(IBaseObjectCallback<IBlip> baseObjectCallback) =>
-            Core.PoolManager.Blip.ForEach(baseObjectCallback);
+            CoreImpl.PoolManager.Blip.ForEach(baseObjectCallback);
 
         public static Task ForEachBlips(IAsyncBaseObjectCallback<IBlip> baseObjectCallback) =>
-            Core.PoolManager.Blip.ForEach(baseObjectCallback);
+            CoreImpl.PoolManager.Blip.ForEach(baseObjectCallback);
 
         public static void ForEachCheckpoints(IBaseObjectCallback<ICheckpoint> baseObjectCallback) =>
-            Core.PoolManager.Checkpoint.ForEach(baseObjectCallback);
+            CoreImpl.PoolManager.Checkpoint.ForEach(baseObjectCallback);
 
         public static Task ForEachCheckpoints(IAsyncBaseObjectCallback<ICheckpoint> baseObjectCallback) =>
-            Core.PoolManager.Checkpoint.ForEach(baseObjectCallback);
+            CoreImpl.PoolManager.Checkpoint.ForEach(baseObjectCallback);
 
         public static void ForEachVoiceChannels(IBaseObjectCallback<IVoiceChannel> baseObjectCallback) =>
-            Core.PoolManager.VoiceChannel.ForEach(baseObjectCallback);
+            CoreImpl.PoolManager.VoiceChannel.ForEach(baseObjectCallback);
 
         public static Task ForEachVoiceChannels(IAsyncBaseObjectCallback<IVoiceChannel> baseObjectCallback) =>
-            Core.PoolManager.VoiceChannel.ForEach(baseObjectCallback);
+            CoreImpl.PoolManager.VoiceChannel.ForEach(baseObjectCallback);
 
         public static void ForEachColShapes(IBaseObjectCallback<IColShape> baseObjectCallback) =>
-            Core.PoolManager.ColShape.ForEach(baseObjectCallback);
+            CoreImpl.PoolManager.ColShape.ForEach(baseObjectCallback);
 
         public static Task ForEachColShapes(IAsyncBaseObjectCallback<IColShape> baseObjectCallback) =>
-            Core.PoolManager.ColShape.ForEach(baseObjectCallback);
+            CoreImpl.PoolManager.ColShape.ForEach(baseObjectCallback);
 
-        public static VehicleModelInfo GetVehicleModelInfo(uint hash) => Core.GetVehicleModelInfo(hash);
-        public static VehicleModelInfo GetVehicleModelInfo(string name) => Core.GetVehicleModelInfo(Hash(name));
-        public static PedModelInfo? GetPedModelInfo(uint hash) => Core.GetPedModelInfo(hash);
-        public static PedModelInfo? GetPedModelInfo(string name) => Core.GetPedModelInfo(Hash(name));
+        public static VehicleModelInfo GetVehicleModelInfo(uint hash) => CoreImpl.GetVehicleModelInfo(hash);
+        public static VehicleModelInfo GetVehicleModelInfo(string name) => CoreImpl.GetVehicleModelInfo(Hash(name));
+        public static PedModelInfo? GetPedModelInfo(uint hash) => CoreImpl.GetPedModelInfo(hash);
+        public static PedModelInfo? GetPedModelInfo(string name) => CoreImpl.GetPedModelInfo(Hash(name));
 
-        public static uint Hash(string stringToHash) => Core.Hash(stringToHash);
-        public static ulong HashPassword(string password) => Core.HashPassword(password);
+        public static uint Hash(string stringToHash) => CoreImpl.Hash(stringToHash);
+        public static ulong HashPassword(string password) => CoreImpl.HashPassword(password);
 
-        public static bool FileExists(string path) => Core.FileExists(path);
-        public static string ReadFile(string path) => Core.FileRead(path);
-        public static byte[] ReadFileBinary(string path) => Core.FileReadBinary(path);
+        public static bool FileExists(string path) => CoreImpl.FileExists(path);
+        public static string ReadFile(string path) => CoreImpl.FileRead(path);
+        public static byte[] ReadFileBinary(string path) => CoreImpl.FileReadBinary(path);
 
-        public static IConfig GetServerConfig() => Core.GetServerConfig();
-        public static IBaseObject GetBaseObjectById(BaseObjectType type, uint id) => Core.GetBaseObjectById(type, id);
+        public static IConfig GetServerConfig() => CoreImpl.GetServerConfig();
+        public static IBaseObject GetBaseObjectById(BaseObjectType type, uint id) => CoreImpl.GetBaseObjectById(type, id);
 
-        public static IMetric RegisterMetric(string name, MetricType type = MetricType.MetricTypeGauge, Dictionary<string, string> dataDict = default) => Core.RegisterMetric(name, type, dataDict);
-        public static void UnregisterMetric(IMetric metric) => Core.UnregisterMetric(metric);
-        public static IReadOnlyCollection<IMetric> GetAllMetrics() => Core.GetAllMetrics();
-        public static VoiceConnectionState GetVoiceConnectionState() => Core.GetVoiceConnectionState();
+        public static IMetric RegisterMetric(string name, MetricType type = MetricType.MetricTypeGauge, Dictionary<string, string> dataDict = default) => CoreImpl.RegisterMetric(name, type, dataDict);
+        public static void UnregisterMetric(IMetric metric) => CoreImpl.UnregisterMetric(metric);
+        public static IReadOnlyCollection<IMetric> GetAllMetrics() => CoreImpl.GetAllMetrics();
+        public static VoiceConnectionState GetVoiceConnectionState() => CoreImpl.GetVoiceConnectionState();
 
-        public static void SetWorldProfiler(bool state) => Core.SetWorldProfiler(state);
+        public static void SetWorldProfiler(bool state) => CoreImpl.SetWorldProfiler(state);
 
         public static IBaseObject[] GetClosestEntities(Position position, int range, int dimension, int limit, EntityType allowedTypes, Order order = Order.Default) =>
-            Core.GetClosestEntities(position, range, dimension, limit, allowedTypes, order);
+            CoreImpl.GetClosestEntities(position, range, dimension, limit, allowedTypes, order);
 
-        public static IBaseObject[] GetEntitiesInDimension(int dimension, EntityType allowedTypes) =>  Core.GetEntitiesInDimension(dimension, allowedTypes);
+        public static IBaseObject[] GetEntitiesInDimension(int dimension, EntityType allowedTypes) =>  CoreImpl.GetEntitiesInDimension(dimension, allowedTypes);
 
-        public static IBaseObject[] GetEntitiesInRange(Position position, int range, int dimension, EntityType allowedTypes) => Core.GetEntitiesInRange(position, range, dimension, allowedTypes);
+        public static IBaseObject[] GetEntitiesInRange(Position position, int range, int dimension, EntityType allowedTypes) => CoreImpl.GetEntitiesInRange(position, range, dimension, allowedTypes);
 
-        public static int NetTime => Core.NetTime;
+        public static int NetTime => CoreImpl.NetTime;
 
-        public static void AddClientConfigKey(string key) => Core.AddClientConfigKey(key);
+        public static void AddClientConfigKey(string key) => CoreImpl.AddClientConfigKey(key);
 
         public static ushort MaxStreamingPeds
         {
-            get => Core.MaxStreamingPeds;
-            set => Core.MaxStreamingPeds = value;
+            get => CoreImpl.MaxStreamingPeds;
+            set => CoreImpl.MaxStreamingPeds = value;
         }
 
         public static ushort MaxStreamingObjects
         {
-            get => Core.MaxStreamingObjects;
-            set => Core.MaxStreamingObjects = value;
+            get => CoreImpl.MaxStreamingObjects;
+            set => CoreImpl.MaxStreamingObjects = value;
         }
         public static ushort MaxStreamingVehicles
         {
-            get => Core.MaxStreamingVehicles;
-            set => Core.MaxStreamingVehicles = value;
+            get => CoreImpl.MaxStreamingVehicles;
+            set => CoreImpl.MaxStreamingVehicles = value;
         }
         public static byte StreamerThreadCount
         {
-            get => Core.StreamerThreadCount;
-            set => Core.StreamerThreadCount = value;
+            get => CoreImpl.StreamerThreadCount;
+            set => CoreImpl.StreamerThreadCount = value;
         }
         public static uint StreamingTickRate
         {
-            get => Core.StreamingTickRate;
-            set => Core.StreamingTickRate = value;
+            get => CoreImpl.StreamingTickRate;
+            set => CoreImpl.StreamingTickRate = value;
         }
         public static uint StreamingDistance
         {
-            get => Core.StreamingDistance;
-            set => Core.StreamingDistance = value;
+            get => CoreImpl.StreamingDistance;
+            set => CoreImpl.StreamingDistance = value;
         }
         public static uint ColShapeTickRate
         {
-            get => Core.ColShapeTickRate;
-            set => Core.ColShapeTickRate = value;
+            get => CoreImpl.ColShapeTickRate;
+            set => CoreImpl.ColShapeTickRate = value;
         }
         public static uint MigrationDistance
         {
-            get => Core.MigrationDistance;
-            set => Core.MigrationDistance = value;
+            get => CoreImpl.MigrationDistance;
+            set => CoreImpl.MigrationDistance = value;
         }
         public static byte MigrationThreadCount
         {
-            get => Core.MigrationThreadCount;
-            set => Core.MigrationThreadCount = value;
+            get => CoreImpl.MigrationThreadCount;
+            set => CoreImpl.MigrationThreadCount = value;
         }
         public static uint MigrationTickRate
         {
-            get => Core.MigrationTickRate;
-            set => Core.MigrationTickRate = value;
+            get => CoreImpl.MigrationTickRate;
+            set => CoreImpl.MigrationTickRate = value;
         }
         public static byte SyncReceiveThreadCount
         {
-            get => Core.SyncReceiveThreadCount;
-            set => Core.SyncReceiveThreadCount = value;
+            get => CoreImpl.SyncReceiveThreadCount;
+            set => CoreImpl.SyncReceiveThreadCount = value;
         }
         public static byte SyncSendThreadCount
         {
-            get => Core.SyncSendThreadCount;
-            set => Core.SyncSendThreadCount = value;
+            get => CoreImpl.SyncSendThreadCount;
+            set => CoreImpl.SyncSendThreadCount = value;
         }
 
-        public static bool HasBenefit(Benefit benefit) => Core.HasBenefit(benefit);
+        public static bool HasBenefit(Benefit benefit) => CoreImpl.HasBenefit(benefit);
+
+        public static void StopServer() => CoreImpl.StopServer();
+        public static WeaponModelInfo? GetWeaponModelInfo(uint hash) => CoreImpl.GetWeaponModelInfo(hash);
+
+        public static void SetPassword(string password) => CoreImpl.SetPassword(password);
+        public static void SetVoiceExternal(string host, ushort port) => CoreImpl.SetVoiceExternal(host, port);
+        public static void SetVoiceExternalPublic(string host, ushort port) => CoreImpl.SetVoiceExternalPublic(host, port);
     }
 }

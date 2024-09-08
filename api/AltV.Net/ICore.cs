@@ -1,11 +1,15 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Numerics;
+using System.Reflection;
+using System.Runtime.Loader;
 using AltV.Net.CApi;
 using AltV.Net.Data;
 using AltV.Net.Elements.Args;
 using AltV.Net.Elements.Entities;
 using AltV.Net.Elements.Pools;
+using AltV.Net.FunctionParser;
 using AltV.Net.Native;
 using AltV.Net.Shared;
 using AltV.Net.Shared.Elements.Data;
@@ -214,5 +218,24 @@ namespace AltV.Net
         void AddClientConfigKey(string key);
 
         bool HasBenefit(Benefit benefit);
+        Function OnClient(string clientEventName, Function create, bool isOnce = false);
+        Function OnServer(string clientEventName, Function create, bool isOnce = false);
+        void On<TFunc>(string eventName, TFunc func, ClientEventParser<TFunc> parser) where TFunc : Delegate;
+        void Off<TFunc>(string eventName, TFunc func, ClientEventParser<TFunc> parser) where TFunc : Delegate;
+
+        void On<TFunc>(string eventName, TFunc func, ServerEventParser<TFunc> parser) where TFunc : Delegate;
+        void Off<TFunc>(string eventName, TFunc func, ServerEventParser<TFunc> parser) where TFunc : Delegate;
+
+        IEnumerable<Assembly> Assemblies { get; }
+        Assembly LoadAssemblyFromName(AssemblyName assemblyName);
+        Assembly LoadAssemblyFromStream(Stream stream);
+        Assembly LoadAssemblyFromStream(Stream stream, Stream assemblySymbols);
+        WeakReference<AssemblyLoadContext> GetAssemblyLoadContext();
+        Assembly LoadAssemblyFromPath(string path);
+        Assembly LoadAssemblyFromNativeImagePath(string nativeImagePath, string assemblyPath);
+
+        void SetExport(string key, Function function);
+        void OffServer(string eventName, Function function);
+        void OffClient(string eventName, Function function);
     }
 }

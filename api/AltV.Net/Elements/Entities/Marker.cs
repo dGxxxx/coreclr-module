@@ -23,7 +23,7 @@ public class Marker : WorldObject, IMarker
     {
         unsafe
         {
-            return Alt.Core.Library.Shared.Marker_GetID(nativePointer);
+            return Alt.CoreImpl.Library.Shared.Marker_GetID(nativePointer);
         }
     }
 

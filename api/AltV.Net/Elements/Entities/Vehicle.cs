@@ -27,7 +27,7 @@ namespace AltV.Net.Elements.Entities
         {
             unsafe
             {
-                return Alt.Core.Library.Shared.Vehicle_GetID(vehiclePointer);
+                return Alt.CoreImpl.Library.Shared.Vehicle_GetID(vehiclePointer);
             }
         }
 
@@ -1360,7 +1360,7 @@ namespace AltV.Net.Elements.Entities
                     CheckIfEntityExistsOrCached();
                     var entityPointer = Core.Library.Server.Vehicle_GetAttached(VehicleNativePointer);
                     if (entityPointer == IntPtr.Zero) return null;
-                    return Alt.Core.PoolManager.Vehicle.Get(entityPointer);
+                    return Core.PoolManager.Vehicle.Get(entityPointer);
                 }
             }
         }
@@ -1374,7 +1374,7 @@ namespace AltV.Net.Elements.Entities
                     CheckIfEntityExistsOrCached();
                     var entityPointer = Core.Library.Server.Vehicle_GetAttachedTo(VehicleNativePointer);
                     if (entityPointer == IntPtr.Zero) return null;
-                    return Alt.Core.PoolManager.Vehicle.Get(entityPointer);
+                    return Core.PoolManager.Vehicle.Get(entityPointer);
                 }
             }
         }
@@ -1608,7 +1608,7 @@ namespace AltV.Net.Elements.Entities
                     CheckIfEntityExistsOrCached();
                     var entityPointer = Core.Library.Server.Vehicle_GetTrainEngineId(VehicleNativePointer);
                     if (entityPointer == IntPtr.Zero) return null;
-                    return Alt.Core.PoolManager.Vehicle.Get(entityPointer);
+                    return Core.PoolManager.Vehicle.Get(entityPointer);
                 }
             }
             set
@@ -1830,7 +1830,7 @@ namespace AltV.Net.Elements.Entities
                     CheckIfEntityExistsOrCached();
                     var entityPointer = Core.Library.Server.Vehicle_GetTrainLinkedToBackwardId(VehicleNativePointer);
                     if (entityPointer == IntPtr.Zero) return null;
-                    return Alt.Core.PoolManager.Vehicle.Get(entityPointer);
+                    return Core.PoolManager.Vehicle.Get(entityPointer);
                 }
             }
             set
@@ -1852,7 +1852,7 @@ namespace AltV.Net.Elements.Entities
                     CheckIfEntityExistsOrCached();
                     var entityPointer = Core.Library.Server.Vehicle_GetTrainLinkedToForwardId(VehicleNativePointer);
                     if (entityPointer == IntPtr.Zero) return null;
-                    return Alt.Core.PoolManager.Vehicle.Get(entityPointer);
+                    return Core.PoolManager.Vehicle.Get(entityPointer);
                 }
             }
             set

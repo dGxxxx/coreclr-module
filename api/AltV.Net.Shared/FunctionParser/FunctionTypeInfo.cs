@@ -320,7 +320,7 @@ namespace AltV.Net.FunctionParser
                 ObjectParser = FunctionObjectParsers.ParseRgba;
                 StringParser = FunctionStringParsers.ParseRgba;
             }
-            else if (AltShared.Core.IsMValueConvertible(paramType))
+            else if (AltShared.CoreImpl.IsMValueConvertible(paramType))
             {
                 ConstParser = FunctionMValueConstParsers.ParseConvertible;
                 ObjectParser = FunctionObjectParsers.ParseConvertible;

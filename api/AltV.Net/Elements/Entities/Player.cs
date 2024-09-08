@@ -26,7 +26,7 @@ namespace AltV.Net.Elements.Entities
         {
             unsafe
             {
-                return Alt.Core.Library.Shared.Player_GetID(playerPointer);
+                return Alt.CoreImpl.Library.Shared.Player_GetID(playerPointer);
             }
         }
 
@@ -109,7 +109,7 @@ namespace AltV.Net.Elements.Entities
 
         public void SetLocalMetaData(string key, object value)
         {
-            Alt.Core.CreateMValue(out var mValue, value);
+            Core.CreateMValue(out var mValue, value);
             SetLocalMetaData(key, in mValue);
             mValue.Dispose();
         }
@@ -859,7 +859,7 @@ namespace AltV.Net.Elements.Entities
                     CheckIfEntityExistsOrCached();
                     var entityPointer = Core.Library.Shared.Player_GetVehicle(PlayerNativePointer);
                     if (entityPointer == IntPtr.Zero) return null;
-                    return Alt.Core.PoolManager.Vehicle.Get(entityPointer);
+                    return Core.PoolManager.Vehicle.Get(entityPointer);
                 }
             }
         }
@@ -1003,7 +1003,7 @@ namespace AltV.Net.Elements.Entities
                 Core.Library.Server.Player_Spawn(PlayerNativePointer, position, delayMs);
             }
         }
-        
+
         public void Spawn(uint model, Position position, uint delayMs = 0)
         {
             unsafe
@@ -1013,7 +1013,7 @@ namespace AltV.Net.Elements.Entities
                 Core.Library.Server.Player_Spawn(PlayerNativePointer, position, delayMs);
             }
         }
-        
+
         public void Spawn(PedModel model, Position position, uint delayMs = 0)
         {
             unsafe
@@ -1254,13 +1254,13 @@ namespace AltV.Net.Elements.Entities
         public void Emit(string eventName, params object[] args)
         {
             CheckIfEntityExists();
-            Alt.Core.TriggerClientEvent(this, eventName, args);
+            Core.TriggerClientEvent(this, eventName, args);
         }
 
         public ushort EmitRPC(string name, params object[] args)
         {
             CheckIfEntityExists();
-            return Alt.Core.TriggerClientRPC(this, name, args);
+            return Core.TriggerClientRPC(this, name, args);
         }
 
         public void EmitRPCAnswer(ushort answerId, object answer, string error)
@@ -1272,7 +1272,7 @@ namespace AltV.Net.Elements.Entities
         public void EmitUnreliable(string eventName, params object[] args)
         {
             CheckIfEntityExists();
-            Alt.Core.TriggerClientEventUnreliable(this, eventName, args);
+            Core.TriggerClientEventUnreliable(this, eventName, args);
         }
 
         public void ClearBloodDamage()

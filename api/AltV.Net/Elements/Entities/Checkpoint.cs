@@ -27,7 +27,7 @@ namespace AltV.Net.Elements.Entities
         {
             unsafe
             {
-                return Alt.Core.Library.Shared.Checkpoint_GetID(pedPointer);
+                return Alt.CoreImpl.Library.Shared.Checkpoint_GetID(pedPointer);
             }
         }
 
@@ -225,7 +225,7 @@ namespace AltV.Net.Elements.Entities
         public void SetStreamSyncedMetaData(string key, object value)
         {
             CheckIfEntityExists();
-            Alt.Core.CreateMValue(out var mValue, value);
+            Core.CreateMValue(out var mValue, value);
             SetStreamSyncedMetaData(key, in mValue);
             mValue.Dispose();
         }

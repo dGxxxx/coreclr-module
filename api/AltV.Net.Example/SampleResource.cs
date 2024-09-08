@@ -10,6 +10,7 @@ using System.Drawing;
 using AltV.Net.BenchmarkRunners;
 using AltV.Net.Resources.Chat.Api;
 using AltV.Net.Shared.Utils;
+using Microsoft.Diagnostics.NETCore.Client;
 
 namespace AltV.Net.Example
 {
@@ -77,9 +78,9 @@ namespace AltV.Net.Example
 
             var mValues = new MValueConst[1];
             var mInnerValues = new MValueConst[1];
-            Alt.Core.CreateMValueInt(out mInnerValues[0], 5);
-            Alt.Core.CreateMValueList(out mValues[0], mInnerValues, 1);
-            Alt.Core.CreateMValueList(out var mValueList, mValues, 1);
+            Alt.CreateMValueInt(out mInnerValues[0], 5);
+            Alt.CreateMValueList(out mValues[0], mInnerValues, 1);
+            Alt.CreateMValueList(out var mValueList, mValues, 1);
             var mValuesListGet = mValueList.GetList();
             for (var i = 0; i < mValuesListGet.Length; i++)
             {
@@ -256,7 +257,7 @@ namespace AltV.Net.Example
                 Alt.Log("result:" + result);
             });
 
-            Alt.Emit("function_event", Function.Create(Alt.Core, delegate(string bla)
+            Alt.Emit("function_event", Alt.CreateFunction(delegate(string bla)
             {
                 Console.WriteLine(bla + " " + (bla == null));
                 Alt.Log("parameter=" + bla);
@@ -269,7 +270,7 @@ namespace AltV.Net.Example
                 Alt.Log("result:" + result);
             });
 
-            Alt.Emit("function_event_action", Function.Create(Alt.Core, delegate(string bla)
+            Alt.Emit("function_event_action", Alt.CreateFunction(delegate(string bla)
             {
                 Console.WriteLine(bla + " " + (bla == null));
                 Alt.Log("parameter=" + bla);
@@ -317,13 +318,13 @@ namespace AltV.Net.Example
 
             Alt.Export("GetBla", () => { Alt.Log("GetBla called"); });
 
-            Alt.Import(Alt.Core.Resource.Name, "GetBla", out Action action);
+            Alt.Import(Alt.Resource.Name, "GetBla", out Action action);
 
             action();
 
             Alt.Export("functionExport", delegate(string name) { Alt.Log("called with:" + name); });
 
-            Alt.Import(Alt.Core.Resource.Name, "functionExport", out Action<string> action2);
+            Alt.Import(Alt.Resource.Name, "functionExport", out Action<string> action2);
 
             action2("123");
             /*if (Alt.Import("Bla", "GetBla", out Action value))
@@ -432,7 +433,7 @@ namespace AltV.Net.Example
         public void MyParser(IPlayer player, MValueConst[] mValueArray, Action<IPlayer, string> func)
         {
             if (mValueArray.Length != 1) return;
-            var reader = new MValueBuffer2(Alt.Core, mValueArray); // todo move to Alt.CreateMValueBuffer
+            var reader = Alt.CreateMValueBuffer(mValueArray); // todo move to Alt.CreateMValueBuffer
             reader.GetNext(out MValueConst mValueConst);
             if (mValueConst.type != MValueConst.Type.String) return;
             func(player, mValueConst.GetString());
@@ -441,7 +442,7 @@ namespace AltV.Net.Example
         public void MyServerEventParser(MValueConst[] mValueArray, Action<string> func)
         {
             if (mValueArray.Length != 1) return;
-            var reader = new MValueBuffer2(Alt.Core, mValueArray);
+            var reader = Alt.CreateMValueBuffer(mValueArray);
             if (!reader.GetNext(out string value)) return;
             func(value);
         }
@@ -450,9 +451,9 @@ namespace AltV.Net.Example
         public void MyServerEventParser2(MValueConst[] mValueArray, Action<string> func)
         {
             if (mValueArray.Length != 1) return;
-            var reader = new MValueBuffer2(Alt.Core, mValueArray);
+            var reader = Alt.CreateMValueBuffer(mValueArray);
             if (!reader.GetNext(out MValueConst[] array)) return;
-            var valueReader = new MValueBuffer2(Alt.Core, array);
+            var valueReader = Alt.CreateMValueBuffer(array);
             if (!valueReader.GetNext(out string value)) return;
             func(value);
         }
@@ -460,7 +461,7 @@ namespace AltV.Net.Example
         public void MyServerEventParser3(MValueConst[] mValueArray, Action<IMyVehicle> func)
         {
             if (mValueArray.Length != 1) return;
-            var reader = new MValueBuffer2(Alt.Core, mValueArray);
+            var reader = Alt.CreateMValueBuffer(mValueArray);
             if (!reader.GetNext(out IMyVehicle vehicle)) return;
             func(vehicle);
         }
@@ -468,7 +469,7 @@ namespace AltV.Net.Example
         public void MyServerEventParserAsync(MValueConst[] mValueArray, Action<IMyVehicle> func)
         {
             if (mValueArray.Length != 1) return;
-            var reader = new MValueBuffer2(Alt.Core, mValueArray);
+            var reader = Alt.CreateMValueBuffer(mValueArray);
             if (!reader.GetNext(out IMyVehicle vehicle)) return;
             Task.Run(() => func(vehicle));
         }
@@ -476,7 +477,7 @@ namespace AltV.Net.Example
         public void MyParser4(IPlayer player, MValueConst[] mValueArray, Action<IPlayer, string> func)
         {
             if (mValueArray.Length != 1) return;
-            var reader = new MValueBuffer2(Alt.Core, mValueArray);
+            var reader = Alt.CreateMValueBuffer(mValueArray);
             if (!reader.GetNext(out string value)) return;
             func(player, value);
         }
@@ -484,10 +485,10 @@ namespace AltV.Net.Example
         public void MyParser5(IPlayer player, MValueConst[] mValueArray, Action<IPlayer, string[]> func)
         {
             if (mValueArray.Length != 1) return;
-            var reader = new MValueBuffer2(Alt.Core, mValueArray);
+            var reader = Alt.CreateMValueBuffer(mValueArray);
             if (!reader.GetNext(out MValueConst[] values)) return;
             var strings = new string[values.Length];
-            var valuesReader = new MValueBuffer2(Alt.Core, values);
+            var valuesReader = Alt.CreateMValueBuffer(values);
             var i = 0;
             while (valuesReader.GetNext(out string value))
             {
@@ -500,7 +501,7 @@ namespace AltV.Net.Example
         public void MyParser6(IPlayer player, MValueConst[] mValueArray, Action<IPlayer, IMyVehicle> func)
         {
             if (mValueArray.Length != 1) return;
-            var reader = new MValueBuffer2(Alt.Core, mValueArray);
+            var reader = Alt.CreateMValueBuffer(mValueArray);
             if (!reader.GetNext(out IMyVehicle vehicle)) return;
             func(player, vehicle);
         }

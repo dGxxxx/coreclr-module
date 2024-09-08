@@ -7,15 +7,15 @@ namespace AltV.Net
 {
     public static partial class Alt
     {
-        public static void SetMetaData(string key, object value) => Core.SetMetaData(key, value);
+        public static void SetMetaData(string key, object value) => CoreImpl.SetMetaData(key, value);
 
-        public static bool HasMetaData(string key) => Core.HasMetaData(key);
+        public static bool HasMetaData(string key) => CoreImpl.HasMetaData(key);
 
-        public static void DeleteMetaData(string key) => Core.DeleteMetaData(key);
+        public static void DeleteMetaData(string key) => CoreImpl.DeleteMetaData(key);
 
         public static bool GetMetaData<T>(string key, out T result)
         {
-            Core.GetMetaData(key, out var mValue);
+            CoreImpl.GetMetaData(key, out var mValue);
 
             using (mValue)
             {
@@ -32,15 +32,15 @@ namespace AltV.Net
             }
         }
 
-        public static void SetSyncedMetaData(string key, object value) => Core.SetSyncedMetaData(key, value);
+        public static void SetSyncedMetaData(string key, object value) => CoreImpl.SetSyncedMetaData(key, value);
 
-        public static bool HasSyncedMetaData(string key) => Core.HasSyncedMetaData(key);
+        public static bool HasSyncedMetaData(string key) => CoreImpl.HasSyncedMetaData(key);
 
-        public static void DeleteSyncedMetaData(string key) => Core.DeleteSyncedMetaData(key);
+        public static void DeleteSyncedMetaData(string key) => CoreImpl.DeleteSyncedMetaData(key);
 
         public static bool GetSyncedMetaData<T>(string key, out T result)
         {
-            Core.GetSyncedMetaData(key, out var mValue);
+            CoreImpl.GetSyncedMetaData(key, out var mValue);
             using (mValue)
             {
 
