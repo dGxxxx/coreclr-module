@@ -724,24 +724,6 @@ namespace AltV.Net
                 return;
             }
 
-            if (VehiclePassengers.TryGetValue(vehiclePointer, out var passengers))
-            {
-                if (passengers.Exists(x => x.PlayerPointer == playerPointer))
-                {
-                    var playerSeat = passengers.First(x => x.PlayerPointer == playerPointer);
-                    playerSeat.Seat = seat;
-                }
-                else
-                {
-                    passengers.Add(new InternalPlayerSeat { PlayerPointer = playerPointer, Seat = seat });
-                }
-            }
-            else
-            {
-                VehiclePassengers[vehiclePointer] = new List<InternalPlayerSeat>
-                    { new() { PlayerPointer = playerPointer, Seat = seat } };
-            }
-
             OnPlayerEnteringVehicleEvent(vehicle, player, seat);
         }
 
