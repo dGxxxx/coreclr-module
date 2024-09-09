@@ -227,5 +227,9 @@ namespace AltV.Net
         public static void SetPassword(string password) => CoreImpl.SetPassword(password);
         public static void SetVoiceExternal(string host, ushort port) => CoreImpl.SetVoiceExternal(host, port);
         public static void SetVoiceExternalPublic(string host, ushort port) => CoreImpl.SetVoiceExternalPublic(host, port);
+
+        public static string Branch => CoreImpl.Branch;
+        public static string Version => CoreImpl.Version;
+        public static bool IsMainThread => CoreImpl.IsMainThread();
     }
 }
