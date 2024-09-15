@@ -117,6 +117,75 @@ public class PoolManager : IPoolManager
         };
     }
 
+    public void Add(IBaseObject baseObject)
+    {
+        switch (baseObject.Type)
+        {
+            case BaseObjectType.Player:
+            {
+                Player.Add((IPlayer)baseObject);
+                break;
+            }
+            case BaseObjectType.Vehicle:
+            {
+                Vehicle.Add((IVehicle)baseObject);
+                break;
+            }
+            case BaseObjectType.Ped:
+            {
+                Ped.Add((IPed)baseObject);
+                break;
+            }
+            case BaseObjectType.Object:
+            {
+                Object.Add((IObject)baseObject);
+                break;
+            }
+            case BaseObjectType.Blip:
+            {
+                Blip.Add((IBlip)baseObject);
+                break;
+            }
+            case BaseObjectType.Checkpoint:
+            {
+                Checkpoint.Add((ICheckpoint)baseObject);
+                break;
+            }
+            case BaseObjectType.VoiceChannel:
+            {
+                VoiceChannel.Add((IVoiceChannel)baseObject);
+                break;
+            }
+            case BaseObjectType.ColShape:
+            {
+                ColShape.Add((IColShape)baseObject);
+                break;
+            }
+            case BaseObjectType.VirtualEntity:
+            {
+                VirtualEntity.Add((IVirtualEntity)baseObject);
+                break;
+            }
+            case BaseObjectType.VirtualEntityGroup:
+            {
+                VirtualEntityGroup.Add((IVirtualEntityGroup)baseObject);
+                break;
+            }
+            case BaseObjectType.Marker:
+            {
+                Marker.Add((IMarker)baseObject);
+                break;
+            }
+            case BaseObjectType.ConnectionInfo:
+            {
+                ConnectionInfo.Add((IConnectionInfo)baseObject);
+                break;
+            }
+        }
+
+        
+    }
+
     public void Dispose()
     {
         Player.Dispose();
