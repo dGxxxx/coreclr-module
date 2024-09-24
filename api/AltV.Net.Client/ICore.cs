@@ -233,5 +233,6 @@ namespace AltV.Net.Client
         ulong ServerTime { get; }
 
         bool ReloadVehiclePhysics(uint modelHash);
+        List<SafeTimer> RunningTimers { get; }
     }
 }

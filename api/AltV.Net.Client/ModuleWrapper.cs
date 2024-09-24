@@ -114,7 +114,7 @@ namespace AltV.Net.Client
 
             _core = client;
             Alt.CoreImpl = client;
-            AltShared.Core = client;
+            AltShared.CoreImpl = client;
             Alt.Log("Core initialized");
 
             _core.GetAllPlayers();

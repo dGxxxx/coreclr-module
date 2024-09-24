@@ -13,7 +13,7 @@ public class VirtualEntityPool : BaseObjectPool<IVirtualEntity>
     {
         unsafe
         {
-            return Alt.Core.Library.Shared.VirtualEntity_GetID(entityPointer);
+            return Alt.CoreImpl.Library.Shared.VirtualEntity_GetID(entityPointer);
         }
     }
 }

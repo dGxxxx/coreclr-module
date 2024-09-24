@@ -1114,7 +1114,7 @@ namespace AltV.Net
 
         private readonly WeakReference<AssemblyLoadContext> assemblyLoadContext;
 
-        internal IEnumerable<Assembly> Assemblies => !assemblyLoadContext.TryGetTarget(out var target)
+        public IEnumerable<Assembly> Assemblies => !assemblyLoadContext.TryGetTarget(out var target)
             ? new List<Assembly>()
             : target.Assemblies;
 
@@ -1409,7 +1409,7 @@ namespace AltV.Net
                 for (var i = 0; i < dataDict.Count; i++)
                 {
                     var stringPtr = MemoryUtils.StringToHGlobalUtf8(dataDict.ElementAt(i).Key);
-                    Alt.Core.CreateMValue(out var mValue, dataDict.ElementAt(i).Value);
+                    Alt.CoreImpl.CreateMValue(out var mValue, dataDict.ElementAt(i).Value);
                     keys[i] = stringPtr;
                     values[i] = mValue.nativePointer;
                     data.Add(stringPtr, mValue);

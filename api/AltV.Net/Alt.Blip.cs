@@ -16,7 +16,7 @@ namespace AltV.Net
         /// <returns>The created Blip.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IBlip CreateBlip(bool global, byte type, Position pos, IPlayer[] targets) =>
-            Core.CreateBlip(global, type, pos, targets);
+            CoreImpl.CreateBlip(global, type, pos, targets);
 
         /// <summary>
         /// Create a blip for a specific player, attached to specific entity.
@@ -28,7 +28,7 @@ namespace AltV.Net
         /// <returns>The created Blip.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IBlip CreateBlip(bool global, byte type, IEntity entityAttach, IPlayer[] targets) =>
-            Core.CreateBlip(global, type, entityAttach, targets);
+            CoreImpl.CreateBlip(global, type, entityAttach, targets);
 
         /// <summary>
         /// Creates a blip for a specific player on a specific position.
@@ -40,7 +40,7 @@ namespace AltV.Net
         /// <returns>The created Blip.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IBlip CreateBlip(bool global, BlipType type, Position pos, IPlayer[] targets) =>
-            Core.CreateBlip(global, (byte) type, pos, targets);
+            CoreImpl.CreateBlip(global, (byte) type, pos, targets);
 
         /// <summary>
         /// Creates a blip for a specific player, attached to specific entity.
@@ -52,6 +52,6 @@ namespace AltV.Net
         /// <returns>The created Blip.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IBlip CreateBlip(bool global, BlipType type, IEntity entityAttach, IPlayer[] targets) =>
-            Core.CreateBlip(global, (byte) type, entityAttach, targets);
+            CoreImpl.CreateBlip(global, (byte) type, entityAttach, targets);
     }
 }

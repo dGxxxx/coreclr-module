@@ -38,24 +38,40 @@ namespace AltV.Net
             Console.WriteLine(stringBuilder.ToString());
         }
 
+        /// <summary>
+        /// Logging a message as Information about something
+        /// </summary>
+        /// <param name="message">a message</param>
         public static void LogInfo(string message)
         {
-            Alt.Core.LogInfo(message);
+            Alt.CoreImpl.LogInfo(message);
         }
-        
+
+        /// <summary>
+        /// Logging a message if Debug-Mode is enabled
+        /// </summary>
+        /// <param name="message">a message</param>
         public static void LogDebug(string message)
         {
-            Alt.Core.LogDebug(message);
+            Alt.CoreImpl.LogDebug(message);
         }
-        
+
+        /// <summary>
+        /// Logging a message as Warning about something maybe being wrong, but not being very important
+        /// </summary>
+        /// <param name="message"> a message</param>
         public static void LogWarning(string message)
         {
-            Alt.Core.LogWarning(message);
+            Alt.CoreImpl.LogWarning(message);
         }
-        
+
+        /// <summary>
+        /// Logging a message as Error about something going very wrong, which needs immediate action
+        /// </summary>
+        /// <param name="message">a message</param>
         public static void LogError(string message)
         {
-            Alt.Core.LogError(message);
+            Alt.CoreImpl.LogError(message);
         }
     }
 }

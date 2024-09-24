@@ -24,7 +24,7 @@ namespace AltV.Net.Async
         [Obsolete("Use async entities instead")]
         public static async Task SetSyncedMetaDataAsync(this IEntity entity, string key, object value)
         {
-            Alt.Core.CreateMValue(out var mValue, value);
+            Alt.CoreImpl.CreateMValue(out var mValue, value);
             await AltVAsync.Schedule(() => entity.SetSyncedMetaData(key, mValue));
             mValue.Dispose();
         }
@@ -40,7 +40,7 @@ namespace AltV.Net.Async
         [Obsolete("Use async entities instead")]
         public static async Task SetStreamSyncedMetaDataAsync(this IEntity entity, string key, object value)
         {
-            Alt.Core.CreateMValue(out var mValue, value);
+            Alt.CoreImpl.CreateMValue(out var mValue, value);
             await AltVAsync.Schedule(() => entity.SetStreamSyncedMetaData(key, mValue));
             mValue.Dispose();
         }
@@ -56,7 +56,7 @@ namespace AltV.Net.Async
         [Obsolete("Use async entities instead")]
         public static Task DeleteSyncedMetaDataAsync(this IEntity entity, string key) =>
             AltVAsync.Schedule(() => entity.DeleteSyncedMetaData(key));
-        
+
         [Obsolete("Use async entities instead")]
         public static Task DeleteStreamSyncedMetaDataAsync(this IEntity entity, string key) =>
             AltVAsync.Schedule(() => entity.DeleteStreamSyncedMetaData(key));

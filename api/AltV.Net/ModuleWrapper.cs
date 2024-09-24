@@ -128,7 +128,7 @@ namespace AltV.Net
             var core = _resource.GetCore(serverPointer, resourcePointer, assemblyLoadContext, library, baseObjectPool, nativeResourcePool);
             _core = core;
             Alt.CoreImpl = core;
-            AltShared.Core = core;
+            AltShared.CoreImpl = core;
 
             if (library.Outdated)
             {
@@ -188,7 +188,7 @@ namespace AltV.Net
 
             _core.PoolManager.Dispose();
 
-            Alt.Core.Resource.CSharpResourceImpl.Dispose();
+            Alt.CoreImpl.Resource.CSharpResourceImpl.Dispose();
 
             AppDomain.CurrentDomain.UnhandledException -= OnUnhandledException;
 

@@ -13,7 +13,7 @@ namespace AltV.Net.Elements.Pools
         {
             unsafe
             {
-                return Alt.Core.Library.Shared.Marker_GetID(entityPointer);
+                return Alt.CoreImpl.Library.Shared.Marker_GetID(entityPointer);
             }
         }
     }

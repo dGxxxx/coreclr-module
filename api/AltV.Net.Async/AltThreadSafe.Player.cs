@@ -88,18 +88,13 @@ namespace AltV.Net.Async
         {
             lock (player)
             {
-                unsafe
+                if (!player.Exists)
                 {
-                    if (!player.Exists)
-                    {
-                        return false;
-                    }
-
-                    var pos = Vector3.Zero;
-                    Alt.Core.Library.Shared.WorldObject_GetPosition(player.WorldObjectNativePointer, &pos);
-                    position = pos;
-                    return true;
+                    return false;
                 }
+
+                position = player.Position;
+                return true;
             }
         }
 
@@ -114,7 +109,7 @@ namespace AltV.Net.Async
             {
                 if (player.Exists)
                 {
-                    Alt.Core.TriggerClientEvent(player, eventNamePtr, mValues);
+                    Alt.CoreImpl.TriggerClientEvent(player, eventNamePtr, mValues);
                 }
                 else
                 {
@@ -143,7 +138,7 @@ namespace AltV.Net.Async
             {
                 if (player.Exists)
                 {
-                    Alt.Core.TriggerClientEventUnreliable(player, eventNamePtr, mValues);
+                    Alt.CoreImpl.TriggerClientEventUnreliable(player, eventNamePtr, mValues);
                 }
                 else
                 {
@@ -172,7 +167,7 @@ namespace AltV.Net.Async
             {
                 if (player.Exists)
                 {
-                    Alt.Core.TriggerClientEvent(player, eventNamePtr, mValues);
+                    Alt.CoreImpl.TriggerClientEvent(player, eventNamePtr, mValues);
                 }
                 else
                 {
@@ -201,7 +196,7 @@ namespace AltV.Net.Async
             {
                 if (player.Exists)
                 {
-                    Alt.Core.TriggerClientEventUnreliable(player, eventNamePtr, mValues);
+                    Alt.CoreImpl.TriggerClientEventUnreliable(player, eventNamePtr, mValues);
                 }
                 else
                 {

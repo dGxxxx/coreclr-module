@@ -516,7 +516,7 @@ namespace AltV.Net
             {
                 unsafe
                 {
-                    Alt.Core.Library.Shared.Event_Cancel(eventPointer);
+                    Alt.CoreImpl.Library.Shared.Event_Cancel(eventPointer);
                 }
             }
         }
@@ -574,7 +574,7 @@ namespace AltV.Net
             {
                 unsafe
                 {
-                    Alt.Core.Library.Server.Event_WeaponDamageEvent_SetDamageValue(eventPointer, weaponDamage.Value);
+                    Alt.CoreImpl.Library.Server.Event_WeaponDamageEvent_SetDamageValue(eventPointer, weaponDamage.Value);
                 }
             }
 
@@ -582,7 +582,7 @@ namespace AltV.Net
             {
                 unsafe
                 {
-                    Alt.Core.Library.Shared.Event_Cancel(eventPointer);
+                    Alt.CoreImpl.Library.Shared.Event_Cancel(eventPointer);
                 }
             }
         }
@@ -722,24 +722,6 @@ namespace AltV.Net
                 Console.WriteLine("OnPlayerEnteringVehicle Invalid player " + vehiclePointer + " " + playerPointer +
                                   " " + seat);
                 return;
-            }
-
-            if (VehiclePassengers.TryGetValue(vehiclePointer, out var passengers))
-            {
-                if (passengers.Exists(x => x.PlayerPointer == playerPointer))
-                {
-                    var playerSeat = passengers.First(x => x.PlayerPointer == playerPointer);
-                    playerSeat.Seat = seat;
-                }
-                else
-                {
-                    passengers.Add(new InternalPlayerSeat { PlayerPointer = playerPointer, Seat = seat });
-                }
-            }
-            else
-            {
-                VehiclePassengers[vehiclePointer] = new List<InternalPlayerSeat>
-                    { new() { PlayerPointer = playerPointer, Seat = seat } };
             }
 
             OnPlayerEnteringVehicleEvent(vehicle, player, seat);
@@ -1059,7 +1041,7 @@ namespace AltV.Net
             {
                 unsafe
                 {
-                    Alt.Core.Library.Shared.Event_Cancel(eventPointer);
+                    Alt.CoreImpl.Library.Shared.Event_Cancel(eventPointer);
                 }
             }
         }
@@ -1105,7 +1087,7 @@ namespace AltV.Net
             {
                 unsafe
                 {
-                    Alt.Core.Library.Shared.Event_Cancel(eventPointer);
+                    Alt.CoreImpl.Library.Shared.Event_Cancel(eventPointer);
                 }
             }
         }
@@ -1348,7 +1330,7 @@ namespace AltV.Net
             {
                 unsafe
                 {
-                    Alt.Core.Library.Shared.Event_Cancel(eventPointer);
+                    Alt.CoreImpl.Library.Shared.Event_Cancel(eventPointer);
                 }
             }
         }
@@ -1484,7 +1466,7 @@ namespace AltV.Net
             {
                 unsafe
                 {
-                    Alt.Core.Library.Shared.Event_Cancel(eventPtr);
+                    Alt.CoreImpl.Library.Shared.Event_Cancel(eventPtr);
                 }
             }
         }
@@ -2262,7 +2244,7 @@ namespace AltV.Net
             {
                 unsafe
                 {
-                    Alt.Core.Library.Shared.Event_Cancel(eventPointer);
+                    Alt.CoreImpl.Library.Shared.Event_Cancel(eventPointer);
                 }
             }
         }
@@ -2413,7 +2395,7 @@ namespace AltV.Net
             {
                 unsafe
                 {
-                    Alt.Core.Library.Shared.Event_Cancel(eventPointer);
+                    Alt.CoreImpl.Library.Shared.Event_Cancel(eventPointer);
                 }
             }
         }
@@ -2457,7 +2439,7 @@ namespace AltV.Net
             {
                 unsafe
                 {
-                    Alt.Core.Library.Shared.Event_Cancel(eventPointer);
+                    Alt.CoreImpl.Library.Shared.Event_Cancel(eventPointer);
                 }
             }
         }
@@ -2509,7 +2491,7 @@ namespace AltV.Net
             {
                 unsafe
                 {
-                    Alt.Core.Library.Shared.Event_Cancel(eventPointer);
+                    Alt.CoreImpl.Library.Shared.Event_Cancel(eventPointer);
                 }
             }
         }

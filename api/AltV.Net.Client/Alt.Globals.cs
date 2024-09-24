@@ -7,120 +7,120 @@ namespace AltV.Net.Client
 {
     public static partial class Alt
     {
-        public static Vector3 ScreenToWorld(Vector2 position) => Core.ScreenToWorld(position);
-        public static Vector3 ScreenToWorld(float x, float y) => Core.ScreenToWorld(new Vector2(x, y));
-        public static Vector2 WorldToScreen(Vector3 position) => Core.WorldToScreen(position);
-        public static Vector2 WorldToScreen(float x, float y, float z) => Core.WorldToScreen(new Vector3(x, y, z));
-        public static void ShowCursor(bool state) => Core.ShowCursor(state);
-        public static bool IsCursorVisible => Core.IsCursorVisible;
-        public static void AddGxtText(uint key, string value) => Core.AddGxtText(key, value);
-        public static void AddGxtText(string key, string value) => Core.AddGxtText(Hash(key), value);
-        public static string GetGxtText(uint key) => Core.GetGxtText(key);
-        public static string GetGxtText(string key) => Core.GetGxtText(Hash(key));
-        public static void RemoveGxtText(uint key) => Core.RemoveGxtText(key);
-        public static void RemoveGxtText(string key) => Core.RemoveGxtText(Hash(key));
-        public static bool BeginScaleformMovieMethodMinimap(string methodName) => Core.BeginScaleformMovieMethodMinimap(methodName);
-        public static void SetMinimapComponentPosition(string name, char alignX, char alignY, float posX, float posY, float sizeX, float sizeY) => Core.SetMinimapComponentPosition(name, alignX, alignY, posX, posY, sizeX, sizeY);
-        public static void SetMinimapComponentPosition(string name, char alignX, char alignY, Vector2 pos, Vector2 size) => Core.SetMinimapComponentPosition(name, alignX, alignY, pos.X, pos.Y, size.X, size.Y);
-        public static void CopyToClipboard(string content) => Core.CopyToClipboard(content);
-        public static bool GetPermissionState(Permission permission) => Core.GetPermissionState(permission);
-        public static bool IsTextureExistInArchetype(uint modelHash, string targetTextureName) => Core.IsTextureExistInArchetype(modelHash, targetTextureName);
-        public static bool IsTextureExistInArchetype(string modelName, string targetTextureName) => Core.IsTextureExistInArchetype(Hash(modelName), targetTextureName);
-        public static bool IsPointOnScreen(Vector3 position) => Core.IsPointOnScreen(position);
-        public static bool IsFullScreen() => Core.IsFullScreen;
-        public static void LoadRmlFont(string path, string name, bool italic = false, bool bold = false) => Core.LoadRmlFont(path, name, italic, bold);
-        public static void LoadModel(uint modelHash) => Core.LoadModel(modelHash);
-        public static void LoadModel(string modelName) => Core.LoadModel(Hash(modelName));
-        public static void LoadModelAsync(uint modelHash) => Core.LoadModelAsync(modelHash);
-        public static void LoadModelAsync(string modelName) => Core.LoadModelAsync(Hash(modelName));
-        public static bool LoadYtyp(string ytypName) => Core.LoadYtyp(ytypName);
-        public static bool UnloadYtyp(string ytypName) => Core.UnloadYtyp(ytypName);
-        public static void RequestIpl(string iplName) => Core.RequestIpl(iplName);
-        public static void RemoveIpl(string iplName) => Core.RemoveIpl(iplName);
-        public static bool IsKeyDown(Key key) => Core.IsKeyDown(key);
-        public static bool IsKeyToggled(Key key) => Core.IsKeyToggled(key);
-        public static bool DoesConfigFlagExist(string flagName) => Core.DoesConfigFlagExist(flagName);
-        public static bool GetConfigFlag(string flagName) => Core.GetConfigFlag(flagName);
-        public static void SetConfigFlag(string flagName, bool value) => Core.SetConfigFlag(flagName, value);
-        public static Vector2 GetCursorPos(bool normalized) => Core.GetCursorPos(normalized);
-        public static void SetCursorPos(Vector2 pos, bool normalized) => Core.SetCursorPos(pos, normalized);
-        public static string GetStatType(string stat) => Core.GetStatType(stat);
-        public static void ResetStat(string stat) => Core.ResetStat(stat);
-        public static void GetStat(string stat, out int value) => Core.GetStat(stat, out value);
-        public static void GetStat(string stat, out long value) => Core.GetStat(stat, out value);
-        public static void GetStat(string stat, out float value) => Core.GetStat(stat, out value);
-        public static void GetStat(string stat, out bool value) => Core.GetStat(stat, out value);
-        public static void GetStat(string stat, out string value) => Core.GetStat(stat, out value);
-        public static void GetStat(string stat, out byte value) => Core.GetStat(stat, out value);
-        public static void GetStat(string stat, out ushort value) => Core.GetStat(stat, out value);
-        public static void GetStat(string stat, out uint value) => Core.GetStat(stat, out value);
-        public static void GetStat(string stat, out ulong value) => Core.GetStat(stat, out value);
-        public static void SetStat(string stat, int value) => Core.SetStat(stat, value);
-        public static void SetStat(string stat, long value) => Core.SetStat(stat, value);
-        public static void SetStat(string stat, float value) => Core.SetStat(stat, value);
-        public static void SetStat(string stat, bool value) => Core.SetStat(stat, value);
-        public static void SetStat(string stat, string value) => Core.SetStat(stat, value);
-        public static void SetStat(string stat, byte value) => Core.SetStat(stat, value);
-        public static void SetStat(string stat, ushort value) => Core.SetStat(stat, value);
-        public static void SetStat(string stat, uint value) => Core.SetStat(stat, value);
-        public static void SetStat(string stat, ulong value) => Core.SetStat(stat, value);
-        public static void ClearPedProp(int scriptId, byte component) => Core.ClearPedProp(scriptId, component);
-        public static void SetPedDlcProp(int scriptId, uint dlc, byte component, byte drawable, byte texture) => Core.SetPedDlcProp(scriptId, dlc, component, drawable, texture);
-        public static void SetPedDlcClothes(int scriptId, uint dlc, byte component, byte drawable, byte texture, byte palette) => Core.SetPedDlcClothes(scriptId, dlc, component, drawable, texture, palette);
-        public static void SetRotationVelocity(int scriptId, Rotation velocity) => Core.SetRotationVelocity(scriptId, velocity);
-        public static void SetWatermarkPosition(WatermarkPosition position) => Core.SetWatermarkPosition(position);
-        public static string StringToSha256(string value) => Core.StringToSha256(value);
-        public static void SetWeatherCycle(byte[] weathers, byte[] multipliers) => Core.SetWeatherCycle(weathers, multipliers);
-        public static void SetWeatherSyncActive(bool state) => Core.SetWeatherSyncActive(state);
-        public static string GetHeadshotBase64(byte id) => Core.GetHeadshotBase64(id);
-        public static Task<string> TakeScreenshot() => Core.TakeScreenshot();
-        public static Task<string> TakeScreenshotGameOnly() => Core.TakeScreenshotGameOnly();
-        public static void RegisterFont(string path) => Core.RegisterFont(path);
+        public static Vector3 ScreenToWorld(Vector2 position) => CoreImpl.ScreenToWorld(position);
+        public static Vector3 ScreenToWorld(float x, float y) => CoreImpl.ScreenToWorld(new Vector2(x, y));
+        public static Vector2 WorldToScreen(Vector3 position) => CoreImpl.WorldToScreen(position);
+        public static Vector2 WorldToScreen(float x, float y, float z) => CoreImpl.WorldToScreen(new Vector3(x, y, z));
+        public static void ShowCursor(bool state) => CoreImpl.ShowCursor(state);
+        public static bool IsCursorVisible => CoreImpl.IsCursorVisible;
+        public static void AddGxtText(uint key, string value) => CoreImpl.AddGxtText(key, value);
+        public static void AddGxtText(string key, string value) => CoreImpl.AddGxtText(Hash(key), value);
+        public static string GetGxtText(uint key) => CoreImpl.GetGxtText(key);
+        public static string GetGxtText(string key) => CoreImpl.GetGxtText(Hash(key));
+        public static void RemoveGxtText(uint key) => CoreImpl.RemoveGxtText(key);
+        public static void RemoveGxtText(string key) => CoreImpl.RemoveGxtText(Hash(key));
+        public static bool BeginScaleformMovieMethodMinimap(string methodName) => CoreImpl.BeginScaleformMovieMethodMinimap(methodName);
+        public static void SetMinimapComponentPosition(string name, char alignX, char alignY, float posX, float posY, float sizeX, float sizeY) => CoreImpl.SetMinimapComponentPosition(name, alignX, alignY, posX, posY, sizeX, sizeY);
+        public static void SetMinimapComponentPosition(string name, char alignX, char alignY, Vector2 pos, Vector2 size) => CoreImpl.SetMinimapComponentPosition(name, alignX, alignY, pos.X, pos.Y, size.X, size.Y);
+        public static void CopyToClipboard(string content) => CoreImpl.CopyToClipboard(content);
+        public static bool GetPermissionState(Permission permission) => CoreImpl.GetPermissionState(permission);
+        public static bool IsTextureExistInArchetype(uint modelHash, string targetTextureName) => CoreImpl.IsTextureExistInArchetype(modelHash, targetTextureName);
+        public static bool IsTextureExistInArchetype(string modelName, string targetTextureName) => CoreImpl.IsTextureExistInArchetype(Hash(modelName), targetTextureName);
+        public static bool IsPointOnScreen(Vector3 position) => CoreImpl.IsPointOnScreen(position);
+        public static bool IsFullScreen() => CoreImpl.IsFullScreen;
+        public static void LoadRmlFont(string path, string name, bool italic = false, bool bold = false) => CoreImpl.LoadRmlFont(path, name, italic, bold);
+        public static void LoadModel(uint modelHash) => CoreImpl.LoadModel(modelHash);
+        public static void LoadModel(string modelName) => CoreImpl.LoadModel(Hash(modelName));
+        public static void LoadModelAsync(uint modelHash) => CoreImpl.LoadModelAsync(modelHash);
+        public static void LoadModelAsync(string modelName) => CoreImpl.LoadModelAsync(Hash(modelName));
+        public static bool LoadYtyp(string ytypName) => CoreImpl.LoadYtyp(ytypName);
+        public static bool UnloadYtyp(string ytypName) => CoreImpl.UnloadYtyp(ytypName);
+        public static void RequestIpl(string iplName) => CoreImpl.RequestIpl(iplName);
+        public static void RemoveIpl(string iplName) => CoreImpl.RemoveIpl(iplName);
+        public static bool IsKeyDown(Key key) => CoreImpl.IsKeyDown(key);
+        public static bool IsKeyToggled(Key key) => CoreImpl.IsKeyToggled(key);
+        public static bool DoesConfigFlagExist(string flagName) => CoreImpl.DoesConfigFlagExist(flagName);
+        public static bool GetConfigFlag(string flagName) => CoreImpl.GetConfigFlag(flagName);
+        public static void SetConfigFlag(string flagName, bool value) => CoreImpl.SetConfigFlag(flagName, value);
+        public static Vector2 GetCursorPos(bool normalized) => CoreImpl.GetCursorPos(normalized);
+        public static void SetCursorPos(Vector2 pos, bool normalized) => CoreImpl.SetCursorPos(pos, normalized);
+        public static string GetStatType(string stat) => CoreImpl.GetStatType(stat);
+        public static void ResetStat(string stat) => CoreImpl.ResetStat(stat);
+        public static void GetStat(string stat, out int value) => CoreImpl.GetStat(stat, out value);
+        public static void GetStat(string stat, out long value) => CoreImpl.GetStat(stat, out value);
+        public static void GetStat(string stat, out float value) => CoreImpl.GetStat(stat, out value);
+        public static void GetStat(string stat, out bool value) => CoreImpl.GetStat(stat, out value);
+        public static void GetStat(string stat, out string value) => CoreImpl.GetStat(stat, out value);
+        public static void GetStat(string stat, out byte value) => CoreImpl.GetStat(stat, out value);
+        public static void GetStat(string stat, out ushort value) => CoreImpl.GetStat(stat, out value);
+        public static void GetStat(string stat, out uint value) => CoreImpl.GetStat(stat, out value);
+        public static void GetStat(string stat, out ulong value) => CoreImpl.GetStat(stat, out value);
+        public static void SetStat(string stat, int value) => CoreImpl.SetStat(stat, value);
+        public static void SetStat(string stat, long value) => CoreImpl.SetStat(stat, value);
+        public static void SetStat(string stat, float value) => CoreImpl.SetStat(stat, value);
+        public static void SetStat(string stat, bool value) => CoreImpl.SetStat(stat, value);
+        public static void SetStat(string stat, string value) => CoreImpl.SetStat(stat, value);
+        public static void SetStat(string stat, byte value) => CoreImpl.SetStat(stat, value);
+        public static void SetStat(string stat, ushort value) => CoreImpl.SetStat(stat, value);
+        public static void SetStat(string stat, uint value) => CoreImpl.SetStat(stat, value);
+        public static void SetStat(string stat, ulong value) => CoreImpl.SetStat(stat, value);
+        public static void ClearPedProp(int scriptId, byte component) => CoreImpl.ClearPedProp(scriptId, component);
+        public static void SetPedDlcProp(int scriptId, uint dlc, byte component, byte drawable, byte texture) => CoreImpl.SetPedDlcProp(scriptId, dlc, component, drawable, texture);
+        public static void SetPedDlcClothes(int scriptId, uint dlc, byte component, byte drawable, byte texture, byte palette) => CoreImpl.SetPedDlcClothes(scriptId, dlc, component, drawable, texture, palette);
+        public static void SetRotationVelocity(int scriptId, Rotation velocity) => CoreImpl.SetRotationVelocity(scriptId, velocity);
+        public static void SetWatermarkPosition(WatermarkPosition position) => CoreImpl.SetWatermarkPosition(position);
+        public static string StringToSha256(string value) => CoreImpl.StringToSha256(value);
+        public static void SetWeatherCycle(byte[] weathers, byte[] multipliers) => CoreImpl.SetWeatherCycle(weathers, multipliers);
+        public static void SetWeatherSyncActive(bool state) => CoreImpl.SetWeatherSyncActive(state);
+        public static string GetHeadshotBase64(byte id) => CoreImpl.GetHeadshotBase64(id);
+        public static Task<string> TakeScreenshot() => CoreImpl.TakeScreenshot();
+        public static Task<string> TakeScreenshotGameOnly() => CoreImpl.TakeScreenshotGameOnly();
+        public static void RegisterFont(string path) => CoreImpl.RegisterFont(path);
 
-        public static uint GetPoolSize(string pool) => Core.GetPoolSize(pool);
-        public static uint GetPoolCount(string pool) => Core.GetPoolCount(pool);
-        public static uint[] GetPoolEntities(string pool) => Core.GetPoolEntities(pool);
+        public static uint GetPoolSize(string pool) => CoreImpl.GetPoolSize(pool);
+        public static uint GetPoolCount(string pool) => CoreImpl.GetPoolCount(pool);
+        public static uint[] GetPoolEntities(string pool) => CoreImpl.GetPoolEntities(pool);
 
-        public static uint[] GetVoicePlayers() => Core.GetVoicePlayers();
-        public static void RemoveVoicePlayer(uint playerRemoteId) => Core.RemoveVoicePlayer(playerRemoteId);
-        public static float GetVoiceSpatialVolume(uint playerRemoteId) => Core.GetVoiceSpatialVolume(playerRemoteId);
-        public static void SetVoiceSpatialVolume(uint playerRemoteId, float volume) => Core.SetVoiceSpatialVolume(playerRemoteId, volume);
-        public static float GetVoiceNonSpatialVolume(uint playerRemoteId) => Core.GetVoiceNonSpatialVolume(playerRemoteId);
-        public static void SetVoiceNonSpatialVolume(uint playerRemoteId, float volume) => Core.SetVoiceNonSpatialVolume(playerRemoteId, volume);
+        public static uint[] GetVoicePlayers() => CoreImpl.GetVoicePlayers();
+        public static void RemoveVoicePlayer(uint playerRemoteId) => CoreImpl.RemoveVoicePlayer(playerRemoteId);
+        public static float GetVoiceSpatialVolume(uint playerRemoteId) => CoreImpl.GetVoiceSpatialVolume(playerRemoteId);
+        public static void SetVoiceSpatialVolume(uint playerRemoteId, float volume) => CoreImpl.SetVoiceSpatialVolume(playerRemoteId, volume);
+        public static float GetVoiceNonSpatialVolume(uint playerRemoteId) => CoreImpl.GetVoiceNonSpatialVolume(playerRemoteId);
+        public static void SetVoiceNonSpatialVolume(uint playerRemoteId, float volume) => CoreImpl.SetVoiceNonSpatialVolume(playerRemoteId, volume);
 
-        public static void AddVoiceFilter(uint playerRemoteId, IAudioFilter filter) => Core.AddVoiceFilter(playerRemoteId, filter);
-        public static void RemoveVoiceFilter(uint playerRemoteId) => Core.RemoveVoiceFilter(playerRemoteId);
-        public static IAudioFilter GetVoiceFilter(uint playerRemoteId) => Core.GetVoiceFilter(playerRemoteId);
+        public static void AddVoiceFilter(uint playerRemoteId, IAudioFilter filter) => CoreImpl.AddVoiceFilter(playerRemoteId, filter);
+        public static void RemoveVoiceFilter(uint playerRemoteId) => CoreImpl.RemoveVoiceFilter(playerRemoteId);
+        public static IAudioFilter GetVoiceFilter(uint playerRemoteId) => CoreImpl.GetVoiceFilter(playerRemoteId);
 
-        public static void UpdateClipContext(Dictionary<string, string> context) => Core.UpdateClipContext(context);
+        public static void UpdateClipContext(Dictionary<string, string> context) => CoreImpl.UpdateClipContext(context);
 
-        public static MapZoomData GetMapZoomData(uint id) => Core.GetMapZoomData(id);
-        public static MapZoomData GetMapZoomData(string alias) => Core.GetMapZoomData(alias);
-        public static void ResetAllMapZoomData() => Core.ResetAllMapZoomData();
-        public static void LoadDefaultIpls() => Core.LoadDefaultIpls();
-        public static bool MinimapIsRectangle { set => Core.MinimapIsRectangle = value; }
-        public static ushort Fps => Core.Fps;
-        public static ushort Ping => Core.Ping;
-        public static uint TotalPacketsLost => Core.TotalPacketsLost;
-        public static ulong TotalPacketsSent => Core.TotalPacketsSent;
-        public static Vector2 ScreenResolution => Core.ScreenResolution;
-        public static string LicenseHash => Core.LicenseHash;
-        public static string Locale => Core.Locale;
-        public static string ServerIp => Core.ServerIp;
-        public static ushort ServerPort => Core.ServerPort;
-        public static bool IsGameFocused => Core.IsGameFocused;
-        public static bool IsInStreamerMode => Core.IsInStreamerMode;
-        public static bool IsMenuOpened => Core.IsMenuOpened;
-        public static bool IsConsoleOpen => Core.IsConsoleOpen;
-        public static bool CamFrozen { get => Core.CamFrozen; set => Core.CamFrozen = value; }
-        public static Vector3 CamPos => Core.CamPos;
-        public static bool GameControlsEnabled { get => Core.GameControlsEnabled; set => Core.GameControlsEnabled = value; }
-        public static bool RmlControlsEnabled { get => Core.RmlControlsEnabled; set => Core.RmlControlsEnabled = value; }
-        public static bool VoiceControlsEnabled { get => Core.VoiceControlsEnabled; set => Core.VoiceControlsEnabled = value; }
-        public static int MsPerGameMinute { get => Core.MsPerGameMinute; set => Core.MsPerGameMinute = value; }
+        public static MapZoomData GetMapZoomData(uint id) => CoreImpl.GetMapZoomData(id);
+        public static MapZoomData GetMapZoomData(string alias) => CoreImpl.GetMapZoomData(alias);
+        public static void ResetAllMapZoomData() => CoreImpl.ResetAllMapZoomData();
+        public static void LoadDefaultIpls() => CoreImpl.LoadDefaultIpls();
+        public static bool MinimapIsRectangle { set => CoreImpl.MinimapIsRectangle = value; }
+        public static ushort Fps => CoreImpl.Fps;
+        public static ushort Ping => CoreImpl.Ping;
+        public static uint TotalPacketsLost => CoreImpl.TotalPacketsLost;
+        public static ulong TotalPacketsSent => CoreImpl.TotalPacketsSent;
+        public static Vector2 ScreenResolution => CoreImpl.ScreenResolution;
+        public static string LicenseHash => CoreImpl.LicenseHash;
+        public static string Locale => CoreImpl.Locale;
+        public static string ServerIp => CoreImpl.ServerIp;
+        public static ushort ServerPort => CoreImpl.ServerPort;
+        public static bool IsGameFocused => CoreImpl.IsGameFocused;
+        public static bool IsInStreamerMode => CoreImpl.IsInStreamerMode;
+        public static bool IsMenuOpened => CoreImpl.IsMenuOpened;
+        public static bool IsConsoleOpen => CoreImpl.IsConsoleOpen;
+        public static bool CamFrozen { get => CoreImpl.CamFrozen; set => CoreImpl.CamFrozen = value; }
+        public static Vector3 CamPos => CoreImpl.CamPos;
+        public static bool GameControlsEnabled { get => CoreImpl.GameControlsEnabled; set => CoreImpl.GameControlsEnabled = value; }
+        public static bool RmlControlsEnabled { get => CoreImpl.RmlControlsEnabled; set => CoreImpl.RmlControlsEnabled = value; }
+        public static bool VoiceControlsEnabled { get => CoreImpl.VoiceControlsEnabled; set => CoreImpl.VoiceControlsEnabled = value; }
+        public static int MsPerGameMinute { get => CoreImpl.MsPerGameMinute; set => CoreImpl.MsPerGameMinute = value; }
 
-        public static ulong ServerTime => Core.ServerTime;
+        public static ulong ServerTime => CoreImpl.ServerTime;
 
-        public static bool ReloadVehiclePhysics(uint modelHash) => Core.ReloadVehiclePhysics(modelHash);
+        public static bool ReloadVehiclePhysics(uint modelHash) => CoreImpl.ReloadVehiclePhysics(modelHash);
     }
 }

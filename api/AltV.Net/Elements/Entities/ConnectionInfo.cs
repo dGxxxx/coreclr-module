@@ -27,7 +27,7 @@ public class ConnectionInfo : BaseObject, IConnectionInfo
     {
         unsafe
         {
-            return Alt.Core.Library.Server.ConnectionInfo_GetID(pointer);
+            return Alt.CoreImpl.Library.Server.ConnectionInfo_GetID(pointer);
         }
     }
 

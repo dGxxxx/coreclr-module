@@ -580,7 +580,7 @@ namespace AltV.Net.Async.Elements.Entities
                 Player.Spawn(position, delayMs);
             }
         }
-        
+
         public void Spawn(uint model, Position position, uint delayMs = 0)
         {
             lock (Player)
@@ -589,7 +589,7 @@ namespace AltV.Net.Async.Elements.Entities
                 Player.Spawn(model, position, delayMs);
             }
         }
-        
+
         public void Spawn(PedModel model, Position position, uint delayMs = 0)
         {
             lock (Player)
@@ -726,7 +726,7 @@ namespace AltV.Net.Async.Elements.Entities
             {
                 if (Player.Exists)
                 {
-                    Alt.Core.TriggerClientEvent(Player, eventNamePtr, mValues);
+                    Alt.CoreImpl.TriggerClientEvent(Player, eventNamePtr, mValues);
                 }
             }
 
@@ -749,7 +749,7 @@ namespace AltV.Net.Async.Elements.Entities
             {
                 if (Player.Exists)
                 {
-                    result = Alt.Core.TriggerClientRPC(Player, eventNamePtr, mValues);
+                    result = Alt.CoreImpl.TriggerClientRPC(Player, eventNamePtr, mValues);
                 }
             }
 
@@ -771,7 +771,7 @@ namespace AltV.Net.Async.Elements.Entities
             {
                 if (Player.Exists)
                 {
-                    Alt.Core.TriggerClientRPCAnswer(Player, answerId, mValue, errorPtr);
+                    Alt.CoreImpl.TriggerClientRPCAnswer(Player, answerId, mValue, errorPtr);
                 }
             }
 
@@ -795,7 +795,7 @@ namespace AltV.Net.Async.Elements.Entities
             {
                 if (Player.Exists)
                 {
-                    Alt.Core.TriggerClientEventUnreliable(Player, eventNamePtr, mValues);
+                    Alt.CoreImpl.TriggerClientEventUnreliable(Player, eventNamePtr, mValues);
                 }
             }
 

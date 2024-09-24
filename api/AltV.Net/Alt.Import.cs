@@ -162,7 +162,7 @@ namespace AltV.Net
 
         public static bool Import(string resourceName, string key, out MValueConst mValue)
         {
-            var resource = Core.GetResource(resourceName);
+            var resource = CoreImpl.GetResource(resourceName);
             if (resource == null)
             {
                 mValue = default;
@@ -196,14 +196,14 @@ namespace AltV.Net
             var mValueArgs = new IntPtr[length];
             for (uint i = 0; i < length; i++)
             {
-                Alt.Core.CreateMValue(out var mValueElement, args[i]);
+                Alt.CoreImpl.CreateMValue(out var mValueElement, args[i]);
                 mValueArgs[i] = mValueElement.nativePointer;
             }
 
-            result = new MValueConst(Alt.Core.Library.MValue_CallFunction(mValue.nativePointer, mValueArgs, length));
+            result = new MValueConst(Alt.CoreImpl.Library.MValue_CallFunction(mValue.nativePointer, mValueArgs, length));
             for (ulong i = 0;i < length;i++)
             {
-                Alt.Core.Library.MValueConst_Delete(mValueArgs[i]);
+                Alt.CoreImpl.Library.MValueConst_Delete(mValueArgs[i]);
             }
         }*/
 
@@ -215,16 +215,16 @@ namespace AltV.Net
                 var mValueArgs = new IntPtr[length];
                 for (uint i = 0; i < length; i++)
                 {
-                    Alt.Core.CreateMValue(out var mValueElement, args[i]);
+                    CoreImpl.CreateMValue(out var mValueElement, args[i]);
                     mValueArgs[i] = mValueElement.nativePointer;
                 }
 
-                var result = new MValueConst(Alt.Core, Alt.Core.Library.Shared.MValueConst_CallFunction(Alt.Core.NativePointer, mValue.nativePointer, mValueArgs, length));
+                var result = new MValueConst(CoreImpl, CoreImpl.Library.Shared.MValueConst_CallFunction(CoreImpl.NativePointer, mValue.nativePointer, mValueArgs, length));
                 var resultObj = result.ToObject();
                 result.Dispose();
                 for (ulong i = 0;i < length;i++)
                 {
-                    Alt.Core.Library.Shared.MValueConst_Delete(mValueArgs[i]);
+                    CoreImpl.Library.Shared.MValueConst_Delete(mValueArgs[i]);
                 }
 
                 return resultObj;
@@ -239,16 +239,16 @@ namespace AltV.Net
                 var mValueArgs = new IntPtr[length];
                 for (uint i = 0; i < length; i++)
                 {
-                    Alt.Core.CreateMValue(out var mValueElement, args[i]);
+                    CoreImpl.CreateMValue(out var mValueElement, args[i]);
                     mValueArgs[i] = mValueElement.nativePointer;
                 }
 
-                var result = new MValueConst(Alt.Core, Alt.Core.Library.Shared.MValueConst_CallFunction(Alt.Core.NativePointer, mValue.nativePointer, mValueArgs, length));
+                var result = new MValueConst(CoreImpl, CoreImpl.Library.Shared.MValueConst_CallFunction(CoreImpl.NativePointer, mValue.nativePointer, mValueArgs, length));
                 var resultObj = Utils.GetCastedMValue<T>(result);
                 result.Dispose();
                 for (ulong i = 0;i < length;i++)
                 {
-                    Alt.Core.Library.Shared.MValueConst_Delete(mValueArgs[i]);
+                    CoreImpl.Library.Shared.MValueConst_Delete(mValueArgs[i]);
                 }
 
                 return resultObj;

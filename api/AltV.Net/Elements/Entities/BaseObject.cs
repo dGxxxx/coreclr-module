@@ -61,7 +61,7 @@ namespace AltV.Net.Elements.Entities
         public void SetSyncedMetaData(string key, object value)
         {
             CheckIfEntityExists();
-            Alt.Core.CreateMValue(out var mValue, value);
+            Core.CreateMValue(out var mValue, value);
             SetSyncedMetaData(key, in mValue);
             mValue.Dispose();
         }

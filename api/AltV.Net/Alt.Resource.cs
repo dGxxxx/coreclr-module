@@ -2,15 +2,15 @@
 {
     public partial class Alt
     {
-        public static void StartResource(string name) => Core.StartResource(name);
+        public static void StartResource(string name) => CoreImpl.StartResource(name);
 
-        public static void StopResource(string name) => Core.StopResource(name);
+        public static void StopResource(string name) => CoreImpl.StopResource(name);
 
-        public static void RestartResource(string name) => Core.RestartResource(name);
+        public static void RestartResource(string name) => CoreImpl.RestartResource(name);
 
-        public static INativeResource GetResource(string name) => Core.GetResource(name);
-        public static INativeResource[] GetAllResources() => Core.GetAllResources();
+        public static INativeResource GetResource(string name) => CoreImpl.GetResource(name);
+        public static INativeResource[] GetAllResources() => CoreImpl.GetAllResources();
 
-        public static INativeResource Resource => Core.Resource;
+        public static INativeResource Resource => CoreImpl.Resource;
     }
 }
