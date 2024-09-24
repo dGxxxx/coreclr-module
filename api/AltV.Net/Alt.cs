@@ -41,6 +41,10 @@ namespace AltV.Net
         public static IEnumerable<string> GetRegisteredClientEvents() => CoreImpl.GetRegisteredClientEvents();
         public static IEnumerable<string> GetRegisteredServerEvents() => CoreImpl.GetRegisteredServerEvents();
 
+        /// <summary>
+        /// Logging a message
+        /// </summary>
+        /// <param name="message">a message</param>
         public static void Log(string message) => CoreImpl.LogInfo(message);
 
         public static VehicleModelInfo GetVehicleModelInfo(uint hash) => CoreImpl.GetVehicleModelInfo(hash);
