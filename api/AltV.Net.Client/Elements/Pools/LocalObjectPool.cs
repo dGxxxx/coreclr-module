@@ -13,7 +13,7 @@ public class LocalObjectPool : EntityPool<ILocalObject>
     {
         unsafe
         {
-            return Alt.Core.Library.Client.LocalObject_GetID(objectPointer);
+            return Alt.CoreImpl.Library.Client.LocalObject_GetID(objectPointer);
         }
     }
 }

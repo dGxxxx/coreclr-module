@@ -13,362 +13,362 @@ namespace AltV.Net.Async
 {
     public static partial class AltAsync
     {
-        internal static AsyncCore Core;
+        internal static AsyncCore CoreImpl;
 
         internal static AltVAsync AltVAsync;
 
         public static event CheckpointAsyncDelegate OnCheckpoint
         {
-            add => Core.CheckpointAsyncEventHandler.Add(value);
-            remove => Core.CheckpointAsyncEventHandler.Remove(value);
+            add => CoreImpl.CheckpointAsyncEventHandler.Add(value);
+            remove => CoreImpl.CheckpointAsyncEventHandler.Remove(value);
         }
 
         public static event BaseObjectCreateAsyncDelegate OnBaseObjectCreate
         {
-            add => Core.BaseObjectCreateAsyncEventHandler.Add(value);
-            remove => Core.BaseObjectCreateAsyncEventHandler.Remove(value);
+            add => CoreImpl.BaseObjectCreateAsyncEventHandler.Add(value);
+            remove => CoreImpl.BaseObjectCreateAsyncEventHandler.Remove(value);
         }
 
         public static event BaseObjectRemoveAsyncDelegate OnBaseObjectRemove
         {
-            add => Core.BaseObjectRemoveAsyncEventHandler.Add(value);
-            remove => Core.BaseObjectRemoveAsyncEventHandler.Remove(value);
+            add => CoreImpl.BaseObjectRemoveAsyncEventHandler.Add(value);
+            remove => CoreImpl.BaseObjectRemoveAsyncEventHandler.Remove(value);
         }
 
         public static event PlayerConnectAsyncDelegate OnPlayerConnect
         {
-            add => Core.PlayerConnectAsyncEventHandler.Add(value);
-            remove => Core.PlayerConnectAsyncEventHandler.Remove(value);
+            add => CoreImpl.PlayerConnectAsyncEventHandler.Add(value);
+            remove => CoreImpl.PlayerConnectAsyncEventHandler.Remove(value);
         }
 
         public static event PlayerDamageAsyncDelegate OnPlayerDamage
         {
-            add => Core.PlayerDamageAsyncEventHandler.Add(value);
-            remove => Core.PlayerDamageAsyncEventHandler.Remove(value);
+            add => CoreImpl.PlayerDamageAsyncEventHandler.Add(value);
+            remove => CoreImpl.PlayerDamageAsyncEventHandler.Remove(value);
         }
 
         public static event PlayerDeadAsyncDelegate OnPlayerDead
         {
-            add => Core.PlayerDeadAsyncEventHandler.Add(value);
-            remove => Core.PlayerDeadAsyncEventHandler.Remove(value);
+            add => CoreImpl.PlayerDeadAsyncEventHandler.Add(value);
+            remove => CoreImpl.PlayerDeadAsyncEventHandler.Remove(value);
         }
 
         public static event PlayerHealAsyncDelegate OnPlayerHeal
         {
-            add => Core.PlayerHealAsyncEventHandler.Add(value);
-            remove => Core.PlayerHealAsyncEventHandler.Remove(value);
+            add => CoreImpl.PlayerHealAsyncEventHandler.Add(value);
+            remove => CoreImpl.PlayerHealAsyncEventHandler.Remove(value);
         }
 
         public static event ExplosionAsyncDelegate OnExplosion
         {
-            add => Core.ExplosionAsyncEventHandler.Add(value);
-            remove => Core.ExplosionAsyncEventHandler.Remove(value);
+            add => CoreImpl.ExplosionAsyncEventHandler.Add(value);
+            remove => CoreImpl.ExplosionAsyncEventHandler.Remove(value);
         }
 
         public static event WeaponDamageAsyncDelegate OnWeaponDamage
         {
-            add => Core.WeaponDamageAsyncEventHandler.Add(value);
-            remove => Core.WeaponDamageAsyncEventHandler.Remove(value);
+            add => CoreImpl.WeaponDamageAsyncEventHandler.Add(value);
+            remove => CoreImpl.WeaponDamageAsyncEventHandler.Remove(value);
         }
 
         public static event PlayerChangeVehicleSeatAsyncDelegate OnPlayerChangeVehicleSeat
         {
-            add => Core.PlayerChangeVehicleSeatAsyncEventHandler.Add(value);
-            remove => Core.PlayerChangeVehicleSeatAsyncEventHandler.Remove(value);
+            add => CoreImpl.PlayerChangeVehicleSeatAsyncEventHandler.Add(value);
+            remove => CoreImpl.PlayerChangeVehicleSeatAsyncEventHandler.Remove(value);
         }
 
         public static event PlayerEnterVehicleAsyncDelegate OnPlayerEnterVehicle
         {
-            add => Core.PlayerEnterVehicleAsyncEventHandler.Add(value);
-            remove => Core.PlayerEnterVehicleAsyncEventHandler.Remove(value);
+            add => CoreImpl.PlayerEnterVehicleAsyncEventHandler.Add(value);
+            remove => CoreImpl.PlayerEnterVehicleAsyncEventHandler.Remove(value);
         }
 
         public static event PlayerEnteringVehicleAsyncDelegate OnPlayerEnteringVehicle
         {
-            add => Core.PlayerEnteringVehicleAsyncEventHandler.Add(value);
-            remove => Core.PlayerEnteringVehicleAsyncEventHandler.Remove(value);
+            add => CoreImpl.PlayerEnteringVehicleAsyncEventHandler.Add(value);
+            remove => CoreImpl.PlayerEnteringVehicleAsyncEventHandler.Remove(value);
         }
 
         public static event PlayerLeaveVehicleAsyncDelegate OnPlayerLeaveVehicle
         {
-            add => Core.PlayerLeaveVehicleAsyncEventHandler.Add(value);
-            remove => Core.PlayerLeaveVehicleAsyncEventHandler.Remove(value);
+            add => CoreImpl.PlayerLeaveVehicleAsyncEventHandler.Add(value);
+            remove => CoreImpl.PlayerLeaveVehicleAsyncEventHandler.Remove(value);
         }
 
         public static event PlayerDisconnectAsyncDelegate OnPlayerDisconnect
         {
-            add => Core.PlayerDisconnectAsyncEventHandler.Add(value);
-            remove => Core.PlayerDisconnectAsyncEventHandler.Remove(value);
+            add => CoreImpl.PlayerDisconnectAsyncEventHandler.Add(value);
+            remove => CoreImpl.PlayerDisconnectAsyncEventHandler.Remove(value);
         }
 
         public static event PlayerRemoveAsyncDelegate OnPlayerRemove
         {
-            add => Core.PlayerRemoveAsyncEventHandler.Add(value);
-            remove => Core.PlayerRemoveAsyncEventHandler.Remove(value);
+            add => CoreImpl.PlayerRemoveAsyncEventHandler.Add(value);
+            remove => CoreImpl.PlayerRemoveAsyncEventHandler.Remove(value);
         }
 
         public static event VehicleRemoveAsyncDelegate OnVehicleRemove
         {
-            add => Core.VehicleRemoveAsyncEventHandler.Add(value);
-            remove => Core.VehicleRemoveAsyncEventHandler.Remove(value);
+            add => CoreImpl.VehicleRemoveAsyncEventHandler.Add(value);
+            remove => CoreImpl.VehicleRemoveAsyncEventHandler.Remove(value);
         }
 
         public static event PedRemoveAsyncDelegate OnPedRemove
         {
-            add => Core.PedRemoveAsyncEventHandler.Add(value);
-            remove => Core.PedRemoveAsyncEventHandler.Remove(value);
+            add => CoreImpl.PedRemoveAsyncEventHandler.Add(value);
+            remove => CoreImpl.PedRemoveAsyncEventHandler.Remove(value);
         }
 
         public static event PlayerClientEventAsyncDelegate OnPlayerEvent
         {
-            add => Core.PlayerClientEventAsyncEventHandler.Add(value);
-            remove => Core.PlayerClientEventAsyncEventHandler.Remove(value);
+            add => CoreImpl.PlayerClientEventAsyncEventHandler.Add(value);
+            remove => CoreImpl.PlayerClientEventAsyncEventHandler.Remove(value);
         }
 
         public static event ConsoleCommandAsyncDelegate OnConsoleCommand
         {
-            add => Core.ConsoleCommandAsyncEventHandler.Add(value);
-            remove => Core.ConsoleCommandAsyncEventHandler.Remove(value);
+            add => CoreImpl.ConsoleCommandAsyncEventHandler.Add(value);
+            remove => CoreImpl.ConsoleCommandAsyncEventHandler.Remove(value);
         }
 
         public static event MetaDataChangeAsyncDelegate OnMetaDataChange
         {
-            add => Core.MetaDataChangeAsyncEventHandler.Add(value);
-            remove => Core.MetaDataChangeAsyncEventHandler.Remove(value);
+            add => CoreImpl.MetaDataChangeAsyncEventHandler.Add(value);
+            remove => CoreImpl.MetaDataChangeAsyncEventHandler.Remove(value);
         }
 
         public static event MetaDataChangeAsyncDelegate OnSyncedMetaDataChange
         {
-            add => Core.SyncedMetaDataChangeAsyncEventHandler.Add(value);
-            remove => Core.SyncedMetaDataChangeAsyncEventHandler.Remove(value);
+            add => CoreImpl.SyncedMetaDataChangeAsyncEventHandler.Add(value);
+            remove => CoreImpl.SyncedMetaDataChangeAsyncEventHandler.Remove(value);
         }
 
         public static event ColShapeAsyncDelegate OnColShape
         {
-            add => Core.ColShapeAsyncEventHandler.Add(value);
-            remove => Core.ColShapeAsyncEventHandler.Remove(value);
+            add => CoreImpl.ColShapeAsyncEventHandler.Add(value);
+            remove => CoreImpl.ColShapeAsyncEventHandler.Remove(value);
         }
 
         public static event VehicleDestroyAsyncDelegate OnVehicleDestroy
         {
-            add => Core.VehicleDestroyAsyncEventHandler.Add(value);
-            remove => Core.VehicleDestroyAsyncEventHandler.Remove(value);
+            add => CoreImpl.VehicleDestroyAsyncEventHandler.Add(value);
+            remove => CoreImpl.VehicleDestroyAsyncEventHandler.Remove(value);
         }
 
         public static event FireAsyncDelegate OnFire
         {
-            add => Core.FireAsyncEventHandler.Add(value);
-            remove => Core.FireAsyncEventHandler.Remove(value);
+            add => CoreImpl.FireAsyncEventHandler.Add(value);
+            remove => CoreImpl.FireAsyncEventHandler.Remove(value);
         }
 
         public static event StartProjectileAsyncDelegate OnStartProjectile
         {
-            add => Core.StartProjectileAsyncEventHandler.Add(value);
-            remove => Core.StartProjectileAsyncEventHandler.Remove(value);
+            add => CoreImpl.StartProjectileAsyncEventHandler.Add(value);
+            remove => CoreImpl.StartProjectileAsyncEventHandler.Remove(value);
         }
 
         public static event PlayerWeaponChangeAsyncDelegate OnPlayerWeaponChange
         {
-            add => Core.PlayerWeaponChangeAsyncEventHandler.Add(value);
-            remove => Core.PlayerWeaponChangeAsyncEventHandler.Remove(value);
+            add => CoreImpl.PlayerWeaponChangeAsyncEventHandler.Add(value);
+            remove => CoreImpl.PlayerWeaponChangeAsyncEventHandler.Remove(value);
         }
 
         public static event NetOwnerChangeAsyncDelegate OnNetworkOwnerChange
         {
-            add => Core.NetOwnerChangeAsyncEventHandler.Add(value);
-            remove => Core.NetOwnerChangeAsyncEventHandler.Remove(value);
+            add => CoreImpl.NetOwnerChangeAsyncEventHandler.Add(value);
+            remove => CoreImpl.NetOwnerChangeAsyncEventHandler.Remove(value);
         }
 
         public static event VehicleAttachAsyncDelegate OnVehicleAttach
         {
-            add => Core.VehicleAttachAsyncEventHandler.Add(value);
-            remove => Core.VehicleAttachAsyncEventHandler.Remove(value);
+            add => CoreImpl.VehicleAttachAsyncEventHandler.Add(value);
+            remove => CoreImpl.VehicleAttachAsyncEventHandler.Remove(value);
         }
 
         public static event VehicleDetachAsyncDelegate OnVehicleDetach
         {
-            add => Core.VehicleDetachAsyncEventHandler.Add(value);
-            remove => Core.VehicleDetachAsyncEventHandler.Remove(value);
+            add => CoreImpl.VehicleDetachAsyncEventHandler.Add(value);
+            remove => CoreImpl.VehicleDetachAsyncEventHandler.Remove(value);
         }
 
         public static event VehicleDamageAsyncDelegate OnVehicleDamage
         {
-            add => Core.VehicleDamageAsyncEventHandler.Add(value);
-            remove => Core.VehicleDamageAsyncEventHandler.Remove(value);
+            add => CoreImpl.VehicleDamageAsyncEventHandler.Add(value);
+            remove => CoreImpl.VehicleDamageAsyncEventHandler.Remove(value);
         }
 
         public static event VehicleHornAsyncDelegate OnVehicleHorn
         {
-            add => Core.VehicleHornAsyncEventHandler.Add(value);
-            remove => Core.VehicleHornAsyncEventHandler.Remove(value);
+            add => CoreImpl.VehicleHornAsyncEventHandler.Add(value);
+            remove => CoreImpl.VehicleHornAsyncEventHandler.Remove(value);
         }
 
         public static event ConnectionQueueAddAsyncDelegate OnConnectionQueueAdd
         {
-            add => Core.ConnectionQueueAddAsyncEventHandler.Add(value);
-            remove => Core.ConnectionQueueAddAsyncEventHandler.Remove(value);
+            add => CoreImpl.ConnectionQueueAddAsyncEventHandler.Add(value);
+            remove => CoreImpl.ConnectionQueueAddAsyncEventHandler.Remove(value);
         }
 
         public static event ConnectionQueueRemoveAsyncDelegate OnConnectionQueueRemove
         {
-            add => Core.ConnectionQueueRemoveAsyncEventHandler.Add(value);
-            remove => Core.ConnectionQueueRemoveAsyncEventHandler.Remove(value);
+            add => CoreImpl.ConnectionQueueRemoveAsyncEventHandler.Add(value);
+            remove => CoreImpl.ConnectionQueueRemoveAsyncEventHandler.Remove(value);
         }
 
         public static event ServerStartedAsyncDelegate OnServerStarted
         {
-            add => Core.ServerStartedAsyncEventHandler.Add(value);
-            remove => Core.ServerStartedAsyncEventHandler.Remove(value);
+            add => CoreImpl.ServerStartedAsyncEventHandler.Add(value);
+            remove => CoreImpl.ServerStartedAsyncEventHandler.Remove(value);
         }
 
         public static event PlayerRequestControlAsyncDelegate OnPlayerRequestControl
         {
-            add => Core.PlayerRequestControlAsyncEventHandler.Add(value);
-            remove => Core.PlayerRequestControlAsyncEventHandler.Remove(value);
+            add => CoreImpl.PlayerRequestControlAsyncEventHandler.Add(value);
+            remove => CoreImpl.PlayerRequestControlAsyncEventHandler.Remove(value);
         }
 
         public static event PlayerChangeAnimationAsyncDelegate OnPlayerChangeAnimation
         {
-            add => Core.PlayerChangeAnimationAsyncEventHandler.Add(value);
-            remove => Core.PlayerChangeAnimationAsyncEventHandler.Remove(value);
+            add => CoreImpl.PlayerChangeAnimationAsyncEventHandler.Add(value);
+            remove => CoreImpl.PlayerChangeAnimationAsyncEventHandler.Remove(value);
         }
 
         public static event PlayerChangeInteriorAsyncDelegate OnPlayerChangeInterior
         {
-            add => Core.PlayerChangeInteriorAsyncEventHandler.Add(value);
-            remove => Core.PlayerChangeInteriorAsyncEventHandler.Remove(value);
+            add => CoreImpl.PlayerChangeInteriorAsyncEventHandler.Add(value);
+            remove => CoreImpl.PlayerChangeInteriorAsyncEventHandler.Remove(value);
         }
 
         public static event PlayerDimensionChangeAsyncDelegate OnPlayerDimensionChange
         {
-            add => Core.PlayerDimensionChangeAsyncEventHandler.Add(value);
-            remove => Core.PlayerDimensionChangeAsyncEventHandler.Remove(value);
+            add => CoreImpl.PlayerDimensionChangeAsyncEventHandler.Add(value);
+            remove => CoreImpl.PlayerDimensionChangeAsyncEventHandler.Remove(value);
         }
 
         public static event VehicleSirenAsyncDelegate OnVehicleSiren
         {
-            add => Core.VehicleSirenAsyncEventHandler.Add(value);
-            remove => Core.VehicleSirenAsyncEventHandler.Remove(value);
+            add => CoreImpl.VehicleSirenAsyncEventHandler.Add(value);
+            remove => CoreImpl.VehicleSirenAsyncEventHandler.Remove(value);
         }
 
         public static event PlayerSpawnAsyncDelegate OnPlayerSpawn
         {
-            add => Core.PlayerSpawnAsyncEventHandler.Add(value);
-            remove => Core.PlayerSpawnAsyncEventHandler.Remove(value);
+            add => CoreImpl.PlayerSpawnAsyncEventHandler.Add(value);
+            remove => CoreImpl.PlayerSpawnAsyncEventHandler.Remove(value);
         }
 
         public static event RequestSyncedSceneAsyncEventDelegate OnRequestSyncedScene
         {
-            add => Core.RequestSyncedSceneAsyncEventHandler.Add(value);
-            remove => Core.RequestSyncedSceneAsyncEventHandler.Remove(value);
+            add => CoreImpl.RequestSyncedSceneAsyncEventHandler.Add(value);
+            remove => CoreImpl.RequestSyncedSceneAsyncEventHandler.Remove(value);
         }
 
         public static event StartSyncedSceneAsyncEventDelegate OnStartSyncedScene
         {
-            add => Core.StartSyncedSceneAsyncEventHandler.Add(value);
-            remove => Core.StartSyncedSceneAsyncEventHandler.Remove(value);
+            add => CoreImpl.StartSyncedSceneAsyncEventHandler.Add(value);
+            remove => CoreImpl.StartSyncedSceneAsyncEventHandler.Remove(value);
         }
 
         public static event StopSyncedSceneAsyncEventDelegate OnStopSyncedScene
         {
-            add => Core.StopSyncedSceneAsyncEventHandler.Add(value);
-            remove => Core.StopSyncedSceneAsyncEventHandler.Remove(value);
+            add => CoreImpl.StopSyncedSceneAsyncEventHandler.Add(value);
+            remove => CoreImpl.StopSyncedSceneAsyncEventHandler.Remove(value);
         }
 
         public static event UpdateSyncedSceneAsyncEventDelegate OnUpdateSyncedScene
         {
-            add => Core.UpdateSyncedSceneAsyncEventHandler.Add(value);
-            remove => Core.UpdateSyncedSceneAsyncEventHandler.Remove(value);
+            add => CoreImpl.UpdateSyncedSceneAsyncEventHandler.Add(value);
+            remove => CoreImpl.UpdateSyncedSceneAsyncEventHandler.Remove(value);
         }
 
         public static event ClientRequestObjectAsyncEventDelegate OnClientRequestObject
         {
-            add => Core.ClientRequestObjectAsyncEventHandler.Add(value);
-            remove => Core.ClientRequestObjectAsyncEventHandler.Remove(value);
+            add => CoreImpl.ClientRequestObjectAsyncEventHandler.Add(value);
+            remove => CoreImpl.ClientRequestObjectAsyncEventHandler.Remove(value);
         }
 
         public static event ClientDeleteObjectAsyncEventDelegate OnClientDeleteObject
         {
-            add => Core.ClientDeleteObjectAsyncEventHandler.Add(value);
-            remove => Core.ClientDeleteObjectAsyncEventHandler.Remove(value);
+            add => CoreImpl.ClientDeleteObjectAsyncEventHandler.Add(value);
+            remove => CoreImpl.ClientDeleteObjectAsyncEventHandler.Remove(value);
         }
 
         public static event GivePedScriptedTaskAsyncDelegate OnGivePedScriptedTask
         {
-            add => Core.GivePedScriptedTaskAsyncEventHandler.Add(value);
-            remove => Core.GivePedScriptedTaskAsyncEventHandler.Remove(value);
+            add => CoreImpl.GivePedScriptedTaskAsyncEventHandler.Add(value);
+            remove => CoreImpl.GivePedScriptedTaskAsyncEventHandler.Remove(value);
         }
 
         public static event PedDamageAsyncDelegate OnPedDamage
         {
-            add => Core.PedDamageAsyncEventHandler.Add(value);
-            remove => Core.PedDamageAsyncEventHandler.Remove(value);
+            add => CoreImpl.PedDamageAsyncEventHandler.Add(value);
+            remove => CoreImpl.PedDamageAsyncEventHandler.Remove(value);
         }
 
         public static event PedDeadAsyncDelegate OnPedDead
         {
-            add => Core.PedDeadAsyncEventHandler.Add(value);
-            remove => Core.PedDeadAsyncEventHandler.Remove(value);
+            add => CoreImpl.PedDeadAsyncEventHandler.Add(value);
+            remove => CoreImpl.PedDeadAsyncEventHandler.Remove(value);
         }
 
         public static event PedHealAsyncDelegate OnPedHeal
         {
-            add => Core.PedHealAsyncEventHandler.Add(value);
-            remove => Core.PedHealAsyncEventHandler.Remove(value);
+            add => CoreImpl.PedHealAsyncEventHandler.Add(value);
+            remove => CoreImpl.PedHealAsyncEventHandler.Remove(value);
         }
 
         public static event PlayerStartTalkingAsyncDelegate OnPlayerStartTalking
         {
-            add => Core.PlayerStartTalkingAsyncEventHandler.Add(value);
-            remove => Core.PlayerStartTalkingAsyncEventHandler.Remove(value);
+            add => CoreImpl.PlayerStartTalkingAsyncEventHandler.Add(value);
+            remove => CoreImpl.PlayerStartTalkingAsyncEventHandler.Remove(value);
         }
 
         public static event PlayerStopTalkingAsyncDelegate OnPlayerStopTalking
         {
-            add => Core.PlayerStopTalkingAsyncEventHandler.Add(value);
-            remove => Core.PlayerStopTalkingAsyncEventHandler.Remove(value);
+            add => CoreImpl.PlayerStopTalkingAsyncEventHandler.Add(value);
+            remove => CoreImpl.PlayerStopTalkingAsyncEventHandler.Remove(value);
         }
 
         public static event ScriptRpcAsyncDelegate OnScriptRpc
         {
-            add => Core.ScriptRpcAsyncEventHandler.Add(value);
-            remove => Core.ScriptRpcAsyncEventHandler.Remove(value);
+            add => CoreImpl.ScriptRpcAsyncEventHandler.Add(value);
+            remove => CoreImpl.ScriptRpcAsyncEventHandler.Remove(value);
         }
 
         public static event ScriptRpcAnswerAsyncDelegate OnScriptRpcAnswer
         {
-            add => Core.ScriptRpcAnswerAsyncEventHandler.Add(value);
-            remove => Core.ScriptRpcAnswerAsyncEventHandler.Remove(value);
+            add => CoreImpl.ScriptRpcAnswerAsyncEventHandler.Add(value);
+            remove => CoreImpl.ScriptRpcAnswerAsyncEventHandler.Remove(value);
         }
 
         public static event PlayerConnectDeniedAsyncDelegate OnPlayerConnectDenied
         {
-            add => Core.PlayerConnectDeniedAsyncEventHandler.Add(value);
-            remove => Core.PlayerConnectDeniedAsyncEventHandler.Remove(value);
+            add => CoreImpl.PlayerConnectDeniedAsyncEventHandler.Add(value);
+            remove => CoreImpl.PlayerConnectDeniedAsyncEventHandler.Remove(value);
         }
 
         public static event ResourceEventAsyncDelegate OnResourceStart
         {
-            add => Core.ResourceStartAsyncEventHandler.Add(value);
-            remove => Core.ResourceStartAsyncEventHandler.Remove(value);
+            add => CoreImpl.ResourceStartAsyncEventHandler.Add(value);
+            remove => CoreImpl.ResourceStartAsyncEventHandler.Remove(value);
         }
 
         public static event ResourceEventAsyncDelegate OnResourceStop
         {
-            add => Core.ResourceStopAsyncEventHandler.Add(value);
-            remove => Core.ResourceStopAsyncEventHandler.Remove(value);
+            add => CoreImpl.ResourceStopAsyncEventHandler.Add(value);
+            remove => CoreImpl.ResourceStopAsyncEventHandler.Remove(value);
         }
 
         public static event ResourceEventAsyncDelegate OnResourceError
         {
-            add => Core.ResourceErrorAsyncEventHandler.Add(value);
-            remove => Core.ResourceErrorAsyncEventHandler.Remove(value);
+            add => CoreImpl.ResourceErrorAsyncEventHandler.Add(value);
+            remove => CoreImpl.ResourceErrorAsyncEventHandler.Remove(value);
         }
 
         public static async void Log(string message)
         {
             var messagePtr = MemoryUtils.StringToHGlobalUtf8(message);
-            await Do(() => Alt.Core.LogInfo(messagePtr));
+            await Do(() => Alt.CoreImpl.LogInfo(messagePtr));
             Marshal.FreeHGlobal(messagePtr);
         }
 
@@ -376,9 +376,9 @@ namespace AltV.Net.Async
         {
             var size = args.Length;
             var mValues = new MValueConst[size];
-            Alt.Core.CreateMValues(mValues, args);
+            Alt.CoreImpl.CreateMValues(mValues, args);
             var eventNamePtr = MemoryUtils.StringToHGlobalUtf8(eventName);
-            await Do(() => Alt.Core.TriggerLocalEvent(eventNamePtr, mValues));
+            await Do(() => Alt.CoreImpl.TriggerLocalEvent(eventNamePtr, mValues));
             Marshal.FreeHGlobal(eventNamePtr);
             for (var i = 0; i < size; i++)
             {
@@ -390,9 +390,9 @@ namespace AltV.Net.Async
         {
             var size = args.Length;
             var mValues = new MValueConst[size];
-            Alt.Core.CreateMValues(mValues, args);
+            Alt.CoreImpl.CreateMValues(mValues, args);
             var eventNamePtr = MemoryUtils.StringToHGlobalUtf8(eventName);
-            await Do(() => Alt.Core.TriggerClientEventForAll(eventNamePtr, mValues));
+            await Do(() => Alt.CoreImpl.TriggerClientEventForAll(eventNamePtr, mValues));
             Marshal.FreeHGlobal(eventNamePtr);
             for (var i = 0; i < size; i++)
             {
@@ -404,9 +404,9 @@ namespace AltV.Net.Async
         {
             var size = args.Length;
             var mValues = new MValueConst[size];
-            Alt.Core.CreateMValues(mValues, args);
+            Alt.CoreImpl.CreateMValues(mValues, args);
             var eventNamePtr = MemoryUtils.StringToHGlobalUtf8(eventName);
-            await Do(() => Alt.Core.TriggerClientEventUnreliableForAll(eventNamePtr, mValues));
+            await Do(() => Alt.CoreImpl.TriggerClientEventUnreliableForAll(eventNamePtr, mValues));
             Marshal.FreeHGlobal(eventNamePtr);
             for (var i = 0; i < size; i++)
             {
@@ -431,7 +431,7 @@ namespace AltV.Net.Async
 
         internal static void Setup(AsyncCore core)
         {
-            Core = core;
+            CoreImpl = core;
         }
 
         public static Task Do(Action action)

@@ -57,7 +57,7 @@ namespace AltV.Net.Client.Elements.Entities
                 var ptr = Core.Library.Client.Player_GetFilter(PlayerNativePointer);
                 if (ptr == IntPtr.Zero) return null;
 
-                return Alt.Core.PoolManager.AudioFilter.Get(ptr);
+                return Alt.CoreImpl.PoolManager.AudioFilter.Get(ptr);
             }
         }
 
@@ -85,7 +85,7 @@ namespace AltV.Net.Client.Elements.Entities
                     var ptr = Core.Library.Shared.Player_GetVehicle(PlayerNativePointer);
                     if (ptr == IntPtr.Zero) return null;
 
-                    return Alt.Core.PoolManager.Vehicle.Get(ptr);
+                    return Alt.CoreImpl.PoolManager.Vehicle.Get(ptr);
                 }
             }
         }
@@ -111,7 +111,7 @@ namespace AltV.Net.Client.Elements.Entities
                 {
                     CheckIfEntityExistsOrCached();
                     int size = 0;
-                    var str = Alt.Core.Library.Shared.Player_GetName(this.PlayerNativePointer, &size);
+                    var str = Alt.CoreImpl.Library.Shared.Player_GetName(this.PlayerNativePointer, &size);
                     var stringResult = Marshal.PtrToStringUTF8(str, size);
                     Core.Library.Shared.FreeString(str);
                     return stringResult;

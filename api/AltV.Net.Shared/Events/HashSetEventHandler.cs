@@ -2,7 +2,7 @@ namespace AltV.Net.Shared.Events
 {
     internal class HashSetEventHandler<TEvent> : IEventHandler<TEvent>
     {
-        private ISharedCore core => AltShared.Core; // todo pass core to constructor
+        private ISharedCore core => AltShared.CoreImpl; // todo pass core to constructor
         private readonly EventType? type;
         private readonly HashSet<TEvent> events = new();
 

@@ -5,17 +5,17 @@ namespace AltV.Net.Client
 {
     public partial class Alt
     {
-        public static void SetMetaData(string key, object value) => Core.SetMetaData(key, value);
+        public static void SetMetaData(string key, object value) => CoreImpl.SetMetaData(key, value);
 
-        public static bool HasMetaData(string key) => Core.HasMetaData(key);
+        public static bool HasMetaData(string key) => CoreImpl.HasMetaData(key);
 
-        public static void DeleteMetaData(string key) => Core.DeleteMetaData(key);
+        public static void DeleteMetaData(string key) => CoreImpl.DeleteMetaData(key);
 
-        public static bool HasLocalMetaData(string key) => Core.HasLocalMetaData(key);
+        public static bool HasLocalMetaData(string key) => CoreImpl.HasLocalMetaData(key);
 
         public static bool GetMetaData(string key, out int result)
         {
-            Core.GetMetaData(key, out var mValue);
+            CoreImpl.GetMetaData(key, out var mValue);
             using (mValue)
             {
                 if (mValue.type != MValueConst.Type.Int)
@@ -32,7 +32,7 @@ namespace AltV.Net.Client
 
         public static bool GetMetaData(string key, out uint result)
         {
-            Core.GetMetaData(key, out var mValue);
+            CoreImpl.GetMetaData(key, out var mValue);
             using (mValue)
             {
                 if (mValue.type != MValueConst.Type.Uint)
@@ -49,7 +49,7 @@ namespace AltV.Net.Client
 
         public static bool GetMetaData(string key, out float result)
         {
-            Core.GetMetaData(key, out var mValue);
+            CoreImpl.GetMetaData(key, out var mValue);
             using (mValue)
             {
                 if (mValue.type != MValueConst.Type.Double)
@@ -66,7 +66,7 @@ namespace AltV.Net.Client
 
         public static bool GetMetaData<T>(string key, out T result)
         {
-            Core.GetMetaData(key, out var mValue);
+            CoreImpl.GetMetaData(key, out var mValue);
             using (mValue)
             {
 
@@ -85,7 +85,7 @@ namespace AltV.Net.Client
 
         public static bool GetSyncedMetaData<T>(string key, out T result)
         {
-            Core.GetSyncedMetaData(key, out var mValue);
+            CoreImpl.GetSyncedMetaData(key, out var mValue);
             using (mValue)
             {
 
@@ -104,7 +104,7 @@ namespace AltV.Net.Client
 
         public static bool GetLocalMetaData<T>(string key, out T result)
         {
-            Core.GetLocalMetaData<T>(key, out var mValue);
+            CoreImpl.GetLocalMetaData<T>(key, out var mValue);
             using (mValue)
             {
 

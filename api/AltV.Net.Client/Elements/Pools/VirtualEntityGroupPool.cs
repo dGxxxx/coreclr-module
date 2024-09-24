@@ -12,7 +12,7 @@ namespace AltV.Net.Client.Elements.Pools
         {
             unsafe
             {
-                return Alt.Core.Library.Shared.VirtualEntity_GetID(entityPointer);
+                return Alt.CoreImpl.Library.Shared.VirtualEntity_GetID(entityPointer);
             }
         }
     }

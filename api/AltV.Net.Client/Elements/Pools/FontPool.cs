@@ -12,7 +12,7 @@ namespace AltV.Net.Client.Elements.Pools
         {
             unsafe
             {
-                return Alt.Core.Library.Client.Font_GetID(entityPointer);
+                return Alt.CoreImpl.Library.Client.Font_GetID(entityPointer);
             }
         }
     }

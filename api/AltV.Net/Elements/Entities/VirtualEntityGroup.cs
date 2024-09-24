@@ -19,7 +19,7 @@ public class VirtualEntityGroup : BaseObject, IVirtualEntityGroup
     {
         unsafe
         {
-            return Alt.Core.Library.Shared.VirtualEntityGroup_GetID(pedPointer);
+            return Alt.CoreImpl.Library.Shared.VirtualEntityGroup_GetID(pedPointer);
         }
     }
 

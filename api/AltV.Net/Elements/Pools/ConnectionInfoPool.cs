@@ -13,7 +13,7 @@ public class ConnectionInfoPool : BaseObjectPool<IConnectionInfo>
     {
         unsafe
         {
-            return Alt.Core.Library.Server.ConnectionInfo_GetID(entityPointer);
+            return Alt.CoreImpl.Library.Server.ConnectionInfo_GetID(entityPointer);
         }
     }
 }

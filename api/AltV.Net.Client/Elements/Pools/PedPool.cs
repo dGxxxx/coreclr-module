@@ -13,7 +13,7 @@ public class PedPool : EntityPool<IPed>
     {
         unsafe
         {
-            return Alt.Core.Library.Shared.Ped_GetID (pedPointer);
+            return Alt.CoreImpl.Library.Shared.Ped_GetID (pedPointer);
         }
     }
 }

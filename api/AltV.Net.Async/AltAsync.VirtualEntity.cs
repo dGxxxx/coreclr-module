@@ -8,7 +8,7 @@ namespace AltV.Net.Async;
 public partial class AltAsync
 {
     public static Task<IVirtualEntityGroup> CreateVirtualEntityGroup(uint streamingDistance) =>AltVAsync.Schedule(() =>
-        Alt.Core.CreateVirtualEntityGroup(streamingDistance));
+        Alt.CreateVirtualEntityGroup(streamingDistance));
 
     public static Task<IVirtualEntity> CreateVirtualEntity(IVirtualEntityGroup group, Position position,
         uint streamingDistance, Dictionary<string, object> dataDict) =>

@@ -58,27 +58,27 @@ namespace AltV.Net.Client.Async
             AltVAsync = altVAsync;
         }
 
-        // internal static void Setup(AsyncCore core)
-        // {
-        //     Core = core;
-        // }
+        //internal static void Setup(Core core)
+        //{
+        //    CoreImpl = core;
+        //}
 
         public static Task Do(Action action)
         {
             CheckIfAsyncResource();
             return AltVAsync.Schedule(action);
         }
-        
+
         public static Task Do(Task task)
         {
             throw new ArgumentException("AltAsync.Do should never have async code inside");
         }
-        
+
         public static Task Do(Func<Task> task)
         {
             throw new ArgumentException("AltAsync.Do should never have async code inside");
         }
-        
+
         public static void RunOnMainThreadBlocking(Action action, SemaphoreSlim semaphoreSlim)
         {
             CheckIfAsyncResource();
@@ -125,27 +125,27 @@ namespace AltV.Net.Client.Async
         {
             public async ValueTask DisposeAsync()
             {
-                if (!Alt.Core.IsMainThread()) throw new Exception("ReturnToMainThread using block was exited on a non-main thread");
+                if (!Alt.CoreImpl.IsMainThread()) throw new Exception("ReturnToMainThread using block was exited on a non-main thread");
                 await Task.Run(() => {}); // jump to bg thread
             }
 
             private MainThreadContext()
             {
             }
-            
+
             internal static readonly MainThreadContext Instance = new();
         }
 
         public static async Task<MainThreadContext> ReturnToMainThread()
         {
-            if (Alt.Core.IsMainThread()) return MainThreadContext.Instance;
+            if (Alt.CoreImpl.IsMainThread()) return MainThreadContext.Instance;
             var source = new TaskCompletionSource();
             RunOnMainThread(() => source.SetResult());
             await source.Task;
             return MainThreadContext.Instance;
         }
-        
-        
+
+
         public static async Task WaitFor(Func<bool> fn, uint timeout = 2000, uint interval = 0)
         {
             var checkUntil = DateTime.Now.AddMilliseconds(timeout);
@@ -164,7 +164,7 @@ namespace AltV.Net.Client.Async
                 source.SetException(new TimeoutException("Failed to wait for callback"));
                 Alt.ClearInterval(handle);
             }, interval);
-            
+
             await source.Task;
         }
     }

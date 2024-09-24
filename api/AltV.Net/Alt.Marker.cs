@@ -8,8 +8,8 @@ namespace AltV.Net;
 public partial class Alt
 {
     public static IMarker CreateMarker(MarkerType type, Position pos, Rgba color) =>
-        Core.CreateMarker(null, type, pos, color);
+        CoreImpl.CreateMarker(null, type, pos, color);
 
     public static IMarker CreateMarker(IPlayer player, MarkerType type, Position pos, Rgba color) =>
-        Core.CreateMarker(player, type, pos, color);
+        CoreImpl.CreateMarker(player, type, pos, color);
 }

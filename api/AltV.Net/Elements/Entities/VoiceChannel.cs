@@ -24,7 +24,7 @@ namespace AltV.Net.Elements.Entities
         {
             unsafe
             {
-                return Alt.Core.Library.Shared.VoiceChannel_GetID(pedPointer);
+                return Alt.CoreImpl.Library.Shared.VoiceChannel_GetID(pedPointer);
             }
         }
 

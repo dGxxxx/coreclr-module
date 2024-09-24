@@ -20,7 +20,7 @@ public class Object : Entity, IObject
     {
         unsafe
         {
-            return Alt.Core.Library.Shared.Object_GetID(pointer);
+            return Alt.CoreImpl.Library.Shared.Object_GetID(pointer);
         }
     }
 

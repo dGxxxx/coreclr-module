@@ -14,9 +14,9 @@ namespace AltV.Net.Elements.Args
         private readonly ISharedCore core;
         
         [Obsolete("Use Alt.CreateMValueWriter or overload with ISharedCore argument instead")]
-        public MValueWriter2() : this(AltShared.Core)
+        public MValueWriter2() : this(AltShared.CoreImpl)
         {
-            AltShared.Core.LogWarning("new MValueWriter2() is deprecated, use Alt.CreateMValueWriter or overload with ISharedCore argument instead");
+            AltShared.CoreImpl.LogWarning("new MValueWriter2() is deprecated, use Alt.CreateMValueWriter or overload with ISharedCore argument instead");
         }
         
         public MValueWriter2(ISharedCore core)
@@ -43,7 +43,7 @@ namespace AltV.Net.Elements.Args
             public List<object> Values { get; }
 
             [Obsolete("Use overload with core as first parameter instead")]
-            public MValueObject(List<string> names, List<object> values) : this(AltShared.Core, names, values)
+            public MValueObject(List<string> names, List<object> values) : this(AltShared.CoreImpl, names, values)
             {
             }
 
@@ -91,7 +91,7 @@ namespace AltV.Net.Elements.Args
 
 
             [Obsolete("Use overload with core as first parameter instead")]
-            public MValueArray(List<object> values) : this(AltShared.Core, values)
+            public MValueArray(List<object> values) : this(AltShared.CoreImpl, values)
             {
             }
             public MValueArray(ISharedCore core, List<object> values)

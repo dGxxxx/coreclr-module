@@ -49,7 +49,7 @@ namespace AltV.Net.Elements.Entities
         {
             unsafe
             {
-                return Alt.Core.Library.Shared.Blip_GetID(pedPointer);
+                return Alt.CoreImpl.Library.Shared.Blip_GetID(pedPointer);
             }
         }
 
@@ -103,7 +103,7 @@ namespace AltV.Net.Elements.Entities
                     var entityType = BaseObjectType.Undefined;
                     var entityPointer = Core.Library.Shared.Blip_AttachedTo(BlipNativePointer, &entityType);
                     if (entityPointer == IntPtr.Zero) return null;
-                    return (IEntity)Alt.Core.PoolManager.Blip.Get(entityPointer);
+                    return (IEntity)Core.PoolManager.Blip.Get(entityPointer);
                 }
             }
         }
