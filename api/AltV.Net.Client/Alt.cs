@@ -58,6 +58,7 @@ namespace AltV.Net.Client
         public static IReadOnlyCollection<IPed> GetAllPeds() => CoreImpl.GetAllPeds();
         public static IReadOnlyCollection<IObject> GetAllNetworkObjects() => CoreImpl.GetAllNetworkObjects();
         public static IReadOnlyCollection<IColShape> GetAllColShapes() => CoreImpl.GetAllColShapes();
+        public static IReadOnlyCollection<ICheckpoint> GetAllCheckPoints() => CoreImpl.GetAllCheckpoints();
         public static IReadOnlyCollection<IMarker> GetAllMarkers() => CoreImpl.GetAllMarkers();
         public static IReadOnlyCollection<ITextLabel> GetAllTextLabels() => CoreImpl.GetAllTextLabels();
         public static IReadOnlyCollection<ILocalObject> GetAllLocalObjects() => CoreImpl.GetAllLocalObjects();
