@@ -154,5 +154,7 @@ namespace AltV.Net
         public static string Branch => CoreImpl.Branch;
         public static string Version => CoreImpl.Version;
         public static bool IsMainThread => CoreImpl.IsMainThread();
+
+        public static uint[] LoadedVehicleModels => CoreImpl.LoadedVehicleModels;
     }
 }
