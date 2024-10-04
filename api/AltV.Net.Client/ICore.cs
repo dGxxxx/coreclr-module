@@ -234,5 +234,6 @@ namespace AltV.Net.Client
 
         bool ReloadVehiclePhysics(uint modelHash);
         List<SafeTimer> RunningTimers { get; }
+        Interior GetInterior(uint interiorId);
     }
 }

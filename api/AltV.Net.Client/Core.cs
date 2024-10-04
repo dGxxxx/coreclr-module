@@ -261,6 +261,11 @@ namespace AltV.Net.Client
         {
             return new HandlingData(this, modelHash);
         }
+        
+        public Interior GetInterior(uint interiorId)
+        {
+            return new Interior(this, interiorId);
+        }
 
         public AudioCategory GetAudioCategoryByName(string audioCategory)
         {

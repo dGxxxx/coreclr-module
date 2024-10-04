@@ -475,6 +475,36 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<nint, nint, nint, ClientEvents.HttpResponseModuleDelegate, void> HttpClient_Put { get; }
         public delegate* unmanaged[Cdecl]<nint, nint, nint, void> HttpClient_SetExtraHeader { get; }
         public delegate* unmanaged[Cdecl]<nint, nint, nint, ClientEvents.HttpResponseModuleDelegate, void> HttpClient_Trace { get; }
+        public delegate* unmanaged[Cdecl]<uint, InteriorExtendInfo*, void> Interior_GetEntitiesExtents { get; }
+        public delegate* unmanaged[Cdecl]<uint, ushort> Interior_GetPortalCount { get; }
+        public delegate* unmanaged[Cdecl]<uint, Vector3> Interior_GetPosition { get; }
+        public delegate* unmanaged[Cdecl]<uint, ushort> Interior_GetRoomCount { get; }
+        public delegate* unmanaged[Cdecl]<uint, Rotation> Interior_GetRotation { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, ushort> InteriorPortal_GetCornerCount { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, uint, Vector3> InteriorPortal_GetCornerPosition { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, uint, uint> InteriorPortal_GetEntityArcheType { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, ushort> InteriorPortal_GetEntityCount { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, uint, int> InteriorPortal_GetEntityFlag { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, uint, Vector3> InteriorPortal_GetEntityPosition { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, uint, Rotation> InteriorPortal_GetEntityRotation { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, int> InteriorPortal_GetFlag { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, uint> InteriorPortal_GetIndex { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, uint> InteriorPortal_GetRoomFrom { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, uint> InteriorPortal_GetRoomTo { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, uint, Vector3, void> InteriorPortal_SetCornerPosition { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, uint, int, void> InteriorPortal_SetEntityFlag { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, int, void> InteriorPortal_SetFlag { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, uint, void> InteriorPortal_SetRoomFrom { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, uint, void> InteriorPortal_SetRoomTo { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, byte, InteriorExtendInfo*, void> InteriorRoom_GetExtents { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, byte, int> InteriorRoom_GetFlag { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, byte, uint> InteriorRoom_GetIndex { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, byte, int*, nint> InteriorRoom_GetName { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, byte, uint> InteriorRoom_GetNameHash { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, byte, uint> InteriorRoom_GetTimecycle { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, byte, Vector3, Vector3, void> InteriorRoom_SetExtents { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, byte, int, void> InteriorRoom_SetFlag { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, byte, uint, void> InteriorRoom_SetTimecycle { get; }
         public delegate* unmanaged[Cdecl]<nint, void> LocalObject_ActivatePhysics { get; }
         public delegate* unmanaged[Cdecl]<nint, nint, short, Vector3, Rotation, byte, byte, byte, void> LocalObject_AttachToEntity { get; }
         public delegate* unmanaged[Cdecl]<nint, uint, short, Vector3, Rotation, byte, byte, byte, void> LocalObject_AttachToEntity_ScriptId { get; }
@@ -908,7 +938,7 @@ namespace AltV.Net.CApi.Libraries
 
     public unsafe class ClientLibrary : IClientLibrary
     {
-        public readonly uint Methods = 1779;
+        public readonly uint Methods = 1809;
         public delegate* unmanaged[Cdecl]<nint, nint, void> Audio_AddOutput { get; }
         public delegate* unmanaged[Cdecl]<nint, nint> Audio_GetBaseObject { get; }
         public delegate* unmanaged[Cdecl]<nint, double> Audio_GetCurrentTime { get; }
@@ -1373,6 +1403,36 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<nint, nint, nint, ClientEvents.HttpResponseModuleDelegate, void> HttpClient_Put { get; }
         public delegate* unmanaged[Cdecl]<nint, nint, nint, void> HttpClient_SetExtraHeader { get; }
         public delegate* unmanaged[Cdecl]<nint, nint, nint, ClientEvents.HttpResponseModuleDelegate, void> HttpClient_Trace { get; }
+        public delegate* unmanaged[Cdecl]<uint, InteriorExtendInfo*, void> Interior_GetEntitiesExtents { get; }
+        public delegate* unmanaged[Cdecl]<uint, ushort> Interior_GetPortalCount { get; }
+        public delegate* unmanaged[Cdecl]<uint, Vector3> Interior_GetPosition { get; }
+        public delegate* unmanaged[Cdecl]<uint, ushort> Interior_GetRoomCount { get; }
+        public delegate* unmanaged[Cdecl]<uint, Rotation> Interior_GetRotation { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, ushort> InteriorPortal_GetCornerCount { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, uint, Vector3> InteriorPortal_GetCornerPosition { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, uint, uint> InteriorPortal_GetEntityArcheType { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, ushort> InteriorPortal_GetEntityCount { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, uint, int> InteriorPortal_GetEntityFlag { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, uint, Vector3> InteriorPortal_GetEntityPosition { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, uint, Rotation> InteriorPortal_GetEntityRotation { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, int> InteriorPortal_GetFlag { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, uint> InteriorPortal_GetIndex { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, uint> InteriorPortal_GetRoomFrom { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, uint> InteriorPortal_GetRoomTo { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, uint, Vector3, void> InteriorPortal_SetCornerPosition { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, uint, int, void> InteriorPortal_SetEntityFlag { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, int, void> InteriorPortal_SetFlag { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, uint, void> InteriorPortal_SetRoomFrom { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, uint, void> InteriorPortal_SetRoomTo { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, byte, InteriorExtendInfo*, void> InteriorRoom_GetExtents { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, byte, int> InteriorRoom_GetFlag { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, byte, uint> InteriorRoom_GetIndex { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, byte, int*, nint> InteriorRoom_GetName { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, byte, uint> InteriorRoom_GetNameHash { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, byte, uint> InteriorRoom_GetTimecycle { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, byte, Vector3, Vector3, void> InteriorRoom_SetExtents { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, byte, int, void> InteriorRoom_SetFlag { get; }
+        public delegate* unmanaged[Cdecl]<uint, uint, byte, uint, void> InteriorRoom_SetTimecycle { get; }
         public delegate* unmanaged[Cdecl]<nint, void> LocalObject_ActivatePhysics { get; }
         public delegate* unmanaged[Cdecl]<nint, nint, short, Vector3, Rotation, byte, byte, byte, void> LocalObject_AttachToEntity { get; }
         public delegate* unmanaged[Cdecl]<nint, uint, short, Vector3, Rotation, byte, byte, byte, void> LocalObject_AttachToEntity_ScriptId { get; }
@@ -2730,6 +2790,66 @@ namespace AltV.Net.CApi.Libraries
         private static void HttpClient_SetExtraHeaderFallback(nint _httpClient, nint _key, nint _value) => throw new Exceptions.OutdatedSdkException("HttpClient_SetExtraHeader", "HttpClient_SetExtraHeader SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void HttpClient_TraceDelegate(nint _httpClient, nint _url, nint _body, ClientEvents.HttpResponseModuleDelegate _callback);
         private static void HttpClient_TraceFallback(nint _httpClient, nint _url, nint _body, ClientEvents.HttpResponseModuleDelegate _callback) => throw new Exceptions.OutdatedSdkException("HttpClient_Trace", "HttpClient_Trace SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Interior_GetEntitiesExtentsDelegate(uint _interiorId, InteriorExtendInfo* _extents);
+        private static void Interior_GetEntitiesExtentsFallback(uint _interiorId, InteriorExtendInfo* _extents) => throw new Exceptions.OutdatedSdkException("Interior_GetEntitiesExtents", "Interior_GetEntitiesExtents SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate ushort Interior_GetPortalCountDelegate(uint _interiorId);
+        private static ushort Interior_GetPortalCountFallback(uint _interiorId) => throw new Exceptions.OutdatedSdkException("Interior_GetPortalCount", "Interior_GetPortalCount SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate Vector3 Interior_GetPositionDelegate(uint _interiorId);
+        private static Vector3 Interior_GetPositionFallback(uint _interiorId) => throw new Exceptions.OutdatedSdkException("Interior_GetPosition", "Interior_GetPosition SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate ushort Interior_GetRoomCountDelegate(uint _interiorId);
+        private static ushort Interior_GetRoomCountFallback(uint _interiorId) => throw new Exceptions.OutdatedSdkException("Interior_GetRoomCount", "Interior_GetRoomCount SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate Rotation Interior_GetRotationDelegate(uint _interiorId);
+        private static Rotation Interior_GetRotationFallback(uint _interiorId) => throw new Exceptions.OutdatedSdkException("Interior_GetRotation", "Interior_GetRotation SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate ushort InteriorPortal_GetCornerCountDelegate(uint _interiorId, uint _portalIndex);
+        private static ushort InteriorPortal_GetCornerCountFallback(uint _interiorId, uint _portalIndex) => throw new Exceptions.OutdatedSdkException("InteriorPortal_GetCornerCount", "InteriorPortal_GetCornerCount SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate Vector3 InteriorPortal_GetCornerPositionDelegate(uint _interiorId, uint _portalIndex, uint _cornerIndex);
+        private static Vector3 InteriorPortal_GetCornerPositionFallback(uint _interiorId, uint _portalIndex, uint _cornerIndex) => throw new Exceptions.OutdatedSdkException("InteriorPortal_GetCornerPosition", "InteriorPortal_GetCornerPosition SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate uint InteriorPortal_GetEntityArcheTypeDelegate(uint _interiorId, uint _portalIndex, uint _entityIndex);
+        private static uint InteriorPortal_GetEntityArcheTypeFallback(uint _interiorId, uint _portalIndex, uint _entityIndex) => throw new Exceptions.OutdatedSdkException("InteriorPortal_GetEntityArcheType", "InteriorPortal_GetEntityArcheType SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate ushort InteriorPortal_GetEntityCountDelegate(uint _interiorId, uint _portalIndex);
+        private static ushort InteriorPortal_GetEntityCountFallback(uint _interiorId, uint _portalIndex) => throw new Exceptions.OutdatedSdkException("InteriorPortal_GetEntityCount", "InteriorPortal_GetEntityCount SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate int InteriorPortal_GetEntityFlagDelegate(uint _interiorId, uint _portalIndex, uint _entityIndex);
+        private static int InteriorPortal_GetEntityFlagFallback(uint _interiorId, uint _portalIndex, uint _entityIndex) => throw new Exceptions.OutdatedSdkException("InteriorPortal_GetEntityFlag", "InteriorPortal_GetEntityFlag SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate Vector3 InteriorPortal_GetEntityPositionDelegate(uint _interiorId, uint _portalIndex, uint _entityIndex);
+        private static Vector3 InteriorPortal_GetEntityPositionFallback(uint _interiorId, uint _portalIndex, uint _entityIndex) => throw new Exceptions.OutdatedSdkException("InteriorPortal_GetEntityPosition", "InteriorPortal_GetEntityPosition SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate Rotation InteriorPortal_GetEntityRotationDelegate(uint _interiorId, uint _portalIndex, uint _entityIndex);
+        private static Rotation InteriorPortal_GetEntityRotationFallback(uint _interiorId, uint _portalIndex, uint _entityIndex) => throw new Exceptions.OutdatedSdkException("InteriorPortal_GetEntityRotation", "InteriorPortal_GetEntityRotation SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate int InteriorPortal_GetFlagDelegate(uint _interiorId, uint _portalIndex);
+        private static int InteriorPortal_GetFlagFallback(uint _interiorId, uint _portalIndex) => throw new Exceptions.OutdatedSdkException("InteriorPortal_GetFlag", "InteriorPortal_GetFlag SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate uint InteriorPortal_GetIndexDelegate(uint _interiorId, uint _portalIndex);
+        private static uint InteriorPortal_GetIndexFallback(uint _interiorId, uint _portalIndex) => throw new Exceptions.OutdatedSdkException("InteriorPortal_GetIndex", "InteriorPortal_GetIndex SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate uint InteriorPortal_GetRoomFromDelegate(uint _interiorId, uint _portalIndex);
+        private static uint InteriorPortal_GetRoomFromFallback(uint _interiorId, uint _portalIndex) => throw new Exceptions.OutdatedSdkException("InteriorPortal_GetRoomFrom", "InteriorPortal_GetRoomFrom SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate uint InteriorPortal_GetRoomToDelegate(uint _interiorId, uint _portalIndex);
+        private static uint InteriorPortal_GetRoomToFallback(uint _interiorId, uint _portalIndex) => throw new Exceptions.OutdatedSdkException("InteriorPortal_GetRoomTo", "InteriorPortal_GetRoomTo SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void InteriorPortal_SetCornerPositionDelegate(uint _interiorId, uint _portalIndex, uint _cornerIndex, Vector3 _position);
+        private static void InteriorPortal_SetCornerPositionFallback(uint _interiorId, uint _portalIndex, uint _cornerIndex, Vector3 _position) => throw new Exceptions.OutdatedSdkException("InteriorPortal_SetCornerPosition", "InteriorPortal_SetCornerPosition SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void InteriorPortal_SetEntityFlagDelegate(uint _interiorId, uint _portalIndex, uint _entityIndex, int _flag);
+        private static void InteriorPortal_SetEntityFlagFallback(uint _interiorId, uint _portalIndex, uint _entityIndex, int _flag) => throw new Exceptions.OutdatedSdkException("InteriorPortal_SetEntityFlag", "InteriorPortal_SetEntityFlag SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void InteriorPortal_SetFlagDelegate(uint _interiorId, uint _portalIndex, int _flag);
+        private static void InteriorPortal_SetFlagFallback(uint _interiorId, uint _portalIndex, int _flag) => throw new Exceptions.OutdatedSdkException("InteriorPortal_SetFlag", "InteriorPortal_SetFlag SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void InteriorPortal_SetRoomFromDelegate(uint _interiorId, uint _portalIndex, uint _roomFrom);
+        private static void InteriorPortal_SetRoomFromFallback(uint _interiorId, uint _portalIndex, uint _roomFrom) => throw new Exceptions.OutdatedSdkException("InteriorPortal_SetRoomFrom", "InteriorPortal_SetRoomFrom SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void InteriorPortal_SetRoomToDelegate(uint _interiorId, uint _portalIndex, uint _roomTo);
+        private static void InteriorPortal_SetRoomToFallback(uint _interiorId, uint _portalIndex, uint _roomTo) => throw new Exceptions.OutdatedSdkException("InteriorPortal_SetRoomTo", "InteriorPortal_SetRoomTo SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void InteriorRoom_GetExtentsDelegate(uint _interiorId, uint _roomValue, byte _isIndex, InteriorExtendInfo* _extents);
+        private static void InteriorRoom_GetExtentsFallback(uint _interiorId, uint _roomValue, byte _isIndex, InteriorExtendInfo* _extents) => throw new Exceptions.OutdatedSdkException("InteriorRoom_GetExtents", "InteriorRoom_GetExtents SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate int InteriorRoom_GetFlagDelegate(uint _interiorId, uint _roomValue, byte _isIndex);
+        private static int InteriorRoom_GetFlagFallback(uint _interiorId, uint _roomValue, byte _isIndex) => throw new Exceptions.OutdatedSdkException("InteriorRoom_GetFlag", "InteriorRoom_GetFlag SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate uint InteriorRoom_GetIndexDelegate(uint _interiorId, uint _roomValue, byte _isIndex);
+        private static uint InteriorRoom_GetIndexFallback(uint _interiorId, uint _roomValue, byte _isIndex) => throw new Exceptions.OutdatedSdkException("InteriorRoom_GetIndex", "InteriorRoom_GetIndex SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate nint InteriorRoom_GetNameDelegate(uint _interiorId, uint _roomValue, byte _isIndex, int* _size);
+        private static nint InteriorRoom_GetNameFallback(uint _interiorId, uint _roomValue, byte _isIndex, int* _size) => throw new Exceptions.OutdatedSdkException("InteriorRoom_GetName", "InteriorRoom_GetName SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate uint InteriorRoom_GetNameHashDelegate(uint _interiorId, uint _roomValue, byte _isIndex);
+        private static uint InteriorRoom_GetNameHashFallback(uint _interiorId, uint _roomValue, byte _isIndex) => throw new Exceptions.OutdatedSdkException("InteriorRoom_GetNameHash", "InteriorRoom_GetNameHash SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate uint InteriorRoom_GetTimecycleDelegate(uint _interiorId, uint _roomValue, byte _isIndex);
+        private static uint InteriorRoom_GetTimecycleFallback(uint _interiorId, uint _roomValue, byte _isIndex) => throw new Exceptions.OutdatedSdkException("InteriorRoom_GetTimecycle", "InteriorRoom_GetTimecycle SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void InteriorRoom_SetExtentsDelegate(uint _interiorId, uint _roomValue, byte _isIndex, Vector3 _min, Vector3 _max);
+        private static void InteriorRoom_SetExtentsFallback(uint _interiorId, uint _roomValue, byte _isIndex, Vector3 _min, Vector3 _max) => throw new Exceptions.OutdatedSdkException("InteriorRoom_SetExtents", "InteriorRoom_SetExtents SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void InteriorRoom_SetFlagDelegate(uint _interiorId, uint _roomValue, byte _isIndex, int _flag);
+        private static void InteriorRoom_SetFlagFallback(uint _interiorId, uint _roomValue, byte _isIndex, int _flag) => throw new Exceptions.OutdatedSdkException("InteriorRoom_SetFlag", "InteriorRoom_SetFlag SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void InteriorRoom_SetTimecycleDelegate(uint _interiorId, uint _roomValue, byte _isIndex, uint _timecycle);
+        private static void InteriorRoom_SetTimecycleFallback(uint _interiorId, uint _roomValue, byte _isIndex, uint _timecycle) => throw new Exceptions.OutdatedSdkException("InteriorRoom_SetTimecycle", "InteriorRoom_SetTimecycle SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void LocalObject_ActivatePhysicsDelegate(nint _localObject);
         private static void LocalObject_ActivatePhysicsFallback(nint _localObject) => throw new Exceptions.OutdatedSdkException("LocalObject_ActivatePhysics", "LocalObject_ActivatePhysics SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void LocalObject_AttachToEntityDelegate(nint _localObject, nint _entity, short _boneIndex, Vector3 _pos, Rotation _rot, byte _useSoftPinning, byte _collision, byte _fixedRot);
@@ -3597,7 +3717,7 @@ namespace AltV.Net.CApi.Libraries
         public ClientLibrary(Dictionary<ulong, IntPtr> funcTable)
         {
             if (!funcTable.TryGetValue(0, out var capiHash)) Outdated = true;
-            else if (capiHash == IntPtr.Zero || *(ulong*)capiHash != 11629663074568386340UL) Outdated = true;
+            else if (capiHash == IntPtr.Zero || *(ulong*)capiHash != 10340967010520350397UL) Outdated = true;
             Audio_AddOutput = (delegate* unmanaged[Cdecl]<nint, nint, void>) GetUnmanagedPtr<Audio_AddOutputDelegate>(funcTable, 9914412815391408844UL, Audio_AddOutputFallback);
             Audio_GetBaseObject = (delegate* unmanaged[Cdecl]<nint, nint>) GetUnmanagedPtr<Audio_GetBaseObjectDelegate>(funcTable, 6330360502401226894UL, Audio_GetBaseObjectFallback);
             Audio_GetCurrentTime = (delegate* unmanaged[Cdecl]<nint, double>) GetUnmanagedPtr<Audio_GetCurrentTimeDelegate>(funcTable, 2944324482134975819UL, Audio_GetCurrentTimeFallback);
@@ -4062,6 +4182,36 @@ namespace AltV.Net.CApi.Libraries
             HttpClient_Put = (delegate* unmanaged[Cdecl]<nint, nint, nint, ClientEvents.HttpResponseModuleDelegate, void>) GetUnmanagedPtr<HttpClient_PutDelegate>(funcTable, 8280976854604120523UL, HttpClient_PutFallback);
             HttpClient_SetExtraHeader = (delegate* unmanaged[Cdecl]<nint, nint, nint, void>) GetUnmanagedPtr<HttpClient_SetExtraHeaderDelegate>(funcTable, 4939806300942583161UL, HttpClient_SetExtraHeaderFallback);
             HttpClient_Trace = (delegate* unmanaged[Cdecl]<nint, nint, nint, ClientEvents.HttpResponseModuleDelegate, void>) GetUnmanagedPtr<HttpClient_TraceDelegate>(funcTable, 12260251650657662947UL, HttpClient_TraceFallback);
+            Interior_GetEntitiesExtents = (delegate* unmanaged[Cdecl]<uint, InteriorExtendInfo*, void>) GetUnmanagedPtr<Interior_GetEntitiesExtentsDelegate>(funcTable, 17096856691905449462UL, Interior_GetEntitiesExtentsFallback);
+            Interior_GetPortalCount = (delegate* unmanaged[Cdecl]<uint, ushort>) GetUnmanagedPtr<Interior_GetPortalCountDelegate>(funcTable, 9833874365185055719UL, Interior_GetPortalCountFallback);
+            Interior_GetPosition = (delegate* unmanaged[Cdecl]<uint, Vector3>) GetUnmanagedPtr<Interior_GetPositionDelegate>(funcTable, 10883468373939012235UL, Interior_GetPositionFallback);
+            Interior_GetRoomCount = (delegate* unmanaged[Cdecl]<uint, ushort>) GetUnmanagedPtr<Interior_GetRoomCountDelegate>(funcTable, 15377866266281851140UL, Interior_GetRoomCountFallback);
+            Interior_GetRotation = (delegate* unmanaged[Cdecl]<uint, Rotation>) GetUnmanagedPtr<Interior_GetRotationDelegate>(funcTable, 8232363457953011397UL, Interior_GetRotationFallback);
+            InteriorPortal_GetCornerCount = (delegate* unmanaged[Cdecl]<uint, uint, ushort>) GetUnmanagedPtr<InteriorPortal_GetCornerCountDelegate>(funcTable, 2751756776126960023UL, InteriorPortal_GetCornerCountFallback);
+            InteriorPortal_GetCornerPosition = (delegate* unmanaged[Cdecl]<uint, uint, uint, Vector3>) GetUnmanagedPtr<InteriorPortal_GetCornerPositionDelegate>(funcTable, 1814048572451154980UL, InteriorPortal_GetCornerPositionFallback);
+            InteriorPortal_GetEntityArcheType = (delegate* unmanaged[Cdecl]<uint, uint, uint, uint>) GetUnmanagedPtr<InteriorPortal_GetEntityArcheTypeDelegate>(funcTable, 13960987639501218250UL, InteriorPortal_GetEntityArcheTypeFallback);
+            InteriorPortal_GetEntityCount = (delegate* unmanaged[Cdecl]<uint, uint, ushort>) GetUnmanagedPtr<InteriorPortal_GetEntityCountDelegate>(funcTable, 13352719488432116273UL, InteriorPortal_GetEntityCountFallback);
+            InteriorPortal_GetEntityFlag = (delegate* unmanaged[Cdecl]<uint, uint, uint, int>) GetUnmanagedPtr<InteriorPortal_GetEntityFlagDelegate>(funcTable, 4913927801862478282UL, InteriorPortal_GetEntityFlagFallback);
+            InteriorPortal_GetEntityPosition = (delegate* unmanaged[Cdecl]<uint, uint, uint, Vector3>) GetUnmanagedPtr<InteriorPortal_GetEntityPositionDelegate>(funcTable, 7285942813518470950UL, InteriorPortal_GetEntityPositionFallback);
+            InteriorPortal_GetEntityRotation = (delegate* unmanaged[Cdecl]<uint, uint, uint, Rotation>) GetUnmanagedPtr<InteriorPortal_GetEntityRotationDelegate>(funcTable, 1117662078157381260UL, InteriorPortal_GetEntityRotationFallback);
+            InteriorPortal_GetFlag = (delegate* unmanaged[Cdecl]<uint, uint, int>) GetUnmanagedPtr<InteriorPortal_GetFlagDelegate>(funcTable, 9560528769032004812UL, InteriorPortal_GetFlagFallback);
+            InteriorPortal_GetIndex = (delegate* unmanaged[Cdecl]<uint, uint, uint>) GetUnmanagedPtr<InteriorPortal_GetIndexDelegate>(funcTable, 13206342625351776081UL, InteriorPortal_GetIndexFallback);
+            InteriorPortal_GetRoomFrom = (delegate* unmanaged[Cdecl]<uint, uint, uint>) GetUnmanagedPtr<InteriorPortal_GetRoomFromDelegate>(funcTable, 14268893542560810008UL, InteriorPortal_GetRoomFromFallback);
+            InteriorPortal_GetRoomTo = (delegate* unmanaged[Cdecl]<uint, uint, uint>) GetUnmanagedPtr<InteriorPortal_GetRoomToDelegate>(funcTable, 3255950788253963043UL, InteriorPortal_GetRoomToFallback);
+            InteriorPortal_SetCornerPosition = (delegate* unmanaged[Cdecl]<uint, uint, uint, Vector3, void>) GetUnmanagedPtr<InteriorPortal_SetCornerPositionDelegate>(funcTable, 16182899257589323539UL, InteriorPortal_SetCornerPositionFallback);
+            InteriorPortal_SetEntityFlag = (delegate* unmanaged[Cdecl]<uint, uint, uint, int, void>) GetUnmanagedPtr<InteriorPortal_SetEntityFlagDelegate>(funcTable, 15288926594136993761UL, InteriorPortal_SetEntityFlagFallback);
+            InteriorPortal_SetFlag = (delegate* unmanaged[Cdecl]<uint, uint, int, void>) GetUnmanagedPtr<InteriorPortal_SetFlagDelegate>(funcTable, 9853055316547927459UL, InteriorPortal_SetFlagFallback);
+            InteriorPortal_SetRoomFrom = (delegate* unmanaged[Cdecl]<uint, uint, uint, void>) GetUnmanagedPtr<InteriorPortal_SetRoomFromDelegate>(funcTable, 12340070947493379575UL, InteriorPortal_SetRoomFromFallback);
+            InteriorPortal_SetRoomTo = (delegate* unmanaged[Cdecl]<uint, uint, uint, void>) GetUnmanagedPtr<InteriorPortal_SetRoomToDelegate>(funcTable, 16837975631170049766UL, InteriorPortal_SetRoomToFallback);
+            InteriorRoom_GetExtents = (delegate* unmanaged[Cdecl]<uint, uint, byte, InteriorExtendInfo*, void>) GetUnmanagedPtr<InteriorRoom_GetExtentsDelegate>(funcTable, 17030953846480430905UL, InteriorRoom_GetExtentsFallback);
+            InteriorRoom_GetFlag = (delegate* unmanaged[Cdecl]<uint, uint, byte, int>) GetUnmanagedPtr<InteriorRoom_GetFlagDelegate>(funcTable, 7856663484428066825UL, InteriorRoom_GetFlagFallback);
+            InteriorRoom_GetIndex = (delegate* unmanaged[Cdecl]<uint, uint, byte, uint>) GetUnmanagedPtr<InteriorRoom_GetIndexDelegate>(funcTable, 15158102510225914020UL, InteriorRoom_GetIndexFallback);
+            InteriorRoom_GetName = (delegate* unmanaged[Cdecl]<uint, uint, byte, int*, nint>) GetUnmanagedPtr<InteriorRoom_GetNameDelegate>(funcTable, 4739364089865431579UL, InteriorRoom_GetNameFallback);
+            InteriorRoom_GetNameHash = (delegate* unmanaged[Cdecl]<uint, uint, byte, uint>) GetUnmanagedPtr<InteriorRoom_GetNameHashDelegate>(funcTable, 4358271132564072471UL, InteriorRoom_GetNameHashFallback);
+            InteriorRoom_GetTimecycle = (delegate* unmanaged[Cdecl]<uint, uint, byte, uint>) GetUnmanagedPtr<InteriorRoom_GetTimecycleDelegate>(funcTable, 7499702612373464399UL, InteriorRoom_GetTimecycleFallback);
+            InteriorRoom_SetExtents = (delegate* unmanaged[Cdecl]<uint, uint, byte, Vector3, Vector3, void>) GetUnmanagedPtr<InteriorRoom_SetExtentsDelegate>(funcTable, 12048596999299004349UL, InteriorRoom_SetExtentsFallback);
+            InteriorRoom_SetFlag = (delegate* unmanaged[Cdecl]<uint, uint, byte, int, void>) GetUnmanagedPtr<InteriorRoom_SetFlagDelegate>(funcTable, 4102368831198906004UL, InteriorRoom_SetFlagFallback);
+            InteriorRoom_SetTimecycle = (delegate* unmanaged[Cdecl]<uint, uint, byte, uint, void>) GetUnmanagedPtr<InteriorRoom_SetTimecycleDelegate>(funcTable, 7739810354326755506UL, InteriorRoom_SetTimecycleFallback);
             LocalObject_ActivatePhysics = (delegate* unmanaged[Cdecl]<nint, void>) GetUnmanagedPtr<LocalObject_ActivatePhysicsDelegate>(funcTable, 12723661681621738686UL, LocalObject_ActivatePhysicsFallback);
             LocalObject_AttachToEntity = (delegate* unmanaged[Cdecl]<nint, nint, short, Vector3, Rotation, byte, byte, byte, void>) GetUnmanagedPtr<LocalObject_AttachToEntityDelegate>(funcTable, 12557963046901634258UL, LocalObject_AttachToEntityFallback);
             LocalObject_AttachToEntity_ScriptId = (delegate* unmanaged[Cdecl]<nint, uint, short, Vector3, Rotation, byte, byte, byte, void>) GetUnmanagedPtr<LocalObject_AttachToEntity_ScriptIdDelegate>(funcTable, 8482470825689546294UL, LocalObject_AttachToEntity_ScriptIdFallback);

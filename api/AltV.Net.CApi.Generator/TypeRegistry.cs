@@ -217,6 +217,7 @@ public static class TypeRegistry
         { "ClrDiscordUser*", "nint" },
         { "ClrConfigNodeData*", "nint" },
         { "ClrAmmoFlags*", "nint" },
-        { "ClrDecoration**", "nint" }
+        { "ClrDecoration**", "nint" },
+        { "interior_extend_info_t&", "InteriorExtendInfo*" },
     };
 }
