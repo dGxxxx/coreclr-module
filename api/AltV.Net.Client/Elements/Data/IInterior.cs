@@ -11,5 +11,5 @@ public interface IInterior
     ushort PortalCount { get; }
     Position Position { get; }
     Rotation Rotation { get; }
-    InteriorExtentInfo EntitiesExtents { get; }
+    AABB EntitiesExtents { get; }
 }

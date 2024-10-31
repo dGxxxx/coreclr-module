@@ -3717,7 +3717,7 @@ namespace AltV.Net.CApi.Libraries
         public ClientLibrary(Dictionary<ulong, IntPtr> funcTable)
         {
             if (!funcTable.TryGetValue(0, out var capiHash)) Outdated = true;
-            else if (capiHash == IntPtr.Zero || *(ulong*)capiHash != 3741487677670128934UL) Outdated = true;
+            else if (capiHash == IntPtr.Zero || *(ulong*)capiHash != 10075699596264467259UL) Outdated = true;
             Audio_AddOutput = (delegate* unmanaged[Cdecl]<nint, nint, void>) GetUnmanagedPtr<Audio_AddOutputDelegate>(funcTable, 9914412815391408844UL, Audio_AddOutputFallback);
             Audio_GetBaseObject = (delegate* unmanaged[Cdecl]<nint, nint>) GetUnmanagedPtr<Audio_GetBaseObjectDelegate>(funcTable, 6330360502401226894UL, Audio_GetBaseObjectFallback);
             Audio_GetCurrentTime = (delegate* unmanaged[Cdecl]<nint, double>) GetUnmanagedPtr<Audio_GetCurrentTimeDelegate>(funcTable, 2944324482134975819UL, Audio_GetCurrentTimeFallback);
@@ -4182,7 +4182,7 @@ namespace AltV.Net.CApi.Libraries
             HttpClient_Put = (delegate* unmanaged[Cdecl]<nint, nint, nint, ClientEvents.HttpResponseModuleDelegate, void>) GetUnmanagedPtr<HttpClient_PutDelegate>(funcTable, 8280976854604120523UL, HttpClient_PutFallback);
             HttpClient_SetExtraHeader = (delegate* unmanaged[Cdecl]<nint, nint, nint, void>) GetUnmanagedPtr<HttpClient_SetExtraHeaderDelegate>(funcTable, 4939806300942583161UL, HttpClient_SetExtraHeaderFallback);
             HttpClient_Trace = (delegate* unmanaged[Cdecl]<nint, nint, nint, ClientEvents.HttpResponseModuleDelegate, void>) GetUnmanagedPtr<HttpClient_TraceDelegate>(funcTable, 12260251650657662947UL, HttpClient_TraceFallback);
-            Interior_GetEntitiesExtents = (delegate* unmanaged[Cdecl]<uint, InteriorExtentInfo*, void>) GetUnmanagedPtr<Interior_GetEntitiesExtentsDelegate>(funcTable, 11053057787907413702UL, Interior_GetEntitiesExtentsFallback);
+            Interior_GetEntitiesExtents = (delegate* unmanaged[Cdecl]<uint, InteriorExtentInfo*, void>) GetUnmanagedPtr<Interior_GetEntitiesExtentsDelegate>(funcTable, 15230725921455826742UL, Interior_GetEntitiesExtentsFallback);
             Interior_GetPortalCount = (delegate* unmanaged[Cdecl]<uint, ushort>) GetUnmanagedPtr<Interior_GetPortalCountDelegate>(funcTable, 9833874365185055719UL, Interior_GetPortalCountFallback);
             Interior_GetPosition = (delegate* unmanaged[Cdecl]<uint, Vector3>) GetUnmanagedPtr<Interior_GetPositionDelegate>(funcTable, 10883468373939012235UL, Interior_GetPositionFallback);
             Interior_GetRoomCount = (delegate* unmanaged[Cdecl]<uint, ushort>) GetUnmanagedPtr<Interior_GetRoomCountDelegate>(funcTable, 15377866266281851140UL, Interior_GetRoomCountFallback);
@@ -4203,7 +4203,7 @@ namespace AltV.Net.CApi.Libraries
             InteriorPortal_SetFlag = (delegate* unmanaged[Cdecl]<uint, uint, int, void>) GetUnmanagedPtr<InteriorPortal_SetFlagDelegate>(funcTable, 9853055316547927459UL, InteriorPortal_SetFlagFallback);
             InteriorPortal_SetRoomFrom = (delegate* unmanaged[Cdecl]<uint, uint, uint, void>) GetUnmanagedPtr<InteriorPortal_SetRoomFromDelegate>(funcTable, 12340070947493379575UL, InteriorPortal_SetRoomFromFallback);
             InteriorPortal_SetRoomTo = (delegate* unmanaged[Cdecl]<uint, uint, uint, void>) GetUnmanagedPtr<InteriorPortal_SetRoomToDelegate>(funcTable, 16837975631170049766UL, InteriorPortal_SetRoomToFallback);
-            InteriorRoom_GetExtents = (delegate* unmanaged[Cdecl]<uint, uint, byte, InteriorExtentInfo*, void>) GetUnmanagedPtr<InteriorRoom_GetExtentsDelegate>(funcTable, 6970051561303592745UL, InteriorRoom_GetExtentsFallback);
+            InteriorRoom_GetExtents = (delegate* unmanaged[Cdecl]<uint, uint, byte, InteriorExtentInfo*, void>) GetUnmanagedPtr<InteriorRoom_GetExtentsDelegate>(funcTable, 8261388998032521861UL, InteriorRoom_GetExtentsFallback);
             InteriorRoom_GetFlag = (delegate* unmanaged[Cdecl]<uint, uint, byte, int>) GetUnmanagedPtr<InteriorRoom_GetFlagDelegate>(funcTable, 7856663484428066825UL, InteriorRoom_GetFlagFallback);
             InteriorRoom_GetIndex = (delegate* unmanaged[Cdecl]<uint, uint, byte, uint>) GetUnmanagedPtr<InteriorRoom_GetIndexDelegate>(funcTable, 15158102510225914020UL, InteriorRoom_GetIndexFallback);
             InteriorRoom_GetName = (delegate* unmanaged[Cdecl]<uint, uint, byte, int*, nint>) GetUnmanagedPtr<InteriorRoom_GetNameDelegate>(funcTable, 4739364089865431579UL, InteriorRoom_GetNameFallback);

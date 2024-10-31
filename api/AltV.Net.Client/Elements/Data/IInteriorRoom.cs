@@ -9,5 +9,5 @@ public interface IInteriorRoom
     uint NameHash { get; }
     int Flag { get; set; }
     uint Timecycle { get; set; }
-    InteriorExtentInfo Extents { get; set; }
+    AABB Extents { get; set; }
 }

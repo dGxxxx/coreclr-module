@@ -218,6 +218,6 @@ public static class TypeRegistry
         { "ClrConfigNodeData*", "nint" },
         { "ClrAmmoFlags*", "nint" },
         { "ClrDecoration**", "nint" },
-        { "interior_extent_info_t&", "InteriorExtentInfo*" },
+        { "aabb_t&", "AABB*" },
     };
 }
