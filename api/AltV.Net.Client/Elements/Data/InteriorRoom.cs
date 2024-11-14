@@ -88,13 +88,13 @@ public class InteriorRoom : IInteriorRoom
         }
     }
 
-    public InteriorExtentInfo Extents
+    public AABB Extents
     {
         get
         {
             unsafe
             {
-                var interiorExtentInfo = InteriorExtentInfo.Zero;
+                var interiorExtentInfo = AABB.Zero;
                 _core.Library.Client.InteriorRoom_GetExtents(_interiorId, _roomValue, _isIndex, &interiorExtentInfo);
                 return interiorExtentInfo;
             }

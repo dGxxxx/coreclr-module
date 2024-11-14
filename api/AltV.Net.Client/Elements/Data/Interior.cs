@@ -72,13 +72,13 @@ public class Interior : IInterior
         }
     }
 
-    public InteriorExtentInfo EntitiesExtents
+    public AABB EntitiesExtents
     {
         get
         {
             unsafe
             {
-                var interiorExtentInfo = InteriorExtentInfo.Zero;
+                var interiorExtentInfo = AABB.Zero;
                 _core.Library.Client.Interior_GetEntitiesExtents(_interiorId, &interiorExtentInfo);
                 return interiorExtentInfo;
             }
