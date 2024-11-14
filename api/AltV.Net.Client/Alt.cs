@@ -36,6 +36,8 @@ namespace AltV.Net.Client
         public static LocalStorage LocalStorage => CoreImpl.LocalStorage;
         public static Voice Voice => CoreImpl.Voice;
         public static FocusData FocusData => CoreImpl.FocusData;
+        
+        public static Interior? GetInterior(uint interiorId) => CoreImpl.GetInterior(interiorId);
 
         public static HandlingData? GetHandlingByModelHash(uint modelHash) => CoreImpl.GetHandlingByModelHash(modelHash);
         public static WeaponData? GetWeaponDataByWeaponHash(uint weaponHash) => CoreImpl.GetWeaponDataByWeaponHash(weaponHash);

@@ -24,6 +24,8 @@ namespace AltV.Net.Data
         private readonly int SkillAbove50MaxAmmoMp;
         private readonly int MaxSkillMaxAmmoMp;
         private readonly int BonusMaxAmmoMp;
+        [MarshalAs(UnmanagedType.LPStr)]
+        private readonly string DamageType;
 
         public WeaponModelInfo ToPublic()
         {
@@ -40,7 +42,8 @@ namespace AltV.Net.Data
                 DefaultMaxAmmoMp = DefaultMaxAmmoMp,
                 SkillAbove50MaxAmmoMp = SkillAbove50MaxAmmoMp,
                 MaxSkillMaxAmmoMp = MaxSkillMaxAmmoMp,
-                BonusMaxAmmoMp = BonusMaxAmmoMp
+                BonusMaxAmmoMp = BonusMaxAmmoMp,
+                DamageType = DamageType
             };
         }
     }
@@ -59,5 +62,6 @@ namespace AltV.Net.Data
         public int SkillAbove50MaxAmmoMp;
         public int MaxSkillMaxAmmoMp;
         public int BonusMaxAmmoMp;
+        public string DamageType;
     }
 }
