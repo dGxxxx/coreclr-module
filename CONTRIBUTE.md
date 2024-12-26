@@ -37,7 +37,8 @@ To implement a new `cpp-sdk` change or add a missing implementation, follow thes
    - Push all changes to the `module` branch.
 
 10. **Testing**  
-    - To test the changes, use the `build.bat` file in the `runtime/server` folder to generate a `coreclr-module.dll`.  
+    - Open powershell window, change directory to root module folder. Run `gen_local_win_env.ps1` and wait everything downloaded.
+    - To test the changes, use the `windows-build.bat` file in the `runtime/server` folder to generate a `coreclr-module.dll`.  
     - Place the generated DLL in the server's `modules` folder.  
     - Build the module project and copy the new module DLLs to the C# resource folder and the project directory of the resource.  
     ```
