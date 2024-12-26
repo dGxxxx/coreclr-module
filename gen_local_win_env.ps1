@@ -23,6 +23,6 @@ New-Item -ItemType Directory -Path $tmpPath | Out-Null
 
 $currentDir = Get-Location
 Copy-Item -Path "$currentDir\*" -Destination "$start/$nethostPath" -Recurse -Force
-Remove-Item -Path $tmpPath -Recurse -Force
 
 Set-Location $start
+Remove-Item -Path $tmpPath -Recurse -Force
