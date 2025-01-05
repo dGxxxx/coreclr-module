@@ -114,6 +114,9 @@ namespace AltV.Net.Client
         internal readonly IEventHandler<PlayerChangeInteriorDelegate> PlayerChangeInteriorEventHandler =
             new HashSetEventHandler<PlayerChangeInteriorDelegate>(EventType.PLAYER_CHANGE_INTERIOR_EVENT);
 
+        internal readonly IEventHandler<PlayerDimensionChangeDelegate> PlayerDimensionChangeEventHandler =
+            new HashSetEventHandler<PlayerDimensionChangeDelegate>(EventType.PLAYER_DIMENSION_CHANGE);
+
         internal readonly IEventHandler<PlayerWeaponShootDelegate> PlayerWeaponShootEventHandler =
             new HashSetEventHandler<PlayerWeaponShootDelegate>(EventType.PLAYER_WEAPON_SHOOT_EVENT);
 
@@ -366,6 +369,18 @@ namespace AltV.Net.Client
             }
 
             PlayerChangeInteriorEventHandler.GetEvents().ForEachCatching(fn => fn(player, oldIntLoc, newIntLoc), $"event {nameof(OnPlayerChangeInterior)}");
+        }
+
+        public void OnPlayerDimensionChange(IntPtr playerPtr, BaseObjectType type, int oldDim, int newDim)
+        {
+            var player = (IPlayer)PoolManager.Get(playerPtr, type);
+            if (player == null)
+            {
+                Alt.LogWarning("OnPlayerDimensionChange: Invalid player " + playerPtr);
+                return;
+            }
+
+            PlayerDimensionChangeEventHandler.GetEvents().ForEachCatching(fn => fn(player, oldDim, newDim), $"event {nameof(OnPlayerDimensionChange)}");
         }
 
         public void OnPlayerWeaponShoot(uint weapon, ushort totalAmmo, ushort ammoInClip)

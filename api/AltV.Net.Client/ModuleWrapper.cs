@@ -338,6 +338,11 @@ namespace AltV.Net.Client
             _core.OnPlayerChangeInterior(player, type, oldIntLoc, newIntLoc);
         }
 
+        public static void OnPlayerDimensionChange(IntPtr player, BaseObjectType type, int oldDim, int newDim)
+        {
+            _core.OnPlayerDimensionChange(player, type, oldDim, newDim);
+        }
+
         public static void OnPlayerWeaponShoot(uint weapon, ushort totalAmmo, ushort ammoInClip)
         {
             _core.OnPlayerWeaponShoot(weapon, totalAmmo, ammoInClip);
