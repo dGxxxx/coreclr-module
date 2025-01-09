@@ -300,6 +300,7 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<nint, ClientEvents.PlayerChangeAnimationModuleDelegate, void> Event_SetPlayerChangeAnimationDelegate { get; }
         public delegate* unmanaged[Cdecl]<nint, ClientEvents.PlayerChangeInteriorModuleDelegate, void> Event_SetPlayerChangeInteriorDelegate { get; }
         public delegate* unmanaged[Cdecl]<nint, ClientEvents.PlayerChangeVehicleSeatModuleDelegate, void> Event_SetPlayerChangeVehicleSeatDelegate { get; }
+        public delegate* unmanaged[Cdecl]<nint, ClientEvents.PlayerDimensionChangeModuleDelegate, void> Event_SetPlayerDimensionChangeDelegate { get; }
         public delegate* unmanaged[Cdecl]<nint, ClientEvents.PlayerDisconnectModuleDelegate, void> Event_SetPlayerDisconnectDelegate { get; }
         public delegate* unmanaged[Cdecl]<nint, ClientEvents.PlayerEnterVehicleModuleDelegate, void> Event_SetPlayerEnterVehicleDelegate { get; }
         public delegate* unmanaged[Cdecl]<nint, ClientEvents.PlayerLeaveVehicleModuleDelegate, void> Event_SetPlayerLeaveVehicleDelegate { get; }
@@ -938,7 +939,7 @@ namespace AltV.Net.CApi.Libraries
 
     public unsafe class ClientLibrary : IClientLibrary
     {
-        public readonly uint Methods = 1809;
+        public readonly uint Methods = 1812;
         public delegate* unmanaged[Cdecl]<nint, nint, void> Audio_AddOutput { get; }
         public delegate* unmanaged[Cdecl]<nint, nint> Audio_GetBaseObject { get; }
         public delegate* unmanaged[Cdecl]<nint, double> Audio_GetCurrentTime { get; }
@@ -1228,6 +1229,7 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<nint, ClientEvents.PlayerChangeAnimationModuleDelegate, void> Event_SetPlayerChangeAnimationDelegate { get; }
         public delegate* unmanaged[Cdecl]<nint, ClientEvents.PlayerChangeInteriorModuleDelegate, void> Event_SetPlayerChangeInteriorDelegate { get; }
         public delegate* unmanaged[Cdecl]<nint, ClientEvents.PlayerChangeVehicleSeatModuleDelegate, void> Event_SetPlayerChangeVehicleSeatDelegate { get; }
+        public delegate* unmanaged[Cdecl]<nint, ClientEvents.PlayerDimensionChangeModuleDelegate, void> Event_SetPlayerDimensionChangeDelegate { get; }
         public delegate* unmanaged[Cdecl]<nint, ClientEvents.PlayerDisconnectModuleDelegate, void> Event_SetPlayerDisconnectDelegate { get; }
         public delegate* unmanaged[Cdecl]<nint, ClientEvents.PlayerEnterVehicleModuleDelegate, void> Event_SetPlayerEnterVehicleDelegate { get; }
         public delegate* unmanaged[Cdecl]<nint, ClientEvents.PlayerLeaveVehicleModuleDelegate, void> Event_SetPlayerLeaveVehicleDelegate { get; }
@@ -2440,6 +2442,8 @@ namespace AltV.Net.CApi.Libraries
         private static void Event_SetPlayerChangeInteriorDelegateFallback(nint _resource, ClientEvents.PlayerChangeInteriorModuleDelegate _delegate) => throw new Exceptions.OutdatedSdkException("Event_SetPlayerChangeInteriorDelegate", "Event_SetPlayerChangeInteriorDelegate SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Event_SetPlayerChangeVehicleSeatDelegateDelegate(nint _resource, ClientEvents.PlayerChangeVehicleSeatModuleDelegate _delegate);
         private static void Event_SetPlayerChangeVehicleSeatDelegateFallback(nint _resource, ClientEvents.PlayerChangeVehicleSeatModuleDelegate _delegate) => throw new Exceptions.OutdatedSdkException("Event_SetPlayerChangeVehicleSeatDelegate", "Event_SetPlayerChangeVehicleSeatDelegate SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Event_SetPlayerDimensionChangeDelegateDelegate(nint _resource, ClientEvents.PlayerDimensionChangeModuleDelegate _delegate);
+        private static void Event_SetPlayerDimensionChangeDelegateFallback(nint _resource, ClientEvents.PlayerDimensionChangeModuleDelegate _delegate) => throw new Exceptions.OutdatedSdkException("Event_SetPlayerDimensionChangeDelegate", "Event_SetPlayerDimensionChangeDelegate SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Event_SetPlayerDisconnectDelegateDelegate(nint _resource, ClientEvents.PlayerDisconnectModuleDelegate _delegate);
         private static void Event_SetPlayerDisconnectDelegateFallback(nint _resource, ClientEvents.PlayerDisconnectModuleDelegate _delegate) => throw new Exceptions.OutdatedSdkException("Event_SetPlayerDisconnectDelegate", "Event_SetPlayerDisconnectDelegate SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void Event_SetPlayerEnterVehicleDelegateDelegate(nint _resource, ClientEvents.PlayerEnterVehicleModuleDelegate _delegate);
@@ -3717,7 +3721,7 @@ namespace AltV.Net.CApi.Libraries
         public ClientLibrary(Dictionary<ulong, IntPtr> funcTable)
         {
             if (!funcTable.TryGetValue(0, out var capiHash)) Outdated = true;
-            else if (capiHash == IntPtr.Zero || *(ulong*)capiHash != 10075699596264467259UL) Outdated = true;
+            else if (capiHash == IntPtr.Zero || *(ulong*)capiHash != 13628227844990757996UL) Outdated = true;
             Audio_AddOutput = (delegate* unmanaged[Cdecl]<nint, nint, void>) GetUnmanagedPtr<Audio_AddOutputDelegate>(funcTable, 9914412815391408844UL, Audio_AddOutputFallback);
             Audio_GetBaseObject = (delegate* unmanaged[Cdecl]<nint, nint>) GetUnmanagedPtr<Audio_GetBaseObjectDelegate>(funcTable, 6330360502401226894UL, Audio_GetBaseObjectFallback);
             Audio_GetCurrentTime = (delegate* unmanaged[Cdecl]<nint, double>) GetUnmanagedPtr<Audio_GetCurrentTimeDelegate>(funcTable, 2944324482134975819UL, Audio_GetCurrentTimeFallback);
@@ -4007,6 +4011,7 @@ namespace AltV.Net.CApi.Libraries
             Event_SetPlayerChangeAnimationDelegate = (delegate* unmanaged[Cdecl]<nint, ClientEvents.PlayerChangeAnimationModuleDelegate, void>) GetUnmanagedPtr<Event_SetPlayerChangeAnimationDelegateDelegate>(funcTable, 1013031841840963141UL, Event_SetPlayerChangeAnimationDelegateFallback);
             Event_SetPlayerChangeInteriorDelegate = (delegate* unmanaged[Cdecl]<nint, ClientEvents.PlayerChangeInteriorModuleDelegate, void>) GetUnmanagedPtr<Event_SetPlayerChangeInteriorDelegateDelegate>(funcTable, 10641081887455190199UL, Event_SetPlayerChangeInteriorDelegateFallback);
             Event_SetPlayerChangeVehicleSeatDelegate = (delegate* unmanaged[Cdecl]<nint, ClientEvents.PlayerChangeVehicleSeatModuleDelegate, void>) GetUnmanagedPtr<Event_SetPlayerChangeVehicleSeatDelegateDelegate>(funcTable, 2849447755791784577UL, Event_SetPlayerChangeVehicleSeatDelegateFallback);
+            Event_SetPlayerDimensionChangeDelegate = (delegate* unmanaged[Cdecl]<nint, ClientEvents.PlayerDimensionChangeModuleDelegate, void>) GetUnmanagedPtr<Event_SetPlayerDimensionChangeDelegateDelegate>(funcTable, 12559962844846581925UL, Event_SetPlayerDimensionChangeDelegateFallback);
             Event_SetPlayerDisconnectDelegate = (delegate* unmanaged[Cdecl]<nint, ClientEvents.PlayerDisconnectModuleDelegate, void>) GetUnmanagedPtr<Event_SetPlayerDisconnectDelegateDelegate>(funcTable, 11526105887646755055UL, Event_SetPlayerDisconnectDelegateFallback);
             Event_SetPlayerEnterVehicleDelegate = (delegate* unmanaged[Cdecl]<nint, ClientEvents.PlayerEnterVehicleModuleDelegate, void>) GetUnmanagedPtr<Event_SetPlayerEnterVehicleDelegateDelegate>(funcTable, 16259534399403863387UL, Event_SetPlayerEnterVehicleDelegateFallback);
             Event_SetPlayerLeaveVehicleDelegate = (delegate* unmanaged[Cdecl]<nint, ClientEvents.PlayerLeaveVehicleModuleDelegate, void>) GetUnmanagedPtr<Event_SetPlayerLeaveVehicleDelegateDelegate>(funcTable, 10354256863799375649UL, Event_SetPlayerLeaveVehicleDelegateFallback);
