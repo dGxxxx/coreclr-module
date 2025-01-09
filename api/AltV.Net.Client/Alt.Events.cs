@@ -182,6 +182,12 @@ namespace AltV.Net.Client
             remove => ((Core)CoreImpl).PlayerChangeInteriorEventHandler.Remove(value);
         }
 
+        public static event PlayerDimensionChangeDelegate OnPlayerDimensionChange
+        {
+            add => ((Core)CoreImpl).PlayerDimensionChangeEventHandler.Add(value);
+            remove => ((Core)CoreImpl).PlayerDimensionChangeEventHandler.Remove(value);
+        }
+
         public static event WeaponDamageDelegate OnWeaponDamage
         {
             add => ((Core)CoreImpl).WeaponDamageEventHandler.Add(value);

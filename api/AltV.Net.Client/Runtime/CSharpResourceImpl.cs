@@ -1,5 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 using AltV.Net.CApi.ClientEvents;
+using AltV.Net.Native;
 using AltV.Net.Shared;
 
 namespace AltV.Net.Client.Runtime
@@ -216,6 +217,10 @@ namespace AltV.Net.Client.Runtime
                 ScriptRPCAnswerModuleDelegate onScriptRPCAnswer = ModuleWrapper.OnScriptRPCAnswer;
                 handles.AddFirst(GCHandle.Alloc(onScriptRPCAnswer));
                 core.Library.Client.Event_SetScriptRPCAnswerDelegate(this.NativePointer, onScriptRPCAnswer);
+                
+                PlayerDimensionChangeModuleDelegate onPlayerDimensionChange = ModuleWrapper.OnPlayerDimensionChange;
+                handles.AddFirst(GCHandle.Alloc(onPlayerDimensionChange));
+                core.Library.Client.Event_SetPlayerDimensionChangeDelegate(this.NativePointer, onPlayerDimensionChange);
             }
         }
 
