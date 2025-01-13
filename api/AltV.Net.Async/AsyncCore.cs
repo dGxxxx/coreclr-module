@@ -295,14 +295,14 @@ namespace AltV.Net.Async
 
         public override void OnWeaponDamageEvent(IntPtr eventPointer, IPlayer sourcePlayer, IEntity targetEntity,
             uint weapon, ushort damage,
-            Position shotOffset, BodyPart bodyPart)
+            Position shotOffset, BodyPart bodyPart, IEntity sourceEntity)
         {
-            base.OnWeaponDamageEvent(eventPointer, sourcePlayer, targetEntity, weapon, damage, shotOffset, bodyPart);
+            base.OnWeaponDamageEvent(eventPointer, sourcePlayer, targetEntity, weapon, damage, shotOffset, bodyPart, sourceEntity);
             if (!WeaponDamageAsyncEventHandler.HasEvents()) return;
             Task.Run(async () =>
             {
                 await WeaponDamageAsyncEventHandler.CallAsync(@delegate =>
-                    @delegate(sourcePlayer, targetEntity, weapon, damage, shotOffset, bodyPart));
+                    @delegate(sourcePlayer, targetEntity, weapon, damage, shotOffset, bodyPart, sourceEntity));
             });
         }
 

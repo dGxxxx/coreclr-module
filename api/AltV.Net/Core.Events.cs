@@ -523,7 +523,8 @@ namespace AltV.Net
 
         public void OnWeaponDamage(IntPtr eventPointer, IntPtr playerPointer, IntPtr entityPointer,
             BaseObjectType entityType, uint weapon,
-            ushort damage, Position shotOffset, BodyPart bodyPart)
+            ushort damage, Position shotOffset, BodyPart bodyPart,
+            IntPtr sourceEntityPointer, BaseObjectType sourceEntityType)
         {
             var sourcePlayer = PoolManager.Player.Get(playerPointer);
             if (sourcePlayer == null)
@@ -534,8 +535,11 @@ namespace AltV.Net
             }
 
             var targetEntity = (IEntity)PoolManager.Get(entityPointer, entityType);
+            
+            
+            var sourceEntity = (IEntity)PoolManager.Get(sourceEntityPointer, sourceEntityType);
 
-            OnWeaponDamageEvent(eventPointer, sourcePlayer, targetEntity, weapon, damage, shotOffset, bodyPart);
+            OnWeaponDamageEvent(eventPointer, sourcePlayer, targetEntity, weapon, damage, shotOffset, bodyPart, sourceEntity);
         }
 
         /// <summary>
@@ -550,12 +554,12 @@ namespace AltV.Net
         /// If a damage override is provided, it updates the damage value.
         /// </remarks>
         public virtual void OnWeaponDamageEvent(IntPtr eventPointer, IPlayer sourcePlayer, IEntity targetEntity,
-            uint weapon, ushort damage, Position shotOffset, BodyPart bodyPart)
+            uint weapon, ushort damage, Position shotOffset, BodyPart bodyPart, IEntity sourceEntity)
         {
             try
             {
                 var (shouldCancel, weaponDamage) =
-                    ProcessWeaponDamageEvents(sourcePlayer, targetEntity, weapon, damage, shotOffset, bodyPart);
+                    ProcessWeaponDamageEvents(sourcePlayer, targetEntity, weapon, damage, shotOffset, bodyPart, sourceEntity);
 
                 if (weaponDamage.HasValue)
                 {
@@ -587,7 +591,7 @@ namespace AltV.Net
         /// A tuple containing a flag indicating if the event should be canceled and the aggregated weapon damage value.
         /// </returns>
         private (bool shouldCancel, uint? weaponDamage) ProcessWeaponDamageEvents(IPlayer sourcePlayer,
-            IEntity targetEntity, uint weapon, ushort damage, Position shotOffset, BodyPart bodyPart)
+            IEntity targetEntity, uint weapon, ushort damage, Position shotOffset, BodyPart bodyPart, IEntity sourceEntity)
         {
             var shouldCancel = false;
             uint? weaponDamage = null;
@@ -596,7 +600,7 @@ namespace AltV.Net
             {
                 try
                 {
-                    var result = @delegate(sourcePlayer, targetEntity, weapon, damage, shotOffset, bodyPart);
+                    var result = @delegate(sourcePlayer, targetEntity, weapon, damage, shotOffset, bodyPart, sourceEntity);
 
                     if (result.Cancel)
                     {

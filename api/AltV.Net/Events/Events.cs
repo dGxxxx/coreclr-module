@@ -64,7 +64,7 @@ namespace AltV.Net.Events
         uint explosionFx, IEntity targetEntity);
 
     public delegate WeaponDamageResponse WeaponDamageDelegate(IPlayer player, IEntity target, uint weapon, ushort damage,
-        Position shotOffset, BodyPart bodyPart);
+        Position shotOffset, BodyPart bodyPart, IEntity sourceEntity);
 
     public delegate void VehicleDestroyDelegate(IVehicle vehicle);
 

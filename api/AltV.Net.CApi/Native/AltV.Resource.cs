@@ -73,7 +73,8 @@ namespace AltV.Net.Native
                 Position position, uint explosionFx, IntPtr targetEntityPointer, BaseObjectType targetEntityType);
 
             internal delegate void WeaponDamageDelegate(IntPtr eventPointer, IntPtr playerPointer, IntPtr entityPointer,
-                BaseObjectType entityType, uint weapon, ushort damage, Position shotOffset, BodyPart bodyPart);
+                BaseObjectType entityType, uint weapon, ushort damage, Position shotOffset, BodyPart bodyPart, IntPtr sourceEntityPointer,
+                BaseObjectType sourceEntityType);
 
             internal delegate void FireDelegate(IntPtr eventPointer, IntPtr playerPointer,
                 [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)]
