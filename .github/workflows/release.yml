@@ -110,14 +110,14 @@ jobs:
           dotnet publish AltV.Net.Sdk.Client -c Release -f net8.0
           dotnet publish AltV.Net.Sdk.Shared -c Release -f net8.0
       - run: |
-          mkdir -p ./modules/linux
-          mkdir -p ./modules/windows
+          mkdir -p ./modules/linux/modules/csharp-module
+          mkdir -p ./modules/windows/modules/csharp-module
           mkdir -p ./modules/api-release
           mkdir -p ./modules/api-debug
-          cp ./api/AltV.Net.Host/bin/Release/*/publish/AltV.Net.Host.dll ./modules/linux
-          cp ./api/AltV.Net.Host/bin/Release/*/publish/AltV.Net.Host.runtimeconfig.json ./modules/linux
-          cp ./api/AltV.Net.Host/bin/Release/*/publish/AltV.Net.Host.dll ./modules/windows
-          cp ./api/AltV.Net.Host/bin/Release/*/publish/AltV.Net.Host.runtimeconfig.json ./modules/windows
+          cp ./api/AltV.Net.Host/bin/Release/*/publish/AltV.Net.Host.dll ./modules/linux/modules/csharp-module
+          cp ./api/AltV.Net.Host/bin/Release/*/publish/AltV.Net.Host.runtimeconfig.json ./modules/linux/modules/csharp-module
+          cp ./api/AltV.Net.Host/bin/Release/*/publish/AltV.Net.Host.dll ./modules/windows/modules/csharp-module
+          cp ./api/AltV.Net.Host/bin/Release/*/publish/AltV.Net.Host.runtimeconfig.json ./modules/windows/modules/csharp-module
           cp ./api/AltV.Net/bin/Release/*/publish/AltV.Net.dll ./modules/api-release
           cp ./api/AltV.Net/bin/Release/*/publish/AltV.Net.pdb ./modules/api-release
           cp ./api/AltV.Net.Async/bin/Release/*/publish/AltV.Net.Async.dll ./modules/api-release
@@ -220,14 +220,14 @@ jobs:
       - if: ${{ runner.os == 'Linux' }}
         shell: bash
         run: |
-          mkdir -p modules/linux/modules/
-          cp ./runtime/server/build/src/libcsharp-module.so ./modules/linux/modules
+          mkdir -p modules/linux/modules/csharp-module/
+          cp ./runtime/server/build/src/libcsharp-module.so ./modules/linux/modules/csharp-module
       - if: ${{ runner.os == 'Windows' }}
         shell: bash
         run: |
-          mkdir -p modules/windows/modules/
-          cp ./runtime/server/build/src/RelWithDebInfo/csharp-module.dll ./modules/windows/modules
-          cp ./runtime/server/build/src/RelWithDebInfo/csharp-module.pdb ./modules/windows/modules
+          mkdir -p modules/windows/modules/csharp-module/
+          cp ./runtime/server/build/src/RelWithDebInfo/csharp-module.dll ./modules/windows/modules/csharp-module
+          cp ./runtime/server/build/src/RelWithDebInfo/csharp-module.pdb ./modules/windows/modules/csharp-module
       - id: create_archive
         shell: bash
         run: |
