@@ -523,7 +523,8 @@ namespace AltV.Net
 
         public void OnWeaponDamage(IntPtr eventPointer, IntPtr playerPointer, IntPtr entityPointer,
             BaseObjectType entityType, uint weapon,
-            ushort damage, Position shotOffset, BodyPart bodyPart)
+            ushort damage, Position shotOffset, BodyPart bodyPart,
+            IntPtr sourceEntityPointer, BaseObjectType sourceEntityType)
         {
             var sourcePlayer = PoolManager.Player.Get(playerPointer);
             if (sourcePlayer == null)
@@ -534,25 +535,76 @@ namespace AltV.Net
             }
 
             var targetEntity = (IEntity)PoolManager.Get(entityPointer, entityType);
+            
+            
+            var sourceEntity = (IEntity)PoolManager.Get(sourceEntityPointer, sourceEntityType);
 
-            OnWeaponDamageEvent(eventPointer, sourcePlayer, targetEntity, weapon, damage, shotOffset, bodyPart);
+            OnWeaponDamageEvent(eventPointer, sourcePlayer, targetEntity, weapon, damage, shotOffset, bodyPart, sourceEntity);
         }
 
+        /// <summary>
+        /// Handles the weapon damage event triggered in the game.
+        /// </summary>
+        /// <remarks>
+        /// This method iterates through all registered event handlers for weapon damage events,
+        /// determines whether the event should be canceled, and updates the damage value if modified
+        /// by any handler.
+        /// 
+        /// If any handler indicates cancellation, the event is marked as canceled.
+        /// If a damage override is provided, it updates the damage value.
+        /// </remarks>
         public virtual void OnWeaponDamageEvent(IntPtr eventPointer, IPlayer sourcePlayer, IEntity targetEntity,
-            uint weapon, ushort damage,
-            Position shotOffset, BodyPart bodyPart)
+            uint weapon, ushort damage, Position shotOffset, BodyPart bodyPart, IEntity sourceEntity)
         {
+            try
+            {
+                var (shouldCancel, weaponDamage) =
+                    ProcessWeaponDamageEvents(sourcePlayer, targetEntity, weapon, damage, shotOffset, bodyPart, sourceEntity);
+
+                if (weaponDamage.HasValue)
+                {
+                    unsafe
+                    {
+                        Alt.CoreImpl.Library.Server.Event_WeaponDamageEvent_SetDamageValue(eventPointer,
+                            weaponDamage.Value);
+                    }
+                }
+
+                if (shouldCancel)
+                {
+                    unsafe
+                    {
+                        Alt.CoreImpl.Library.Shared.Event_Cancel(eventPointer);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Alt.Log($"Unhandled exception in {nameof(OnWeaponDamageEvent)}: {ex}");
+            }
+        }
+
+        /// <summary>
+        /// Processes weapon damage events by invoking all registered event handlers and aggregating results.
+        /// </summary>
+        /// <returns>
+        /// A tuple containing a flag indicating if the event should be canceled and the aggregated weapon damage value.
+        /// </returns>
+        private (bool shouldCancel, uint? weaponDamage) ProcessWeaponDamageEvents(IPlayer sourcePlayer,
+            IEntity targetEntity, uint weapon, ushort damage, Position shotOffset, BodyPart bodyPart, IEntity sourceEntity)
+        {
+            var shouldCancel = false;
             uint? weaponDamage = null;
-            var cancel = false;
+
             foreach (var @delegate in WeaponDamageEventHandler.GetEvents())
             {
                 try
                 {
-                    var result = @delegate(sourcePlayer, targetEntity, weapon, damage, shotOffset, bodyPart);
+                    var result = @delegate(sourcePlayer, targetEntity, weapon, damage, shotOffset, bodyPart, sourceEntity);
 
-                    if (!result.notCancel)
+                    if (result.Cancel)
                     {
-                        cancel = true;
+                        shouldCancel = true;
                     }
 
                     if (result.Damage.HasValue)
@@ -560,31 +612,17 @@ namespace AltV.Net
                         weaponDamage ??= result.Damage.Value;
                     }
                 }
-                catch (TargetInvocationException exception)
+                catch (TargetInvocationException tex)
                 {
-                    Alt.Log("exception at event:" + "OnWeaponDamageEvent" + ":" + exception.InnerException);
+                    Alt.Log($"TargetInvocationException in {nameof(ProcessWeaponDamageEvents)} handler: {tex.InnerException}");
                 }
-                catch (Exception exception)
+                catch (Exception ex)
                 {
-                    Alt.Log("exception at event:" + "OnWeaponDamageEvent" + ":" + exception);
-                }
-            }
-
-            if (weaponDamage is not null)
-            {
-                unsafe
-                {
-                    Alt.CoreImpl.Library.Server.Event_WeaponDamageEvent_SetDamageValue(eventPointer, weaponDamage.Value);
+                    Alt.Log($"Exception in {nameof(ProcessWeaponDamageEvents)} handler: {ex}");
                 }
             }
 
-            if (cancel)
-            {
-                unsafe
-                {
-                    Alt.CoreImpl.Library.Shared.Event_Cancel(eventPointer);
-                }
-            }
+            return (shouldCancel, weaponDamage);
         }
 
         public void OnPlayerChangeVehicleSeat(IntPtr vehiclePointer, IntPtr playerPointer, byte oldSeat,

@@ -350,11 +350,11 @@ namespace AltV.Net
                                         new[]
                                         {
                                             typeof(IPlayer), typeof(IEntity), typeof(uint), typeof(ushort),
-                                            typeof(Position), typeof(BodyPart)
+                                            typeof(Position), typeof(BodyPart), typeof(IEntity)
                                         }, new[] {typeof(WeaponDamageResponse)});
                                     if (scriptFunction == null) return;
                                     OnWeaponDamage +=
-                                        (player, targetEntity, weapon, damage, shotOffset, damageOffset) =>
+                                        (player, targetEntity, weapon, damage, shotOffset, damageOffset, sourceEntity) =>
                                         {
                                             scriptFunction.Set(player);
                                             scriptFunction.Set(targetEntity);
@@ -362,6 +362,7 @@ namespace AltV.Net
                                             scriptFunction.Set(damage);
                                             scriptFunction.Set(shotOffset);
                                             scriptFunction.Set(damageOffset);
+                                            scriptFunction.Set(sourceEntity);
                                             if (scriptFunction.Call() is WeaponDamageResponse response)
                                             {
                                                 return response;

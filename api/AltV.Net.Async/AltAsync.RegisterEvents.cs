@@ -355,11 +355,11 @@ namespace AltV.Net.Async
                                         new[]
                                         {
                                             typeof(IPlayer), typeof(IEntity), typeof(uint), typeof(ushort),
-                                            typeof(Position), typeof(BodyPart)
+                                            typeof(Position), typeof(BodyPart), typeof(IEntity)
                                         }, isAsync: true);
                                     if (scriptFunction == null) return;
                                     OnWeaponDamage +=
-                                        (player, targetEntity, weapon, damage, shotOffset, damageOffset) =>
+                                        (player, targetEntity, weapon, damage, shotOffset, damageOffset, sourceEntity) =>
                                         {
                                             var currScriptFunction = scriptFunction.Clone();
                                             currScriptFunction.Set(player);
@@ -368,6 +368,7 @@ namespace AltV.Net.Async
                                             currScriptFunction.Set(damage);
                                             currScriptFunction.Set(shotOffset);
                                             currScriptFunction.Set(damageOffset);
+                                            currScriptFunction.Set(sourceEntity);
                                             return currScriptFunction.CallAsync();
                                         };
                                     break;
