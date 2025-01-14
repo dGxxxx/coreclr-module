@@ -899,6 +899,18 @@ namespace AltV.Net.Async.Elements.Entities
             }
         }
 
+        public bool IsInWater
+        {
+            get
+            {
+                lock (Player)
+                {
+                    if (!AsyncContext.CheckIfExistsOrCachedNullable(Player)) return default;
+                    return Player.IsInWater;
+                }
+            }
+        }
+
         public void SetWeaponTintIndex(uint weapon, byte tintIndex)
         {
             lock (Player)

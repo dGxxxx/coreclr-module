@@ -225,6 +225,18 @@ namespace AltV.Net.Client.Elements.Entities
             }
         }
 
+        public bool IsInWater 
+        {
+            get
+            {
+                unsafe
+                {
+                    CheckIfEntityExistsOrCached();
+                    return this.Core.Library.Shared.Player_IsInWater(this.PlayerNativePointer) == 1;
+                }
+            }
+        }
+
         ISharedEntity ISharedPlayer.EntityAimingAt => EntityAimingAt!;
 
         public bool IsFlashlightActive

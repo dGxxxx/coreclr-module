@@ -1753,5 +1753,17 @@ namespace AltV.Net.Elements.Entities
                 }
             }
         }
+
+        public bool IsInWater
+        {
+            get
+            {
+                unsafe
+                {
+                    CheckIfEntityExistsOrCached();
+                    return this.Core.Library.Shared.Player_IsInWater(this.PlayerNativePointer) == 1;
+                }
+            }
+        }
     }
 }
