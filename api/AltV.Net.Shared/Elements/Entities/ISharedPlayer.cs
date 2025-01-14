@@ -150,5 +150,7 @@ namespace AltV.Net.Shared.Elements.Entities
         void GetCurrentWeaponComponents(out uint[] weaponComponents);
 
         bool IsParachuting { get; }
+        
+        bool IsInWater { get; }
     }
 }

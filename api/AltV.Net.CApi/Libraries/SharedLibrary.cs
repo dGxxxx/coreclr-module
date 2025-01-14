@@ -348,6 +348,7 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<nint, byte> Player_IsInMelee { get; }
         public delegate* unmanaged[Cdecl]<nint, byte> Player_IsInRagdoll { get; }
         public delegate* unmanaged[Cdecl]<nint, byte> Player_IsInVehicle { get; }
+        public delegate* unmanaged[Cdecl]<nint, byte> Player_IsInWater { get; }
         public delegate* unmanaged[Cdecl]<nint, byte> Player_IsJumping { get; }
         public delegate* unmanaged[Cdecl]<nint, byte> Player_IsLeavingVehicle { get; }
         public delegate* unmanaged[Cdecl]<nint, byte> Player_IsOnLadder { get; }
@@ -426,7 +427,7 @@ namespace AltV.Net.CApi.Libraries
 
     public unsafe class SharedLibrary : ISharedLibrary
     {
-        public readonly uint Methods = 1812;
+        public readonly uint Methods = 1813;
         public delegate* unmanaged[Cdecl]<nint, uint> Audio_GetID { get; }
         public delegate* unmanaged[Cdecl]<nint, uint> AudioAttachedOutput_GetID { get; }
         public delegate* unmanaged[Cdecl]<nint, uint> AudioFilter_GetID { get; }
@@ -764,6 +765,7 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<nint, byte> Player_IsInMelee { get; }
         public delegate* unmanaged[Cdecl]<nint, byte> Player_IsInRagdoll { get; }
         public delegate* unmanaged[Cdecl]<nint, byte> Player_IsInVehicle { get; }
+        public delegate* unmanaged[Cdecl]<nint, byte> Player_IsInWater { get; }
         public delegate* unmanaged[Cdecl]<nint, byte> Player_IsJumping { get; }
         public delegate* unmanaged[Cdecl]<nint, byte> Player_IsLeavingVehicle { get; }
         public delegate* unmanaged[Cdecl]<nint, byte> Player_IsOnLadder { get; }
@@ -1512,6 +1514,8 @@ namespace AltV.Net.CApi.Libraries
         private static byte Player_IsInRagdollFallback(nint _player) => throw new Exceptions.OutdatedSdkException("Player_IsInRagdoll", "Player_IsInRagdoll SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate byte Player_IsInVehicleDelegate(nint _player);
         private static byte Player_IsInVehicleFallback(nint _player) => throw new Exceptions.OutdatedSdkException("Player_IsInVehicle", "Player_IsInVehicle SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate byte Player_IsInWaterDelegate(nint _player);
+        private static byte Player_IsInWaterFallback(nint _player) => throw new Exceptions.OutdatedSdkException("Player_IsInWater", "Player_IsInWater SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate byte Player_IsJumpingDelegate(nint _player);
         private static byte Player_IsJumpingFallback(nint _player) => throw new Exceptions.OutdatedSdkException("Player_IsJumping", "Player_IsJumping SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate byte Player_IsLeavingVehicleDelegate(nint _player);
@@ -2007,6 +2011,7 @@ namespace AltV.Net.CApi.Libraries
             Player_IsInMelee = (delegate* unmanaged[Cdecl]<nint, byte>) GetUnmanagedPtr<Player_IsInMeleeDelegate>(funcTable, 9656359974229471670UL, Player_IsInMeleeFallback);
             Player_IsInRagdoll = (delegate* unmanaged[Cdecl]<nint, byte>) GetUnmanagedPtr<Player_IsInRagdollDelegate>(funcTable, 13866510163503569909UL, Player_IsInRagdollFallback);
             Player_IsInVehicle = (delegate* unmanaged[Cdecl]<nint, byte>) GetUnmanagedPtr<Player_IsInVehicleDelegate>(funcTable, 3966288765716642074UL, Player_IsInVehicleFallback);
+            Player_IsInWater = (delegate* unmanaged[Cdecl]<nint, byte>) GetUnmanagedPtr<Player_IsInWaterDelegate>(funcTable, 12569204323936167181UL, Player_IsInWaterFallback);
             Player_IsJumping = (delegate* unmanaged[Cdecl]<nint, byte>) GetUnmanagedPtr<Player_IsJumpingDelegate>(funcTable, 8318404148061760703UL, Player_IsJumpingFallback);
             Player_IsLeavingVehicle = (delegate* unmanaged[Cdecl]<nint, byte>) GetUnmanagedPtr<Player_IsLeavingVehicleDelegate>(funcTable, 7801590821162478013UL, Player_IsLeavingVehicleFallback);
             Player_IsOnLadder = (delegate* unmanaged[Cdecl]<nint, byte>) GetUnmanagedPtr<Player_IsOnLadderDelegate>(funcTable, 3159353707403506220UL, Player_IsOnLadderFallback);
