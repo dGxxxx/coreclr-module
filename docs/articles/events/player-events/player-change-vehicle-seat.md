@@ -32,7 +32,7 @@ Alt.OnPlayerChangeVehicleSeat += (vehicle, player, oldSeat, newSeat) => {
 public class MyScript : IScript
 {
     [ScriptEvent(ScriptEventType.PlayerChangeVehicleSeat)]
-    public void OnPlayerChangeVehicleSeat(IVehicle vehicle, IPlayer player, uint oldSeat, uint newSeat)
+    public void OnPlayerChangeVehicleSeat(IVehicle vehicle, IPlayer player, byte oldSeat, byte newSeat)
     {
         // ...
     }
