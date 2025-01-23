@@ -220,6 +220,7 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<nint, byte> Player_IsCrouching { get; }
         public delegate* unmanaged[Cdecl]<nint, nint, byte> Player_IsEntityInStreamingRange { get; }
         public delegate* unmanaged[Cdecl]<nint, byte> Player_IsNetworkOwnershipDisabled { get; }
+        public delegate* unmanaged[Cdecl]<nint, byte> Player_IsOnVehicle { get; }
         public delegate* unmanaged[Cdecl]<nint, byte> Player_IsStealthy { get; }
         public delegate* unmanaged[Cdecl]<nint, byte> Player_IsSuperJumpEnabled { get; }
         public delegate* unmanaged[Cdecl]<nint, nint, void> Player_Kick { get; }
@@ -490,7 +491,7 @@ namespace AltV.Net.CApi.Libraries
 
     public unsafe class ServerLibrary : IServerLibrary
     {
-        public readonly uint Methods = 1813;
+        public readonly uint Methods = 1814;
         public delegate* unmanaged[Cdecl]<nint, nint, void> BaseObject_DeleteSyncedMetaData { get; }
         public delegate* unmanaged[Cdecl]<nint, nint[], nint[], ulong, void> BaseObject_SetMultipleSyncedMetaData { get; }
         public delegate* unmanaged[Cdecl]<nint, nint, nint, void> BaseObject_SetSyncedMetaData { get; }
@@ -700,6 +701,7 @@ namespace AltV.Net.CApi.Libraries
         public delegate* unmanaged[Cdecl]<nint, byte> Player_IsCrouching { get; }
         public delegate* unmanaged[Cdecl]<nint, nint, byte> Player_IsEntityInStreamingRange { get; }
         public delegate* unmanaged[Cdecl]<nint, byte> Player_IsNetworkOwnershipDisabled { get; }
+        public delegate* unmanaged[Cdecl]<nint, byte> Player_IsOnVehicle { get; }
         public delegate* unmanaged[Cdecl]<nint, byte> Player_IsStealthy { get; }
         public delegate* unmanaged[Cdecl]<nint, byte> Player_IsSuperJumpEnabled { get; }
         public delegate* unmanaged[Cdecl]<nint, nint, void> Player_Kick { get; }
@@ -1384,6 +1386,8 @@ namespace AltV.Net.CApi.Libraries
         private static byte Player_IsEntityInStreamingRangeFallback(nint _player, nint _entity) => throw new Exceptions.OutdatedSdkException("Player_IsEntityInStreamingRange", "Player_IsEntityInStreamingRange SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate byte Player_IsNetworkOwnershipDisabledDelegate(nint _player);
         private static byte Player_IsNetworkOwnershipDisabledFallback(nint _player) => throw new Exceptions.OutdatedSdkException("Player_IsNetworkOwnershipDisabled", "Player_IsNetworkOwnershipDisabled SDK method is outdated. Please update your module nuget");
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate byte Player_IsOnVehicleDelegate(nint _player);
+        private static byte Player_IsOnVehicleFallback(nint _player) => throw new Exceptions.OutdatedSdkException("Player_IsOnVehicle", "Player_IsOnVehicle SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate byte Player_IsStealthyDelegate(nint _player);
         private static byte Player_IsStealthyFallback(nint _player) => throw new Exceptions.OutdatedSdkException("Player_IsStealthy", "Player_IsStealthy SDK method is outdated. Please update your module nuget");
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate byte Player_IsSuperJumpEnabledDelegate(nint _playere);
@@ -1925,7 +1929,7 @@ namespace AltV.Net.CApi.Libraries
         public ServerLibrary(Dictionary<ulong, IntPtr> funcTable)
         {
             if (!funcTable.TryGetValue(0, out var capiHash)) Outdated = true;
-            else if (capiHash == IntPtr.Zero || *(ulong*)capiHash != 13628227844990757996UL) Outdated = true;
+            else if (capiHash == IntPtr.Zero || *(ulong*)capiHash != 1842878650442980314UL) Outdated = true;
             BaseObject_DeleteSyncedMetaData = (delegate* unmanaged[Cdecl]<nint, nint, void>) GetUnmanagedPtr<BaseObject_DeleteSyncedMetaDataDelegate>(funcTable, 8228424877092269355UL, BaseObject_DeleteSyncedMetaDataFallback);
             BaseObject_SetMultipleSyncedMetaData = (delegate* unmanaged[Cdecl]<nint, nint[], nint[], ulong, void>) GetUnmanagedPtr<BaseObject_SetMultipleSyncedMetaDataDelegate>(funcTable, 1390762125822890831UL, BaseObject_SetMultipleSyncedMetaDataFallback);
             BaseObject_SetSyncedMetaData = (delegate* unmanaged[Cdecl]<nint, nint, nint, void>) GetUnmanagedPtr<BaseObject_SetSyncedMetaDataDelegate>(funcTable, 8002999088966424231UL, BaseObject_SetSyncedMetaDataFallback);
@@ -2135,6 +2139,7 @@ namespace AltV.Net.CApi.Libraries
             Player_IsCrouching = (delegate* unmanaged[Cdecl]<nint, byte>) GetUnmanagedPtr<Player_IsCrouchingDelegate>(funcTable, 14630872318254829849UL, Player_IsCrouchingFallback);
             Player_IsEntityInStreamingRange = (delegate* unmanaged[Cdecl]<nint, nint, byte>) GetUnmanagedPtr<Player_IsEntityInStreamingRangeDelegate>(funcTable, 4495638180817996194UL, Player_IsEntityInStreamingRangeFallback);
             Player_IsNetworkOwnershipDisabled = (delegate* unmanaged[Cdecl]<nint, byte>) GetUnmanagedPtr<Player_IsNetworkOwnershipDisabledDelegate>(funcTable, 11351828541605651622UL, Player_IsNetworkOwnershipDisabledFallback);
+            Player_IsOnVehicle = (delegate* unmanaged[Cdecl]<nint, byte>) GetUnmanagedPtr<Player_IsOnVehicleDelegate>(funcTable, 4450913768369030272UL, Player_IsOnVehicleFallback);
             Player_IsStealthy = (delegate* unmanaged[Cdecl]<nint, byte>) GetUnmanagedPtr<Player_IsStealthyDelegate>(funcTable, 13440527787182826435UL, Player_IsStealthyFallback);
             Player_IsSuperJumpEnabled = (delegate* unmanaged[Cdecl]<nint, byte>) GetUnmanagedPtr<Player_IsSuperJumpEnabledDelegate>(funcTable, 6165254230688543493UL, Player_IsSuperJumpEnabledFallback);
             Player_Kick = (delegate* unmanaged[Cdecl]<nint, nint, void>) GetUnmanagedPtr<Player_KickDelegate>(funcTable, 1188245696791696101UL, Player_KickFallback);

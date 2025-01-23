@@ -2104,6 +2104,114 @@ namespace AltV.Net.Elements.Entities
             }
         }
 
+        public float GetWheelCamber(byte wheel)
+        {
+            unsafe
+            {
+                CheckIfEntityExistsOrCached();
+                return Core.Library.Shared.Vehicle_GetWheelCamber(VehicleNativePointer, wheel);
+            }
+        }
+
+        public void SetWheelCamber(byte wheel, float value)
+        {
+            unsafe
+            {
+                CheckIfEntityExistsOrCached();
+                Core.Library.Shared.Vehicle_SetWheelCamber(VehicleNativePointer, wheel, value);
+            }
+        }
+
+        public float GetWheelTrackWidth(byte wheel)
+        {
+            unsafe
+            {
+                CheckIfEntityExistsOrCached();
+                return Core.Library.Shared.Vehicle_GetWheelTrackWidth(VehicleNativePointer, wheel);
+            }
+        }
+
+        public void SetWheelTrackWidth(byte wheel, float value)
+        {
+            unsafe
+            {
+                CheckIfEntityExistsOrCached();
+                Core.Library.Shared.Vehicle_SetWheelTrackWidth(VehicleNativePointer, wheel, value);
+            }
+        }
+
+        public float GetWheelHeight(byte wheel)
+        {
+            unsafe
+            {
+                CheckIfEntityExistsOrCached();
+                return Core.Library.Shared.Vehicle_GetWheelHeight(VehicleNativePointer, wheel);
+            }
+        }
+
+        public void SetWheelHeight(byte wheel, float value)
+        {
+            unsafe
+            {
+                CheckIfEntityExistsOrCached();
+                Core.Library.Shared.Vehicle_SetWheelHeight(VehicleNativePointer, wheel, value);
+            }
+        }
+
+        public float GetWheelTyreRadius(byte wheel)
+        {
+            unsafe
+            {
+                CheckIfEntityExistsOrCached();
+                return Core.Library.Shared.Vehicle_GetWheelTyreRadius(VehicleNativePointer, wheel);
+            }
+        }
+
+        public void SetWheelTyreRadius(byte wheel, float value)
+        {
+            unsafe
+            {
+                CheckIfEntityExistsOrCached();
+                Core.Library.Shared.Vehicle_SetWheelTyreRadius(VehicleNativePointer, wheel, value);
+            }
+        }
+
+        public float GetWheelRimRadius(byte wheel)
+        {
+            unsafe
+            {
+                CheckIfEntityExistsOrCached();
+                return Core.Library.Shared.Vehicle_GetWheelRimRadius(VehicleNativePointer, wheel);
+            }
+        }
+
+        public void SetWheelRimRadius(byte wheel, float value)
+        {
+            unsafe
+            {
+                CheckIfEntityExistsOrCached();
+                Core.Library.Shared.Vehicle_SetWheelRimRadius(VehicleNativePointer, wheel, value);
+            }
+        }
+
+        public float GetWheelTyreWidth(byte wheel)
+        {
+            unsafe
+            {
+                CheckIfEntityExistsOrCached();
+                return Core.Library.Shared.Vehicle_GetWheelTyreWidth(VehicleNativePointer, wheel);
+            }
+        }
+
+        public void SetWheelTyreWidth(byte wheel, float value)
+        {
+            unsafe
+            {
+                CheckIfEntityExistsOrCached();
+                Core.Library.Shared.Vehicle_SetWheelTyreWidth(VehicleNativePointer, wheel, value);
+            }
+        }
+
         public override void SetCached(IntPtr cachedVehicle)
         {
             this.VehicleNativePointer = cachedVehicle;
