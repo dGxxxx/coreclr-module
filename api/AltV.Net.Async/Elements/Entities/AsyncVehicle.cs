@@ -998,6 +998,114 @@ namespace AltV.Net.Async.Elements.Entities
             }
         }
 
+        public float GetWheelCamber(byte wheel)
+        {                
+            lock (Vehicle)
+            {
+                if (!AsyncContext.CheckIfExistsOrCachedNullable(Vehicle)) return default;
+                return Vehicle.GetWheelCamber(wheel);
+            }
+        }
+
+        public void SetWheelCamber(byte wheel, float value)
+        {
+            lock (Vehicle)
+            {
+                if (!AsyncContext.CheckIfExistsNullable(Vehicle)) return;
+                Vehicle.SetWheelCamber(wheel, value);
+            }
+        }
+
+        public float GetWheelTrackWidth(byte wheel)
+        {                
+            lock (Vehicle)
+            {
+                if (!AsyncContext.CheckIfExistsOrCachedNullable(Vehicle)) return default;
+                return Vehicle.GetWheelTrackWidth(wheel);
+            }
+        }
+
+        public void SetWheelTrackWidth(byte wheel, float value)
+        {
+            lock (Vehicle)
+            {
+                if (!AsyncContext.CheckIfExistsNullable(Vehicle)) return;
+                Vehicle.SetWheelTrackWidth(wheel, value);
+            }
+        }
+
+        public float GetWheelHeight(byte wheel)
+        {                
+            lock (Vehicle)
+            {
+                if (!AsyncContext.CheckIfExistsOrCachedNullable(Vehicle)) return default;
+                return Vehicle.GetWheelHeight(wheel);
+            }
+        }
+
+        public void SetWheelHeight(byte wheel, float value)
+        {
+            lock (Vehicle)
+            {
+                if (!AsyncContext.CheckIfExistsNullable(Vehicle)) return;
+                Vehicle.SetWheelHeight(wheel, value);
+            }
+        }
+
+        public float GetWheelTyreRadius(byte wheel)
+        {                
+            lock (Vehicle)
+            {
+                if (!AsyncContext.CheckIfExistsOrCachedNullable(Vehicle)) return default;
+                return Vehicle.GetWheelTyreRadius(wheel);
+            }
+        }
+
+        public void SetWheelTyreRadius(byte wheel, float value)
+        {
+            lock (Vehicle)
+            {
+                if (!AsyncContext.CheckIfExistsNullable(Vehicle)) return;
+                Vehicle.SetWheelTyreRadius(wheel, value);
+            }
+        }
+
+        public float GetWheelRimRadius(byte wheel)
+        {                
+            lock (Vehicle)
+            {
+                if (!AsyncContext.CheckIfExistsOrCachedNullable(Vehicle)) return default;
+                return Vehicle.GetWheelRimRadius(wheel);
+            }
+        }
+
+        public void SetWheelRimRadius(byte wheel, float value)
+        {
+            lock (Vehicle)
+            {
+                if (!AsyncContext.CheckIfExistsNullable(Vehicle)) return;
+                Vehicle.SetWheelRimRadius(wheel, value);
+            }
+        }
+
+        public float GetWheelTyreWidth(byte wheel)
+        {                
+            lock (Vehicle)
+            {
+                if (!AsyncContext.CheckIfExistsOrCachedNullable(Vehicle)) return default;
+                return Vehicle.GetWheelTyreWidth(wheel);
+            }
+        }
+
+        public void SetWheelTyreWidth(byte wheel, float value)
+        {
+            lock (Vehicle)
+            {
+                if (!AsyncContext.CheckIfExistsNullable(Vehicle)) return;
+                Vehicle.SetWheelTyreWidth(wheel, value);
+            }
+        }
+
         public byte WheelsCount
         {
             get
