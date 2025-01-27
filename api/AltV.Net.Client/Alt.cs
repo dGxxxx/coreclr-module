@@ -66,6 +66,7 @@ namespace AltV.Net.Client
         public static IReadOnlyCollection<ILocalObject> GetAllLocalObjects() => CoreImpl.GetAllLocalObjects();
         public static IReadOnlyCollection<ILocalVehicle> GetAllLocalVehicles() => CoreImpl.GetAllLocalVehicles();
         public static IReadOnlyCollection<ILocalPed> GetAllLocalPeds() => CoreImpl.GetAllLocalPeds();
+        public static IReadOnlyCollection<IBlip> GetAllBlips() => CoreImpl.GetAllBlips();
         public static IReadOnlyCollection<ILocalObject> GetAllWorldObjects() => CoreImpl.GetAllWorldObjects();
         public static IReadOnlyCollection<IVirtualEntity> GetAllVirtualEntities() => CoreImpl.GetAllVirtualEntities();
         public static IReadOnlyCollection<IVirtualEntityGroup> GetAllVirtualEntityGroups() => CoreImpl.GetAllVirtualEntityGroups();

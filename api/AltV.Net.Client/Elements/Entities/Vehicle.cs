@@ -410,7 +410,7 @@ namespace AltV.Net.Client.Elements.Entities
             unsafe
             {
                 CheckIfEntityExistsOrCached();
-                return Core.Library.Client.Vehicle_GetWheelCamber(VehicleNativePointer, wheel);
+                return Core.Library.Shared.Vehicle_GetWheelCamber(VehicleNativePointer, wheel);
             }
         }
 
@@ -419,7 +419,7 @@ namespace AltV.Net.Client.Elements.Entities
             unsafe
             {
                 CheckIfEntityExistsOrCached();
-                Core.Library.Client.Vehicle_SetWheelCamber(VehicleNativePointer, wheel, value);
+                Core.Library.Shared.Vehicle_SetWheelCamber(VehicleNativePointer, wheel, value);
             }
         }
 
@@ -428,7 +428,7 @@ namespace AltV.Net.Client.Elements.Entities
             unsafe
             {
                 CheckIfEntityExistsOrCached();
-                return Core.Library.Client.Vehicle_GetWheelTrackWidth(VehicleNativePointer, wheel);
+                return Core.Library.Shared.Vehicle_GetWheelTrackWidth(VehicleNativePointer, wheel);
             }
         }
 
@@ -437,7 +437,7 @@ namespace AltV.Net.Client.Elements.Entities
             unsafe
             {
                 CheckIfEntityExistsOrCached();
-                Core.Library.Client.Vehicle_SetWheelTrackWidth(VehicleNativePointer, wheel, value);
+                Core.Library.Shared.Vehicle_SetWheelTrackWidth(VehicleNativePointer, wheel, value);
             }
         }
 
@@ -446,7 +446,7 @@ namespace AltV.Net.Client.Elements.Entities
             unsafe
             {
                 CheckIfEntityExistsOrCached();
-                return Core.Library.Client.Vehicle_GetWheelHeight(VehicleNativePointer, wheel);
+                return Core.Library.Shared.Vehicle_GetWheelHeight(VehicleNativePointer, wheel);
             }
         }
 
@@ -455,7 +455,7 @@ namespace AltV.Net.Client.Elements.Entities
             unsafe
             {
                 CheckIfEntityExistsOrCached();
-                Core.Library.Client.Vehicle_SetWheelHeight(VehicleNativePointer, wheel, value);
+                Core.Library.Shared.Vehicle_SetWheelHeight(VehicleNativePointer, wheel, value);
             }
         }
 
@@ -464,7 +464,7 @@ namespace AltV.Net.Client.Elements.Entities
             unsafe
             {
                 CheckIfEntityExistsOrCached();
-                return Core.Library.Client.Vehicle_GetWheelTyreRadius(VehicleNativePointer, wheel);
+                return Core.Library.Shared.Vehicle_GetWheelTyreRadius(VehicleNativePointer, wheel);
             }
         }
 
@@ -473,7 +473,7 @@ namespace AltV.Net.Client.Elements.Entities
             unsafe
             {
                 CheckIfEntityExistsOrCached();
-                Core.Library.Client.Vehicle_SetWheelTyreRadius(VehicleNativePointer, wheel, value);
+                Core.Library.Shared.Vehicle_SetWheelTyreRadius(VehicleNativePointer, wheel, value);
             }
         }
 
@@ -482,7 +482,7 @@ namespace AltV.Net.Client.Elements.Entities
             unsafe
             {
                 CheckIfEntityExistsOrCached();
-                return Core.Library.Client.Vehicle_GetWheelRimRadius(VehicleNativePointer, wheel);
+                return Core.Library.Shared.Vehicle_GetWheelRimRadius(VehicleNativePointer, wheel);
             }
         }
 
@@ -491,7 +491,7 @@ namespace AltV.Net.Client.Elements.Entities
             unsafe
             {
                 CheckIfEntityExistsOrCached();
-                Core.Library.Client.Vehicle_SetWheelRimRadius(VehicleNativePointer, wheel, value);
+                Core.Library.Shared.Vehicle_SetWheelRimRadius(VehicleNativePointer, wheel, value);
             }
         }
 
@@ -500,7 +500,7 @@ namespace AltV.Net.Client.Elements.Entities
             unsafe
             {
                 CheckIfEntityExistsOrCached();
-                return Core.Library.Client.Vehicle_GetWheelTyreWidth(VehicleNativePointer, wheel);
+                return Core.Library.Shared.Vehicle_GetWheelTyreWidth(VehicleNativePointer, wheel);
             }
         }
 
@@ -509,7 +509,7 @@ namespace AltV.Net.Client.Elements.Entities
             unsafe
             {
                 CheckIfEntityExistsOrCached();
-                Core.Library.Client.Vehicle_SetWheelTyreWidth(VehicleNativePointer, wheel, value);
+                Core.Library.Shared.Vehicle_SetWheelTyreWidth(VehicleNativePointer, wheel, value);
             }
         }
 
